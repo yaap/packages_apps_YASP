@@ -15,24 +15,75 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
+import android.content.Context;
 import android.os.Bundle;
-import com.android.settings.R;
+import android.provider.Settings;
+import android.provider.SearchIndexableResource;
+import android.text.TextUtils;
 
+import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
+
+import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.R;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
 
+import com.yasp.settings.Utils;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@SearchIndexable
 public class NotificationsSettings extends SettingsPreferenceFragment {
+
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
         addPreferencesFromResource(R.xml.yaap_settings_notifications);
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!Utils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
+        }
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                                                                            boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.yaap_settings_notifications;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+                }
+            };
 }
