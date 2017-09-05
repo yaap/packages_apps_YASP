@@ -31,14 +31,24 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.R;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.yasp.settings.Utils;
+
 @SearchIndexable
 public class NotificationsSettings extends SettingsPreferenceFragment {
+
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
         addPreferencesFromResource(R.xml.yaap_settings_notifications);
+        PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!Utils.isVoiceCapable(getActivity())) {
+            prefScreen.removePreference(incallVibCategory);
+        }
     }
 
     @Override
