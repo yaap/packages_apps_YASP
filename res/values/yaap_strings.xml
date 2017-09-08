@@ -148,4 +148,7 @@
 
     <!-- NavBar Visibility -->
     <string name="navbar_visibility">Enable Navigation Bar</string>
+
+    <!-- Statusbar Tuner -->
+    <string name="statusbar_items_title">Statusbar items</string>
 </resources>

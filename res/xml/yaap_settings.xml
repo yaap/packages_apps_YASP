@@ -18,11 +18,11 @@
     android:title="@string/yaap_settings_title" >
 
         <!-- Status Bar -->
-        <!-- <Preference
+        <Preference
             android:key="statusbar_category"
             android:title="@string/statusbar_title"
             android:fragment="com.yasp.settings.fragments.StatusBarSettings"
-            android:icon="@drawable/ic_settings_statusbar"/> -->
+            android:icon="@drawable/ic_settings_statusbar"/>
 
         <!-- Quick Settings -->
         <Preference
