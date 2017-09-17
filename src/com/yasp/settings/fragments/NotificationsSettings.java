@@ -39,6 +39,7 @@ import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
 import com.yasp.settings.preferences.SystemSettingListPreference;
+import com.yasp.settings.preferences.SystemSettingMasterSwitchPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 import com.yasp.settings.Utils;
 
@@ -55,10 +56,12 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
     private static final String PREF_FLASH_ON_CALL = "flashlight_on_call";
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
+    private static final String KEY_BATT_LIGHT = "battery_light_enabled";
 
     private SystemSettingListPreference mFlashOnCall;
     private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
+    private SystemSettingMasterSwitchPreference mBatteryLight;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -89,6 +92,13 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
         mFlashOnCall = (SystemSettingListPreference)
                 findPreference(PREF_FLASH_ON_CALL);
         mFlashOnCall.setOnPreferenceChangeListener(this);
+
+        mBatteryLight = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_BATT_LIGHT);
+        boolean enabled = Settings.System.getInt(resolver,
+                KEY_BATT_LIGHT, 1) == 1;
+        mBatteryLight.setChecked(enabled);
+        mBatteryLight.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -105,6 +115,10 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
             int value = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.FLASHLIGHT_ON_CALL_RATE, value);
+            return true;
+        } else if (preference == mBatteryLight) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver, KEY_BATT_LIGHT, value ? 1 : 0);
             return true;
         }
         return false;
