@@ -21,4 +21,6 @@
     <dimen name="colorpicker_tracker_radius">5dip</dimen>
     <dimen name="colorpicker_hue_width">30dip</dimen>
 
+    <dimen name="picker_circle_preview_size">26dp</dimen>
+
 </resources>
