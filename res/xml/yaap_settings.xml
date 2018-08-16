@@ -53,11 +53,11 @@
             android:icon="@drawable/ic_settings_pdgestures"/>
 
         <!-- Lock Screen -->
-        <!-- <Preference
+        <Preference
             android:key="lockscreen_category"
             android:title="@string/lockscreen_title"
             android:fragment="com.yasp.settings.fragments.LockScreenSettings"
-            android:icon="@drawable/ic_settings_lockscreens"/> -->
+            android:icon="@drawable/ic_settings_lockscreens"/>
 
         <!-- Power Menu -->
         <!-- <Preference
