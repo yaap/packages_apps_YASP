@@ -15,20 +15,73 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
 import android.os.Bundle;
-import com.android.settings.R;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 
+import androidx.preference.ListPreference;
+import androidx.preference.SwitchPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+
+import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.util.hwkeys.ActionUtils;
+import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class NavigationBarSettings extends SettingsPreferenceFragment {
+public class NavigationBarSettings extends SettingsPreferenceFragment implements
+        OnPreferenceChangeListener {
+
+    private static final String NAVBAR_VISIBILITY = "navbar_visibility";
+
+    private SwitchPreference mNavbarVisibility;
+
+    private boolean mIsNavSwitchingMode = false;
+    private Handler mHandler;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
         addPreferencesFromResource(R.xml.yaap_settings_navigation);
+
+        mNavbarVisibility = (SwitchPreference) findPreference(NAVBAR_VISIBILITY);
+
+        boolean showing = Settings.System.getInt(getContentResolver(),
+                Settings.System.FORCE_SHOW_NAVBAR,
+                ActionUtils.hasNavbarByDefault(getActivity()) ? 1 : 0) != 0;
+        updateBarVisibleAndUpdatePrefs(showing);
+        mNavbarVisibility.setOnPreferenceChangeListener(this);
+
+        mHandler = new Handler();
+    }
+
+    private void updateBarVisibleAndUpdatePrefs(boolean showing) {
+        mNavbarVisibility.setChecked(showing);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference.equals(mNavbarVisibility)) {
+            if (mIsNavSwitchingMode) {
+                return false;
+            }
+            mIsNavSwitchingMode = true;
+            boolean showing = ((Boolean)newValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.FORCE_SHOW_NAVBAR,
+                    showing ? 1 : 0);
+            updateBarVisibleAndUpdatePrefs(showing);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mIsNavSwitchingMode = false;
+                }
+            }, 1500);
+            return true;
+        }
+        return false;
     }
 
     @Override

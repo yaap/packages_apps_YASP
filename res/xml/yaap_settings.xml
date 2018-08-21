@@ -39,11 +39,11 @@
             android:icon="@drawable/ic_settings_buttons"/>
 
         <!-- Navigation Bar -->
-        <!-- <Preference
+        <Preference
             android:key="navigationbar_category"
             android:title="@string/navbar_title"
             android:fragment="com.yasp.settings.fragments.NavigationBarSettings"
-            android:icon="@drawable/ic_settings_navbar"/> -->
+            android:icon="@drawable/ic_settings_navbar"/>
 
         <!-- Gestures -->
         <Preference

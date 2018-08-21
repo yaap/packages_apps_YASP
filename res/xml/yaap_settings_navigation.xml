@@ -18,4 +18,8 @@
     android:title="@string/navbar_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <SwitchPreference
+        android:key="navbar_visibility"
+        android:title="@string/navbar_visibility" />
+
 </PreferenceScreen>
