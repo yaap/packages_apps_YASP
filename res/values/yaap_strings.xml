@@ -111,6 +111,11 @@
     <string name="screenshot_gesture_delay_title">Activation delay</string>
     <string name="screenshot_gesture_delay_summary">Screenshot gesture activation delay</string>
 
+    <!-- Volume keys control music playback -->
+    <string name="volume_button_header">Volume Buttons</string>
+    <string name="volume_rocker_music_controls_title">Playback control</string>
+    <string name="volume_rocker_music_controls_summary">When the screen is off, long-pressing the volume keys will seek music tracks</string>
+
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">Charging info</string>
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage and battery temperature on lockscreen while charging</string>

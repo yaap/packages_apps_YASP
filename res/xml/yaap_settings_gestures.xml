@@ -64,6 +64,18 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="volume_category"
+        android:title="@string/volume_button_header" >
+
+        <com.yasp.settings.preferences.SystemSettingSwitchPreference
+            android:key="volume_button_music_control"
+            android:title="@string/volume_rocker_music_controls_title"
+            android:summary="@string/volume_rocker_music_controls_summary"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="screenshot_category"
         android:title="@string/screenshot_category_title" >
 
