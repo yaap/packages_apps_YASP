@@ -28,4 +28,11 @@
         android:entryValues="@array/torch_power_button_gesture_values"
         android:defaultValue="0" />
 
+    <!-- Volume keys control music playback  -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="volume_button_music_control"
+        android:title="@string/volume_rocker_music_controls_title"
+        android:summary="@string/volume_rocker_music_controls_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
