@@ -24,7 +24,7 @@
             android:fragment="com.yasp.settings.fragments.StatusBarSettings"
             android:icon="@drawable/ic_settings_statusbar"/>
 
-        <!-- Quick Settings panel -->
+        <!-- Quick Settings -->
         <Preference
             android:key="quicksettings_category"
             android:title="@string/quicksettings_title"
