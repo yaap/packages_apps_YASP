@@ -173,7 +173,12 @@
     <string name="navigation_bar_arrow_keys_title">IME arrows</string>
     <string name="navigation_bar_arrow_keys_summary">Show arrow keys on navbar while typing</string>
 
-    <!-- NavBar Inverse -->
+    <!-- NavBar Layout -->
+    <string name="navbar_layout_title">Layout</string>
+    <string name="navbar_layout_normal">Normal</string>
+    <string name="navbar_layout_compact">Compact</string>
+    <string name="navbar_layout_leftleaning">Left-leaning</string>
+    <string name="navbar_layout_rightleaning">Right-leaning</string>
     <string name="navigation_bar_inverse_title">Inverse layout</string>
 
     <!-- Statusbar Tuner -->
