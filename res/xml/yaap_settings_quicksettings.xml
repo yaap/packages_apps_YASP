@@ -18,4 +18,18 @@
     android:title="@string/quicksettings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- QS footer text toggle -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="qs_footer_text_show"
+        android:title="@string/qs_footer_text_show_title"
+        android:defaultValue="false" />
+
+    <!-- QS footer text string -->
+    <com.yasp.settings.preferences.SystemSettingEditTextPreference
+        android:key="qs_footer_text_string"
+        android:title="@string/qs_footer_text_string_title"
+        android:summary="@string/qs_footer_text_string_summary"
+        android:dependency="qs_footer_text_show"
+        android:defaultValue="YAAP" />
+
 </PreferenceScreen>
