@@ -87,4 +87,11 @@
             android:fragment="com.yasp.settings.fragments.MiscSettings"
             android:icon="@drawable/ic_settings_miscs"/>
 
+        <!-- About -->
+        <Preference
+            android:key="about_category"
+            android:title="@string/about_title"
+            android:fragment="com.yasp.settings.fragments.About"
+            android:icon="@drawable/ic_info"/>
+
 </PreferenceScreen>
