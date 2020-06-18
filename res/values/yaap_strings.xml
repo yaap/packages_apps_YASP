@@ -273,4 +273,8 @@
     <string name="qs_media_controls_summary_on">Show media player in QS\nRequires a SystemUI restart</string>
     <string name="qs_media_controls_summary_off">Show media player as a notification\nRequires a SystemUI restart</string>
 
+    <!-- NavBar IME arrows -->
+    <string name="navigation_bar_arrow_keys_title">IME arrows</string>
+    <string name="navigation_bar_arrow_keys_summary">Show arrow keys on navbar while typing</string>
+
 </resources>

@@ -25,6 +25,13 @@
         android:summary="@string/advanced_reboot_summary"
         android:defaultValue="false" />
 
+    <!-- NavBar IME arrows -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="navigation_bar_menu_arrow_keys"
+        android:title="@string/navigation_bar_arrow_keys_title"
+        android:summary="@string/navigation_bar_arrow_keys_summary"
+        android:defaultValue="false" />
+
     <!-- Monet -->
     <Preference
         android:key="monet_settings"
