@@ -22,4 +22,11 @@
         android:key="navbar_visibility"
         android:title="@string/navbar_visibility" />
 
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="navigation_bar_arrow_keys"
+        android:title="@string/navigation_bar_arrow_keys_title"
+        android:summary="@string/navigation_bar_arrow_keys_summary"
+        android:defaultValue="false"
+        android:dependency="navbar_visibility" />
+
 </PreferenceScreen>

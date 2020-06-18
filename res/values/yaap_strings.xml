@@ -155,6 +155,10 @@
     <!-- NavBar Visibility -->
     <string name="navbar_visibility">Enable Navigation Bar</string>
 
+    <!-- NavBar IME arrows -->
+    <string name="navigation_bar_arrow_keys_title">IME arrows</string>
+    <string name="navigation_bar_arrow_keys_summary">Show arrow keys on navbar while typing</string>
+
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Statusbar items</string>
 
