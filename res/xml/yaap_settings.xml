@@ -32,11 +32,11 @@
             android:icon="@drawable/ic_settings_quicksettings"/>
 
         <!-- Buttons -->
-        <!-- <Preference
+        <Preference
             android:key="buttonsettings_category"
             android:title="@string/button_title"
             android:fragment="com.yasp.settings.fragments.ButtonSettings"
-            android:icon="@drawable/ic_settings_buttons"/> -->
+            android:icon="@drawable/ic_settings_buttons"/>
 
         <!-- Navigation Bar -->
         <!-- <Preference
