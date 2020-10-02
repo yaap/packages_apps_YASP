@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package net.margaritov.preference.colorpicker;
+package com.yasp.settings.preferences.colorpicker;
 
 import android.app.AlertDialog;
 import android.content.Context;

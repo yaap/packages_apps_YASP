@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package net.margaritov.preference.colorpicker;
+package com.yasp.settings.preferences.colorpicker;
 
 import android.content.Context;
 import android.graphics.Canvas;
