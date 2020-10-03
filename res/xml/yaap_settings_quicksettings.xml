@@ -18,6 +18,14 @@
     android:title="@string/quicksettings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- QS brightness slider -->
+    <com.yasp.settings.preferences.SecureSettingMasterSwitchPreference
+        android:key="qs_show_brightness"
+        android:title="@string/qs_show_brightness_title"
+        android:summary="@string/qs_show_brightness_summary"
+        android:fragment="com.yasp.settings.fragments.BrightnessSliderSettings"
+        android:defaultValue="true" />
+
     <!-- QS footer text toggle -->
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="qs_footer_text_show"
