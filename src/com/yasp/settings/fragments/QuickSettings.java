@@ -16,6 +16,7 @@
 package com.yasp.settings.fragments;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.yasp.settings.preferences.SystemSettingEditTextPreference;
+import com.yasp.settings.preferences.SystemSettingMasterSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,40 +45,56 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
+    private static final String BRIGHTNESS_SLIDER = "qs_show_brightness";
 
     private SystemSettingEditTextPreference mFooterString;
+    private SystemSettingMasterSwitchPreference mBrightnessSlider;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.yaap_settings_quicksettings);
         PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        mBrightnessSlider = (SystemSettingMasterSwitchPreference)
+                findPreference(BRIGHTNESS_SLIDER);
+        mBrightnessSlider.setOnPreferenceChangeListener(this);
+        boolean enabled = Settings.System.getInt(resolver,
+                BRIGHTNESS_SLIDER, 1) == 1;
+        mBrightnessSlider.setChecked(enabled);
 
         mFooterString = (SystemSettingEditTextPreference) findPreference(QS_FOOTER_TEXT_STRING);
         mFooterString.setOnPreferenceChangeListener(this);
-        String footerString = Settings.System.getString(getContentResolver(),
+        String footerString = Settings.System.getString(resolver,
                 QS_FOOTER_TEXT_STRING);
         if (footerString != null && footerString != "")
             mFooterString.setText(footerString);
         else {
             mFooterString.setText("YAAP");
-            Settings.System.putString(getActivity().getContentResolver(),
+            Settings.System.putString(resolver,
                     Settings.System.QS_FOOTER_TEXT_STRING, "YAAP");
         }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mFooterString) {
             String value = (String) newValue;
             if (value != "" && value != null)
-                Settings.System.putString(getActivity().getContentResolver(),
+                Settings.System.putString(resolver,
                         Settings.System.QS_FOOTER_TEXT_STRING, value);
             else {
                 mFooterString.setText("YAAP");
-                Settings.System.putString(getActivity().getContentResolver(),
+                Settings.System.putString(resolver,
                         Settings.System.QS_FOOTER_TEXT_STRING, "YAAP");
             }
+            return true;
+        } else if (preference == mBrightnessSlider) {
+            Boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    BRIGHTNESS_SLIDER, value ? 1 : 0);
             return true;
         }
         return false;
