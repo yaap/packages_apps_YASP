@@ -18,11 +18,11 @@
     android:title="@string/yaap_settings_title" >
 
         <!-- Status Bar -->
-        <Preference
+        <!-- <Preference
             android:key="statusbar_category"
             android:title="@string/statusbar_title"
             android:fragment="com.yasp.settings.fragments.StatusBarSettings"
-            android:icon="@drawable/ic_settings_statusbar"/>
+            android:icon="@drawable/ic_settings_statusbar"/> -->
 
         <!-- Quick Settings -->
         <Preference
@@ -32,18 +32,18 @@
             android:icon="@drawable/ic_settings_quicksettings"/>
 
         <!-- Buttons -->
-        <Preference
+        <!-- <Preference
             android:key="buttonsettings_category"
             android:title="@string/button_title"
             android:fragment="com.yasp.settings.fragments.ButtonSettings"
-            android:icon="@drawable/ic_settings_buttons"/>
+            android:icon="@drawable/ic_settings_buttons"/> -->
 
         <!-- Navigation Bar -->
-        <Preference
+        <!-- <Preference
             android:key="navigationbar_category"
             android:title="@string/navbar_title"
             android:fragment="com.yasp.settings.fragments.NavigationBarSettings"
-            android:icon="@drawable/ic_settings_navbar"/>
+            android:icon="@drawable/ic_settings_navbar"/> -->
 
         <!-- Gestures -->
         <Preference
@@ -53,25 +53,25 @@
             android:icon="@drawable/ic_settings_pdgestures"/>
 
         <!-- Lock Screen -->
-        <Preference
+        <!-- <Preference
             android:key="lockscreen_category"
             android:title="@string/lockscreen_title"
             android:fragment="com.yasp.settings.fragments.LockScreenSettings"
-            android:icon="@drawable/ic_settings_lockscreens"/>
+            android:icon="@drawable/ic_settings_lockscreens"/> -->
 
         <!-- Power Menu -->
-        <Preference
+        <!-- <Preference
             android:key="powermenu_category"
             android:title="@string/powermenu_title"
             android:fragment="com.yasp.settings.fragments.PowerMenuSettings"
-            android:icon="@drawable/ic_settings_powermenu"/>
+            android:icon="@drawable/ic_settings_powermenu"/> -->
 
         <!-- Recents -->
-        <Preference
+        <!-- <Preference
             android:key="recents_category"
             android:title="@string/recents_title"
             android:fragment="com.yasp.settings.fragments.RecentsSettings"
-            android:icon="@drawable/ic_settings_recents"/>
+            android:icon="@drawable/ic_settings_recents"/> -->
 
         <!-- Notifications -->
         <Preference
@@ -81,10 +81,10 @@
             android:icon="@drawable/ic_settings_notifications"/>
 
         <!-- Misc -->
-        <Preference
+        <!-- <Preference
             android:key="misc_category"
             android:title="@string/misc_title"
             android:fragment="com.yasp.settings.fragments.MiscSettings"
-            android:icon="@drawable/ic_settings_miscs"/>
+            android:icon="@drawable/ic_settings_miscs"/> -->
 
 </PreferenceScreen>
