@@ -22,18 +22,28 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Surface;
-import android.preference.Preference;
-import com.android.settings.R;
 
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+
+import com.android.internal.util.hwkeys.ActionUtils;
+import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 public class YaapSettings extends SettingsPreferenceFragment {
+    private static final String BUTTON_CATEGORY = "buttonsettings_category";
+
+    private Preference mButtonPref;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
         addPreferencesFromResource(R.xml.yaap_settings);
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+        if (ActionUtils.hasNavbarByDefault(getActivity())) {
+            mButtonPref = (Preference) findPreference(BUTTON_CATEGORY);
+            prefScreen.removePreference(mButtonPref);
+        }
     }
 
     @Override

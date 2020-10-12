@@ -32,7 +32,6 @@ import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.hwkeys.ActionConstants;
-import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
@@ -46,7 +45,6 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
 
     // category keys
-    private static final String CATEGORY_HWKEY = "hardware_keys";
     private static final String CATEGORY_HOME = "home_key";
     private static final String CATEGORY_MENU = "menu_key";
     private static final String CATEGORY_BACK = "back_key";
@@ -77,39 +75,31 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
 
-        final boolean needsNavbar = ActionUtils.hasNavbarByDefault(getActivity());
-        final PreferenceCategory hwkeyCat = (PreferenceCategory) prefScreen
-                .findPreference(CATEGORY_HWKEY);
-        int keysDisabled = 0;
-        if (!needsNavbar) {
-            mHwKeyDisable = (SwitchPreference) findPreference(HWKEY_DISABLE);
-            keysDisabled = Settings.Secure.getIntForUser(getContentResolver(),
-                    Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
-                    UserHandle.USER_CURRENT);
-            mHwKeyDisable.setChecked(keysDisabled != 0);
-            mHwKeyDisable.setOnPreferenceChangeListener(this);
+        mHwKeyDisable = (SwitchPreference) findPreference(HWKEY_DISABLE);
+        int keysDisabled = Settings.Secure.getIntForUser(getContentResolver(),
+                Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
+                UserHandle.USER_CURRENT);
+        mHwKeyDisable.setChecked(keysDisabled != 0);
+        mHwKeyDisable.setOnPreferenceChangeListener(this);
 
-            mBacklightTimeout =
-                    (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
+        mBacklightTimeout =
+                (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
 
-            mButtonBrightness_sw =
-                    (SwitchPreference) findPreference(KEY_BUTTON_BRIGHTNESS_SW);
+        mButtonBrightness_sw =
+                (SwitchPreference) findPreference(KEY_BUTTON_BRIGHTNESS_SW);
 
-            if (mBacklightTimeout != null) {
-                mBacklightTimeout.setOnPreferenceChangeListener(this);
-                int BacklightTimeout = Settings.System.getInt(getContentResolver(),
-                        Settings.System.BUTTON_BACKLIGHT_TIMEOUT, 5000);
-                mBacklightTimeout.setValue(Integer.toString(BacklightTimeout));
-                mBacklightTimeout.setSummary(mBacklightTimeout.getEntry());
-            }
+        if (mBacklightTimeout != null) {
+            mBacklightTimeout.setOnPreferenceChangeListener(this);
+            int BacklightTimeout = Settings.System.getInt(getContentResolver(),
+                    Settings.System.BUTTON_BACKLIGHT_TIMEOUT, 5000);
+            mBacklightTimeout.setValue(Integer.toString(BacklightTimeout));
+            mBacklightTimeout.setSummary(mBacklightTimeout.getEntry());
+        }
 
-            if (mButtonBrightness_sw != null) {
-                mButtonBrightness_sw.setChecked((Settings.System.getInt(getContentResolver(),
-                        Settings.System.BUTTON_BRIGHTNESS, 1) == 1));
-                mButtonBrightness_sw.setOnPreferenceChangeListener(this);
-            }
-        } else {
-            prefScreen.removePreference(hwkeyCat);
+        if (mButtonBrightness_sw != null) {
+            mButtonBrightness_sw.setChecked((Settings.System.getInt(getContentResolver(),
+                    Settings.System.BUTTON_BRIGHTNESS, 1) == 1));
+            mButtonBrightness_sw.setOnPreferenceChangeListener(this);
         }
 
         // bits for hardware keys present on device
