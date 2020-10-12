@@ -194,7 +194,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
         if (preference == mBacklightTimeout) {
             String BacklightTimeout = (String) newValue;
             int BacklightTimeoutValue = Integer.parseInt(BacklightTimeout);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.BUTTON_BACKLIGHT_TIMEOUT, BacklightTimeoutValue);
             int BacklightTimeoutIndex = mBacklightTimeout
                     .findIndexOfValue(BacklightTimeout);
@@ -203,18 +203,22 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
             return true;
         } else if (preference == mButtonBrightness) {
             int value = (Integer) newValue;
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.BUTTON_BRIGHTNESS, value * 1);
             return true;
         } else if (preference == mButtonBrightness_sw) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.BUTTON_BRIGHTNESS, value ? 1 : 0);
             return true;
         } else if (preference == mHwKeyDisable) {
             boolean value = (Boolean) newValue;
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.HARDWARE_KEYS_DISABLE,
-                    value ? 1 : 0);
+            Settings.Secure.putInt(resolver,
+                    Settings.Secure.HARDWARE_KEYS_DISABLE, value ? 1 : 0);
+            if (value) {
+                Settings.System.putInt(resolver,
+                        Settings.System.FORCE_SHOW_NAVBAR, 1);
+            }
             setActionPreferencesEnabled(!value);
             return true;
         }
