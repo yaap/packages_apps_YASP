@@ -15,24 +15,97 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.SearchIndexableResource;
+import android.provider.Settings;
+import android.text.format.DateFormat;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+
+import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
+
+import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.R;
-
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
 
-public class StatusBarSettings extends SettingsPreferenceFragment {
+import com.yasp.settings.preferences.SystemSettingMasterSwitchPreference;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+@SearchIndexable
+public class StatusBarSettings extends SettingsPreferenceFragment implements
+        OnPreferenceChangeListener, Indexable {
+
+    private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+
+    private SystemSettingMasterSwitchPreference mNetTrafficState;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
         addPreferencesFromResource(R.xml.yaap_settings_statusbar);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        mNetTrafficState = (SystemSettingMasterSwitchPreference)
+                findPreference(NETWORK_TRAFFIC_STATE);
+        mNetTrafficState.setOnPreferenceChangeListener(this);
+        boolean enabled = Settings.System.getInt(resolver,
+                Settings.System.NETWORK_TRAFFIC_STATE, 0) == 1;
+        mNetTrafficState.setChecked(enabled);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mNetTrafficState) {
+            boolean enabled = (boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                                                                            boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.yaap_settings_statusbar;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+                }
+            };
 }
