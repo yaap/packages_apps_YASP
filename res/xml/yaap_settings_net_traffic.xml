@@ -37,7 +37,7 @@
         android:max="10"
         settings:min="0"
         settings:defaultValue="1"
-        settings:units="" />
+        settings:units="KB/s" />
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="network_traffic_arrow"
@@ -48,9 +48,9 @@
     <com.yasp.settings.preferences.CustomSeekBarPreference
         android:key="network_traffic_font_size"
         android:title="@string/network_traffic_font_size_title"
-        android:max="46"
-        android:min="21"
-        settings:defaultValue="36"
-        settings:units="" />
+        android:max="15"
+        android:min="6"
+        settings:defaultValue="10"
+        settings:units="dp" />
 
 </PreferenceScreen>
