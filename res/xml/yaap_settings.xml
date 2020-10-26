@@ -60,11 +60,11 @@
             android:icon="@drawable/ic_settings_lockscreens"/>
 
         <!-- Power Menu -->
-        <!-- <Preference
+        <Preference
             android:key="powermenu_category"
             android:title="@string/powermenu_title"
-            android:fragment="com.yasp.settings.fragments.PowerMenuSettings"
-            android:icon="@drawable/ic_settings_powermenu"/> -->
+            android:fragment="com.android.settings.gestures.PowerMenuSettings"
+            android:icon="@drawable/ic_settings_powermenu"/>
 
         <!-- Recents -->
         <!-- <Preference
