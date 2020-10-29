@@ -93,9 +93,16 @@
     <string name="torch_long_press_power_timeout_5min">5 分钟</string>
     <string name="torch_long_press_power_timeout_10min">10 分钟</string>
 
+    <!-- AOSP Gestures -->
+    <string name="aosp_gesture_title">AOSP手势设置</string>
+
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">锁屏充电信息</string>
     <string name="lockscreen_battery_info_summary">充电时在锁定屏幕上显示协商的充电器最大电流和电压以及电池温度</string>
+
+    <!-- SmartSpace -->
+    <string name="smart_space_title">智能显示</string>
+    <string name="smart_space_summary">在锁定屏幕上显示天气和事件等信息\n需要重新启动系统界面</string>
 
     <!-- Buttons backlight timeout -->
     <string name="backlight_timeout_title">按钮背光超时</string>
@@ -146,16 +153,16 @@
     <string name="network_traffic_state_summary">在状态栏上显示网络流量监视器</string>
     <string name="network_traffic_location_title">网络流量位置</string>
     <string name="traffic_statusbar">状态栏</string>
-    <string name="traffic_expanded_statusbar">扩展头</string>
-    <string name="network_traffic_autohide_threshold_title">净活动自动隐藏阈值</string>
+    <string name="traffic_expanded_statusbar">快速设置面板</string>
+    <string name="network_traffic_autohide_threshold_title">网络活动自动隐藏的值</string>
     <string name="network_traffic_arrow_title">显示箭头</string>
     <string name="network_traffic_arrow_summary">显示网络流量指示器箭头</string>
-    <string name="network_traffic_type">选择净活动类型</string>
+    <string name="network_traffic_type">选择活动表示类型</string>
     <string name="show_network_traffic_combined">合并（上传+下载）</string>
     <string name="show_network_traffic_dynamic">动态</string>
     <string name="show_network_traffic_up">上传</string>
     <string name="show_network_traffic_down">下载</string>
-    <string name="show_network_traffic_all">两者都</string>
+    <string name="show_network_traffic_all">两者都显示</string>
     <string name="network_traffic_font_size_title">单网字体大小</string>
 
     <!-- Incall vibrate options -->
@@ -175,4 +182,19 @@
     <string name="flashlight_on_call_ignore_dnd_summary">在免打扰模式下是否闪烁</string>
     <string name="flashlight_on_call_rate_title">闪烁速度</string>
     <string name="flashlight_on_call_rate_summary">来电时手电筒的闪烁率</string>
+
+    <!-- About -->
+    <string name="about_title">关于</string>
+    <string name="about_team_category">我们的队伍</string>
+    <string name="about_external_category">外部链接</string>
+    <string name="about_dev_title">首席董事</string>
+    <string name="about_dev2_title">首席董事</string>
+    <string name="about_dev3_title">会员</string>
+    <string name="maintainer">设备维护者</string>
+    <string name="about_tg_title">电报群</string>
+    <string name="about_tg_summary">官方国际Telegram群组</string>
+    <string name="about_git_title">源代码</string>
+    <string name="about_git_summary">在GitHub上查看我们的源代码</string>
+    <string name="about_phone_title">关于手机</string>
+    <string name="about_phone_summary">打开设置 > 系统的关于页面</string>
 </resources>
