@@ -95,10 +95,16 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
 
         mBatteryLight = (SystemSettingMasterSwitchPreference)
                 findPreference(KEY_BATT_LIGHT);
-        boolean enabled = Settings.System.getInt(resolver,
-                KEY_BATT_LIGHT, 1) == 1;
-        mBatteryLight.setChecked(enabled);
-        mBatteryLight.setOnPreferenceChangeListener(this);
+        boolean hasLed = getResources().getBoolean(
+                com.android.internal.R.bool.config_hasNotificationLed);
+        if (hasLed) {
+            boolean enabled = Settings.System.getInt(resolver,
+                    KEY_BATT_LIGHT, 1) == 1;
+            mBatteryLight.setChecked(enabled);
+            mBatteryLight.setOnPreferenceChangeListener(this);
+        } else {
+            mBatteryLight.setVisible(false);
+        }
     }
 
     @Override
