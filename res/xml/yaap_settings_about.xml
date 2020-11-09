@@ -63,6 +63,24 @@
                 android:data="@string/maintainer_telegram"/>
         </Preference>
 
+        <Preference
+            android:key="designer_pref"
+            android:title="@string/designer_name"
+            android:summary="@string/designer_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/designer_tg"/>
+        </Preference>
+
+        <Preference
+            android:key="designer2_pref"
+            android:title="@string/designer2_name"
+            android:summary="@string/designer_title">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/designer2_tg"/>
+        </Preference>
+
     </PreferenceCategory>
 
     <PreferenceCategory
