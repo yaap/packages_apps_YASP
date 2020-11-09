@@ -85,4 +85,10 @@
     <string name="about_git_link" translatable="false">https://github.com/yaap</string>
     <string name="about_phone_title">About Phone</string>
     <string name="about_phone_summary">Open the system\'s about page</string>
+    <string name="designer_title">Designer</string>
+    <string name="designer_name">Ahmed Harhash</string>
+    <string name="designer_tg" translatable="false">https://t.me/Lacentix</string>
+    <string name="designer2_name">The Knight</string>
+    <string name="designer2_tg" translatable="false">https://t.me/IamTheKnight</string>
+
 </resources>
