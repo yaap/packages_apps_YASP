@@ -18,6 +18,7 @@ package com.yasp.settings.fragments;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.SearchIndexableResource;
 import android.text.TextUtils;
@@ -57,11 +58,13 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
     private static final String KEY_BATT_LIGHT = "battery_light_enabled";
+    private static final String KEY_EDGE_LIGHTNING = "pulse_ambient_light";
 
     private SystemSettingListPreference mFlashOnCall;
     private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
     private SystemSettingMasterSwitchPreference mBatteryLight;
+    private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -105,6 +108,13 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
         } else {
             mBatteryLight.setVisible(false);
         }
+
+        mEdgeLightning = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_EDGE_LIGHTNING);
+        boolean enabled = Settings.System.getIntForUser(resolver,
+                KEY_EDGE_LIGHTNING, 0, UserHandle.USER_CURRENT) == 1;
+        mEdgeLightning.setChecked(enabled);
+        mEdgeLightning.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -125,6 +135,11 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
         } else if (preference == mBatteryLight) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver, KEY_BATT_LIGHT, value ? 1 : 0);
+            return true;
+        } else if (preference == mEdgeLightning) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver, KEY_EDGE_LIGHTNING,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;
