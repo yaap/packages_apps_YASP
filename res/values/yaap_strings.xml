@@ -79,6 +79,11 @@
     <string name="qs_show_auto_brightness_title">Auto brightness icon</string>
     <string name="qs_show_auto_brightness_summary">Show an auto brightness toggle near the brightness slider</string>
 
+    <!-- QS media player -->
+    <string name="qs_media_player_title">Media player</string>
+    <string name="qs_media_player_summary_on">Show media player in QS\nRequires a SystemUI restart</string>
+    <string name="qs_media_player_summary_off">Show media player as a notification\nRequires a SystemUI restart</string>
+
     <!-- Notification headers -->
     <string name="notification_headers_title">Notification Headers</string>
     <string name="notification_headers_summary">Show headers in the notification shade\nRequires a SystemUI restart</string>

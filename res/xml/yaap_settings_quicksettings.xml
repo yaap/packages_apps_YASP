@@ -20,11 +20,11 @@
 
     <!-- QS brightness slider -->
     <com.yasp.settings.preferences.SystemSettingMasterSwitchPreference
-            android:key="qs_show_brightness"
-            android:title="@string/qs_show_brightness_title"
-            android:summary="@string/qs_show_brightness_summary"
-            android:fragment="com.yasp.settings.fragments.BrightnessSliderSettings"
-            android:defaultValue="true" />
+        android:key="qs_show_brightness"
+        android:title="@string/qs_show_brightness_title"
+        android:summary="@string/qs_show_brightness_summary"
+        android:fragment="com.yasp.settings.fragments.BrightnessSliderSettings"
+        android:defaultValue="true" />
 
     <!-- QS footer text toggle -->
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
@@ -39,5 +39,13 @@
         android:summary="@string/qs_footer_text_string_summary"
         android:dependency="qs_footer_text_show"
         android:defaultValue="YAAP" />
+
+    <!-- QS media player -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="qs_media_player"
+        android:title="@string/qs_media_player_title"
+        android:summaryOn="@string/qs_media_player_summary_on"
+        android:summaryOff="@string/qs_media_player_summary_off"
+        android:defaultValue="true" />
 
 </PreferenceScreen>
