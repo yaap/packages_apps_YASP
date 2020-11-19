@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.text.TextUtils;
@@ -38,10 +37,9 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
-import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
@@ -53,7 +51,7 @@ import java.util.List;
 
 @SearchIndexable
 public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener, Indexable {
+        OnPreferenceChangeListener {
 
     private static final String NETWORK_TRAFFIC_FONT_SIZE  = "network_traffic_font_size";
     private static final String NETWORK_TRAFFIC_LOCATION = "network_traffic_location";
@@ -140,24 +138,6 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.YASP;
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider() {
-                @Override
-                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                                                                            boolean enabled) {
-                    ArrayList<SearchIndexableResource> result =
-                            new ArrayList<SearchIndexableResource>();
-
-                    SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.yaap_settings_net_traffic;
-                    result.add(sir);
-                    return result;
-                }
-
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
-                }
-            };
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_net_traffic);
 }

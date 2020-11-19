@@ -15,13 +15,23 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
 import android.os.Bundle;
-import com.android.settings.R;
 
+import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
+
+import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.R;
+import com.android.settingslib.search.SearchIndexable;
 
+@SearchIndexable
 public class NotificationsSettings extends SettingsPreferenceFragment {
 
     @Override
@@ -35,4 +45,7 @@ public class NotificationsSettings extends SettingsPreferenceFragment {
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_notifications);
 }

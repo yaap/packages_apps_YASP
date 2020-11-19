@@ -19,7 +19,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -32,7 +31,6 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ import java.util.Map;
 
 @SearchIndexable
 public class About extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener, Indexable {
+        OnPreferenceChangeListener {
 
     private static final String PREF_MAINTAINER = "maintainer";
     private static final String PREF_KERNEL = "kernel";
@@ -82,24 +80,6 @@ public class About extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.YASP;
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider() {
-                @Override
-                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                                                                            boolean enabled) {
-                    ArrayList<SearchIndexableResource> result =
-                            new ArrayList<SearchIndexableResource>();
-
-                    SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.yaap_settings_about;
-                    result.add(sir);
-                    return result;
-                }
-
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
-                }
-            };
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_about);
 }

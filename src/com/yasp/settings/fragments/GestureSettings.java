@@ -15,13 +15,15 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
-
 import android.os.Bundle;
+
+import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
-
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.SearchIndexable;
 
+@SearchIndexable
 public class GestureSettings extends SettingsPreferenceFragment {
 
     @Override
@@ -35,4 +37,7 @@ public class GestureSettings extends SettingsPreferenceFragment {
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_gestures);
 }
