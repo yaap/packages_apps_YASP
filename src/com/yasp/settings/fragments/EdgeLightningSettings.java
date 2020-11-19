@@ -28,13 +28,16 @@ import android.util.TypedValue;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.colorpicker.ColorPickerPreference;
 import com.yasp.settings.preferences.CustomSeekBarPreference;
 import com.yasp.settings.preferences.SystemSettingListPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
+@SearchIndexable
 public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -178,4 +181,7 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
             mTimeoutPref.setEnabled(false);
         }
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.edge_lightning_settings);
 }

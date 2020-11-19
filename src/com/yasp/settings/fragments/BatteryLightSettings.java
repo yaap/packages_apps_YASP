@@ -27,11 +27,14 @@ import android.provider.Settings;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.colorpicker.ColorPickerPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
+@SearchIndexable
 public class BatteryLightSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -138,4 +141,7 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
         }
         return false;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.battery_light_settings);
 }

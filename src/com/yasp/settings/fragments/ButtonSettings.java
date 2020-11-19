@@ -33,10 +33,13 @@ import androidx.preference.SwitchPreference;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.ActionFragment;
 
+@SearchIndexable
 public class ButtonSettings extends ActionFragment implements OnPreferenceChangeListener {
 
     //Keys
@@ -199,4 +202,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_button);
 }
