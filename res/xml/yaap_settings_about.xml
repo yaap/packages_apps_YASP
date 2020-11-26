@@ -18,9 +18,10 @@
     android:title="@string/about_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <!-- <PreferenceScreen
+    <PreferenceScreen
         android:layout="@layout/yaap_logo_layout"
-        android:key="yaap_logo" /> -->
+        android:selectable="false"
+        android:key="yaap_logo" />
 
     <PreferenceCategory
         android:key="about_team"
