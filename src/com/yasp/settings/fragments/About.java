@@ -23,10 +23,7 @@ import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.util.Log;
 
-import androidx.preference.ListPreference;
-import androidx.preference.SwitchPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
@@ -37,8 +34,6 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
-
-import com.yasp.settings.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +57,6 @@ public class About extends SettingsPreferenceFragment implements
         final PreferenceScreen prefScreen = getPreferenceScreen();
 
         Preference maintainerName = (Preference) findPreference(PREF_MAINTAINER);
-
         if (maintainerName.getTitle().equals("")) {
             maintainerName.setVisible(false);
         } else if (res.getString(R.string.maintainer_telegram).equals("")) {

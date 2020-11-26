@@ -17,10 +17,12 @@
     android:gravity="center"
     android:orientation="horizontal" >
 
-    <!-- <ImageView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:adjustViewBounds="false"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_yaap" /> -->
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_yaap" />
 </LinearLayout>
