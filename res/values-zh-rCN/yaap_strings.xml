@@ -182,6 +182,43 @@
     <string name="flashlight_on_call_ignore_dnd_summary">在免打扰模式下是否闪烁</string>
     <string name="flashlight_on_call_rate_title">闪烁速度</string>
     <string name="flashlight_on_call_rate_summary">来电时手电筒的闪烁率</string>
+    <!-- Battery light -->
+    <string name="battery_light_settings">电池指示灯</string>
+    <string name="battery_light_enable">开</string>
+    <string name="battery_light_allow_on_dnd_title">打扰模式下的电池指示灯</string>
+    <string name="battery_light_low_blinking_title">电池电量不足时指示灯闪烁</string>
+    <string name="battery_light_cat">充电时电池指示灯颜色</string>
+    <string name="battery_light_low_color">低电量</string>
+    <string name="battery_light_medium_color">中电量</string>
+    <string name="battery_light_full_color">电池快满了</string>
+    <string name="battery_light_reallyfull_color">电池充满了</string>
+
+    <!-- Pulse notifications lightning -->
+    <string name="pulse_ambient_light_title">环境边缘光效</string>
+    <string name="pulse_ambient_light_summary">明亮的环境显示在有通知时显示边缘光效</string>
+    <string name="ambient_notification_light_enabled_title">熄屏显示</string>
+    <string name="aod_disabled">熄屏显示已关闭</string>
+    <string name="ambient_notification_light_enabled_summary">持续在熄屏显示上显示边缘光效</string>
+    <string name="ambient_notification_light_hide_aod_title">隐藏熄屏显示内容</string>
+    <string name="ambient_notification_light_hide_aod_summary">边缘光效变亮时隐藏熄屏显示内容</string>
+    <string name="ambient_notification_light_duration_title">持续时间</string>
+    <string name="ambient_notification_light_duration_summary">每个边缘光效动画完成所需的时间</string>
+    <string name="ambient_notification_light_repeats_title">重复</string>
+    <string name="ambient_notification_light_repeats_summary">动画无限显示，次数设为0</string>
+    <string name="ambient_notification_light_timeout_title">超时</string>
+    <string name="ambient_notification_light_timeout_forever">永远</string>
+    <string name="ambient_notification_light_timeout_half_minute">30 秒</string>
+    <string name="ambient_notification_light_timeout_minute">1 分钟</string>
+    <string name="ambient_notification_light_timeout_three_minutes">3 分钟</string>
+    <string name="ambient_notification_light_timeout_five_minutes">5 分钟</string>
+    <string name="ambient_notification_light_timeout_ten_minutes">10 分钟</string>
+    <string name="set_to_zero">将重复次数设置为0以启用</string>
+    <string name="ambient_notification_color_mode_title">色彩模式</string>
+    <string name="ambient_notification_color_mode_accent">强调色</string>
+    <string name="ambient_notification_color_mode_wall">壁纸主题色</string>
+    <string name="ambient_notification_color_mode_notification">通知图标颜色</string>
+    <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
+    <string name="ambient_notification_light_color_title">自定义颜色</string>
 
     <!-- About -->
     <string name="about_title">关于</string>
