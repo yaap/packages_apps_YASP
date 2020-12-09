@@ -15,7 +15,9 @@
  */
 package com.yasp.settings.fragments;
 
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.provider.Settings;
 
 import androidx.preference.Preference;
@@ -27,14 +29,18 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.yasp.settings.preferences.CustomSeekBarPreference;
+
 @SearchIndexable
 public class GestureSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT =
             "torch_long_press_power_timeout";
+    private static final String KEY_SCREENSHOT_DELAY = "screenshot_gesture_delay";
 
     private ListPreference mTorchLongPressPowerTimeout;
+    private CustomSeekBarPreference mScreenshotDelay;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -42,27 +48,40 @@ public class GestureSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.yaap_settings_gestures);
 
-        mTorchLongPressPowerTimeout =
-                    (ListPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
+        final ContentResolver resolver = getContentResolver();
 
+        mTorchLongPressPowerTimeout =
+                (ListPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
         mTorchLongPressPowerTimeout.setOnPreferenceChangeListener(this);
-        int TorchTimeout = Settings.System.getInt(getContentResolver(),
-                        Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
-        mTorchLongPressPowerTimeout.setValue(Integer.toString(TorchTimeout));
+        int value = Settings.System.getInt(resolver,
+                Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
+        mTorchLongPressPowerTimeout.setValue(Integer.toString(value));
         mTorchLongPressPowerTimeout.setSummary(mTorchLongPressPowerTimeout.getEntry());
+
+        mScreenshotDelay = (CustomSeekBarPreference) findPreference(KEY_SCREENSHOT_DELAY);
+        value = Settings.System.getIntForUser(resolver,
+                KEY_SCREENSHOT_DELAY, 0, UserHandle.USER_CURRENT);
+        mScreenshotDelay.setValue(value);
+        mScreenshotDelay.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-         if (preference == mTorchLongPressPowerTimeout) {
+        final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mTorchLongPressPowerTimeout) {
             String TorchTimeout = (String) newValue;
             int TorchTimeoutValue = Integer.parseInt(TorchTimeout);
-            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.putInt(resolver,
                     Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, TorchTimeoutValue);
             int TorchTimeoutIndex = mTorchLongPressPowerTimeout
                     .findIndexOfValue(TorchTimeout);
             mTorchLongPressPowerTimeout
                     .setSummary(mTorchLongPressPowerTimeout.getEntries()[TorchTimeoutIndex]);
+            return true;
+        } else if (preference == mScreenshotDelay) {
+            int value = (Integer) newValue;
+            Settings.System.putIntForUser(resolver,
+                    KEY_SCREENSHOT_DELAY, value, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

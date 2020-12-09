@@ -42,8 +42,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-         android:key="power_category"
-         android:title="@string/power_category_header" >
+        android:key="power_category"
+        android:title="@string/power_category_header" >
 
         <com.yasp.settings.preferences.SystemSettingSwitchPreference
             android:key="torch_long_press_power_gesture"
@@ -60,6 +60,22 @@
             android:entryValues="@array/torch_long_press_power_timeout_values"
             android:dependency="torch_long_press_power_gesture"
             android:persistent="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="screenshot_category"
+        android:title="@string/screenshot_category_title" >
+
+        <com.yasp.settings.preferences.CustomSeekBarPreference
+            android:key="screenshot_gesture_delay"
+            android:title="@string/screenshot_gesture_delay_title"
+            android:summary="@string/screenshot_gesture_delay_summary"
+            android:max="500"
+            settings:min="0"
+            settings:interval="100"
+            settings:defaultValue="0"
+            settings:units="ms" />
 
     </PreferenceCategory>
 

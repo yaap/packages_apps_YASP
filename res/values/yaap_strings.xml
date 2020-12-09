@@ -102,6 +102,11 @@
     <!-- AOSP Gestures -->
     <string name="aosp_gesture_title">AOSP Gestures Settings</string>
 
+    <!-- Screenshot gesture delay -->
+    <string name="screenshot_category_title">Screenshot</string>
+    <string name="screenshot_gesture_delay_title">Activation delay</string>
+    <string name="screenshot_gesture_delay_summary">Screenshot gesture activation delay</string>
+
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">Charging info</string>
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage and battery temperature on lockscreen while charging</string>
