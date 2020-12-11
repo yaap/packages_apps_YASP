@@ -165,6 +165,17 @@
     <string name="show_network_traffic_all">两者都显示</string>
     <string name="network_traffic_font_size_title">单网字体大小</string>
 
+    <!-- Battery customizations -->
+    <string name="battery_options">电池</string>
+    <string name="battery_style_title">电池的风格</string>
+    <string name="battery_style_port">电池的模样</string>
+    <string name="battery_style_circle">圆</string>
+    <string name="battery_style_text">文字</string>
+    <string name="battery_percent_title">显示百分比</string>
+    <string name="battery_percent_summary">总是在图标旁边显示电池百分比</string>
+    <string name="battery_percent_inside_title">在图标里面显示百分比</string>
+    <string name="battery_percent_inside_summary">在电池图标内显示百分比</string>
+
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">通话中振动选项</string>
     <string name="incall_vibrate_connect_title">在连接时振动</string>
@@ -234,4 +245,5 @@
     <string name="about_git_summary">在GitHub上查看我们的源代码</string>
     <string name="about_phone_title">关于手机</string>
     <string name="about_phone_summary">打开设置 > 系统的关于页面</string>
+    <string name="designer_title">设计师</string>
 </resources>
