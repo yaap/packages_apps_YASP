@@ -47,10 +47,12 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
     private static final String NAVBAR_VISIBILITY = "navbar_visibility";
     private static final String NAVBAR_INVERSE = "navigation_bar_inverse";
     private static final String NAVBAR_LAYOUT = "navbar_layout_views";
+    private static final String PULSE_CATEGORY = "pulse_category";
 
     private SwitchPreference mNavbarVisibility;
     private SystemSettingSwitchPreference mNavbarInverse;
     private SystemSettingListPreference mNavbarLayout;
+    private Preference mPulse;
 
     private boolean mIsNavSwitchingMode = false;
     private Handler mHandler;
@@ -78,6 +80,11 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
             mNavbarInverse.setSummary(R.string.navbar_gesture_enabled);
             mNavbarLayout.setEnabled(false);
             mNavbarLayout.setSummary(R.string.navbar_gesture_enabled);
+        }
+
+        Preference mPulse = findPreference(PULSE_CATEGORY);
+        if (!getResources().getBoolean(R.bool.pulse_category_isVisible)) {
+            getPreferenceScreen().removePreference(mPulse);
         }
 
         mHandler = new Handler();

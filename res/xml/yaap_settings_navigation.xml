@@ -44,4 +44,10 @@
         android:defaultValue="default"
         android:dependency="navbar_visibility" />
 
+    <Preference
+        android:key="pulse_category"
+        android:fragment="com.yasp.settings.fragments.PulseSettings"
+        android:title="@string/pulse_cat_title"
+        android:summary="@string/pulse_settings_summary" />
+
 </PreferenceScreen>

@@ -18,4 +18,7 @@
 <resources>
     <!-- ColorPicker -->
     <bool name="showFullColorPickSummary">true</bool>
+
+    <!-- Pulse -->
+    <bool name="pulse_category_isVisible">true</bool>
 </resources>
