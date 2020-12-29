@@ -29,4 +29,10 @@
         android:defaultValue="false"
         android:dependency="navbar_visibility" />
 
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="navigation_bar_inverse"
+        android:title="@string/navigation_bar_inverse_title"
+        android:defaultValue="false"
+        android:dependency="navbar_visibility" />
+
 </PreferenceScreen>

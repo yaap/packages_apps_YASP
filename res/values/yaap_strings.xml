@@ -173,6 +173,9 @@
     <string name="navigation_bar_arrow_keys_title">IME arrows</string>
     <string name="navigation_bar_arrow_keys_summary">Show arrow keys on navbar while typing</string>
 
+    <!-- NavBar Inverse -->
+    <string name="navigation_bar_inverse_title">Inverse layout</string>
+
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Statusbar items</string>
 
