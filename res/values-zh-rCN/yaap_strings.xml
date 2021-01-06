@@ -145,6 +145,18 @@
     <!-- NavBar Visibility -->
     <string name="navbar_visibility">启用导航栏</string>
 
+    <!-- NavBar IME arrows -->
+    <string name="navigation_bar_arrow_keys_title">IME 箭头</string>
+    <string name="navigation_bar_arrow_keys_summary">打字时在输入法下方显示箭头，以控制光标移动</string>
+
+    <!-- NavBar Layout -->
+    <string name="navbar_layout_title">布局</string>
+    <string name="navbar_layout_normal">正常</string>
+    <string name="navbar_layout_compact">紧凑</string>
+    <string name="navbar_layout_leftleaning">向左靠拢</string>
+    <string name="navbar_layout_rightleaning">向右靠拢</string>
+    <string name="navigation_bar_inverse_title">反向布局</string>
+
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">状态栏项目</string>
 
