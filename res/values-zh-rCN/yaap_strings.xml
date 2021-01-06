@@ -188,7 +188,6 @@
     <string name="battery_percent_inside_title">在图标里面显示百分比</string>
     <string name="battery_percent_inside_summary">在电池图标内显示百分比</string>
 
-
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">通话中振动选项</string>
     <string name="incall_vibrate_connect_title">在连接时振动</string>
