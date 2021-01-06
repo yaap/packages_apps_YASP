@@ -37,7 +37,7 @@
     <string name="reset">重置</string>
     <string name="cancel">取消</string>
     <string name="save">保存</string>
-     <string name="default_string">默认</string>
+    <string name="default_string">默认</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">颜色选择器</string>
