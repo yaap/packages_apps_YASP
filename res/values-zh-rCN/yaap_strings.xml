@@ -37,6 +37,7 @@
     <string name="reset">重置</string>
     <string name="cancel">取消</string>
     <string name="save">保存</string>
+    <string name="default_string">默认</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">颜色选择器</string>
@@ -78,6 +79,11 @@
     <string name="qs_show_auto_brightness_title">自动亮度按钮</string>
     <string name="qs_show_auto_brightness_summary">在亮度滑块附近显示自动亮度切换的按钮</string>
 
+    <!-- QS media player -->
+    <string name="qs_media_player_title">媒体播放器</string>
+    <string name="qs_media_player_summary_on">在磁贴面板中显示媒体播放器，需要重新启动系统界面</string>
+    <string name="qs_media_player_summary_off">将媒体播放器显示为通知的形式，需要重新启动系统界面</string>
+
     <!-- Notification headers -->
     <string name="notification_headers_title">通知标题</string>
     <string name="notification_headers_summary">在通知阴影中显示标题\n需要重新启动SystemUI</string>
@@ -96,9 +102,18 @@
     <!-- AOSP Gestures -->
     <string name="aosp_gesture_title">AOSP手势设置</string>
 
+    <!-- Screenshot gesture delay -->
+    <string name="screenshot_category_title">屏幕截图</string>
+    <string name="screenshot_gesture_delay_title">激活延迟</string>
+    <string name="screenshot_gesture_delay_summary">屏幕截图手势激活延迟</string>
+
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">锁屏充电信息</string>
     <string name="lockscreen_battery_info_summary">充电时在锁定屏幕上显示协商的充电器最大电流和电压以及电池温度</string>
+
+    <!-- Lockscreen media art -->
+    <string name="keygaurd_media_art_title">媒体播放时的效果</string>
+    <string name="keygaurd_media_art_summary">将媒体专辑图片显示为锁屏背景</string>
 
     <!-- SmartSpace -->
     <string name="smart_space_title">智能显示</string>
@@ -145,6 +160,18 @@
     <!-- NavBar Visibility -->
     <string name="navbar_visibility">启用导航栏</string>
 
+    <!-- NavBar IME arrows -->
+    <string name="navigation_bar_arrow_keys_title">IME 箭头</string>
+    <string name="navigation_bar_arrow_keys_summary">打字时在输入法下方显示箭头按钮，以控制光标移动</string>
+
+    <!-- NavBar Layout -->
+    <string name="navbar_layout_title">布局</string>
+    <string name="navbar_layout_normal">正常</string>
+    <string name="navbar_layout_compact">紧凑</string>
+    <string name="navbar_layout_leftleaning">向左靠拢</string>
+    <string name="navbar_layout_rightleaning">向右靠拢</string>
+    <string name="navigation_bar_inverse_title">反向布局</string>
+
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">状态栏项目</string>
 
@@ -168,8 +195,8 @@
     <!-- Battery customizations -->
     <string name="battery_options">电池</string>
     <string name="battery_style_title">电池的风格</string>
-    <string name="battery_style_port">电池的模样</string>
-    <string name="battery_style_circle">圆</string>
+    <string name="battery_style_port">电池本身的模样</string>
+    <string name="battery_style_circle">圆形</string>
     <string name="battery_style_text">文字</string>
     <string name="battery_percent_title">显示百分比</string>
     <string name="battery_percent_summary">总是在图标旁边显示电池百分比</string>
