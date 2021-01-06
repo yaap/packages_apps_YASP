@@ -180,6 +180,7 @@
     <string name="navbar_layout_leftleaning">Left-leaning</string>
     <string name="navbar_layout_rightleaning">Right-leaning</string>
     <string name="navigation_bar_inverse_title">Inverse layout</string>
+    <string name="navbar_gesture_enabled">Not available when using gestural navigation</string>
 
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Statusbar items</string>
