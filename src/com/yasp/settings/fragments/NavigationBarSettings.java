@@ -82,9 +82,12 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
             mNavbarLayout.setSummary(R.string.navbar_gesture_enabled);
         }
 
-        Preference mPulse = findPreference(PULSE_CATEGORY);
+        mPulse = findPreference(PULSE_CATEGORY);
         if (!getResources().getBoolean(R.bool.pulse_category_isVisible)) {
             getPreferenceScreen().removePreference(mPulse);
+            mPulse = null;
+        } else {
+            updatePulseEnablement(showing);
         }
 
         mHandler = new Handler();
@@ -92,6 +95,17 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
 
     private void updateBarVisibleAndUpdatePrefs(boolean showing) {
         mNavbarVisibility.setChecked(showing);
+    }
+
+    private void updatePulseEnablement(boolean navBarShowing) {
+        if (mPulse == null) return;
+        if (!navBarShowing) {
+            mPulse.setEnabled(false);
+            mPulse.setSummary(R.string.pulse_unavailable_no_navbar);
+        } else {
+            mPulse.setEnabled(true);
+            mPulse.setSummary(R.string.pulse_settings_summary);
+        }
     }
 
     @Override
@@ -105,6 +119,7 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.FORCE_SHOW_NAVBAR,
                     showing ? 1 : 0);
             updateBarVisibleAndUpdatePrefs(showing);
+            updatePulseEnablement(showing);
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
