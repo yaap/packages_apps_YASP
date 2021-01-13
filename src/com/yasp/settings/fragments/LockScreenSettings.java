@@ -23,6 +23,8 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.yasp.settings.preferences.SecureSettingSwitchPreference;
+
 @SearchIndexable
 public class LockScreenSettings extends SettingsPreferenceFragment {
 
@@ -31,6 +33,14 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.yaap_settings_lockscreen);
+
+        final boolean hasFOD = getResources().getBoolean(
+                com.android.internal.R.bool.config_needCustomFODView);
+        if (!hasFOD) {
+            SecureSettingSwitchPreference fodOnDozePref =
+                    (SecureSettingSwitchPreference) findPreference("fod_on_doze");
+            getPreferenceScreen().removePreference(fodOnDozePref);
+        }
     }
 
     @Override

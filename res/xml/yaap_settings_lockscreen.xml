@@ -36,4 +36,10 @@
         android:summary="@string/smart_space_summary"
         android:defaultValue="true" />
 
+    <com.yasp.settings.preferences.SecureSettingSwitchPreference
+        android:key="fod_on_doze"
+        android:title="@string/fod_on_doze_title"
+        android:summary="@string/fod_on_doze_summary"
+        android:defaultValue="true" />
+
 </PreferenceScreen>
