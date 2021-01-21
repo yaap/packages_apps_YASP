@@ -86,7 +86,7 @@
 
     <!-- Notification headers -->
     <string name="notification_headers_title">通知标题</string>
-    <string name="notification_headers_summary">在通知阴影中显示标题\n需要重新启动SystemUI</string>
+    <string name="notification_headers_summary">在通知阴影中显示标题\n需要重新启动系统界面</string>
 
     <!-- Long press power for torch -->
     <string name="power_category_header">电源按钮</string>
@@ -118,6 +118,10 @@
     <!-- SmartSpace -->
     <string name="smart_space_title">智能显示</string>
     <string name="smart_space_summary">在锁定屏幕上显示天气和事件等信息\n需要重新启动系统界面</string>
+	
+	<!-- FOD on doze -->
+    <string name="fod_on_doze_title">指纹图标睡眠</string>
+    <string name="fod_on_doze_summary">在环境显示和息屏显示上显示指纹图标。这只会隐藏图标，不会禁用指纹功能</string>
 
     <!-- Buttons backlight timeout -->
     <string name="backlight_timeout_title">按钮背光超时</string>
@@ -171,6 +175,7 @@
     <string name="navbar_layout_leftleaning">向左靠拢</string>
     <string name="navbar_layout_rightleaning">向右靠拢</string>
     <string name="navigation_bar_inverse_title">反向布局</string>
+	<string name="navbar_gesture_enabled">使用手势导航时不可用</string>
 
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">状态栏项目</string>
@@ -220,6 +225,7 @@
     <string name="flashlight_on_call_ignore_dnd_summary">在免打扰模式下是否闪烁</string>
     <string name="flashlight_on_call_rate_title">闪烁速度</string>
     <string name="flashlight_on_call_rate_summary">来电时手电筒的闪烁率</string>
+	
     <!-- Battery light -->
     <string name="battery_light_settings">电池指示灯</string>
     <string name="battery_light_enable">开</string>
@@ -273,4 +279,38 @@
     <string name="about_phone_title">关于手机</string>
     <string name="about_phone_summary">打开设置 > 系统的关于页面</string>
     <string name="designer_title">设计师</string>
+	
+	<!-- Pulse -->
+    <string name="pulse_help_policy_notice_summary">在设备扬声器上收听时，脉冲可能不适用于某些音频源</string>
+    <string name="pulse_cat_title">脉冲</string>
+    <string name="pulse_settings_summary">音频可视化器</string>
+    <string name="show_navbar_pulse_title">导航栏脉冲</string>
+    <string name="show_navbar_pulse_summary">导航栏区域上的音频可视化器</string>
+    <string name="show_lockscreen_pulse_title">锁屏脉冲</string>
+    <string name="show_lockscreen_pulse_summary">锁屏上的音频可视化器</string>
+    <string name="pulse_render_mode_title">渲染模式</string>
+    <string name="pulse_render_mode_fading_bars">渐变块</string>
+    <string name="pulse_render_mode_solid_lines">实线</string>
+    <string name="pulse_color">颜色</string>
+    <string name="pulse_color_mode">颜色模式</string>
+    <string name="pulse_color_accent">强调</string>
+    <string name="pulse_color_custom">自定义</string>
+    <string name="pulse_color_lava_lamp">熔岩灯</string>
+    <string name="pulse_color_auto">专辑封面</string>
+    <string name="pulse_color_chooser">选择颜色</string>
+    <string name="smoothing_enabled_title">开启平滑效果</string>
+    <string name="smoothing_enabled_summary">使每条动画更丝滑</string>
+    <string name="pulse_advanced_category">高级</string>
+    <string name="pulse_legacy_mode_advanced_category">渐变块模式设置</string>
+    <string name="pulse_custom_fudge_factor">健全程度</string>
+    <string name="lavamp_speed_title">熔岩灯变化速度</string>
+    <string name="pulse_solid_units_count">实线数量</string>
+    <string name="pulse_solid_units_opacity">实线不透明度</string>
+    <string name="pulse_solid_dimen_category">实线模式设置</string>
+    <string name="pulse_custom_dimen">条块宽</string>
+    <string name="pulse_custom_div">条块间距</string>
+    <string name="pulse_filled_block_size">块大小</string>
+    <string name="pulse_empty_block_size">块间距</string>
+    <string name="pulse_unavailable_no_navbar">导航栏被隐藏</string>
+	
 </resources>
