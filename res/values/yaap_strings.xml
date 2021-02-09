@@ -64,6 +64,10 @@
     <string name="double_tap_to_sleep_title">Status bar</string>
     <string name="double_tap_to_sleep_summary">Double-tap status bar to put the device to sleep</string>
 
+    <!-- QS footer running services -->
+    <string name="qs_footer_services_show_title">Running services</string>
+    <string name="qs_footer_services_show_summary">Show a shortcut icon to running services in QS footer</string>
+
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">Show QS footer text</string>
     <string name="qs_footer_text_string_title">Customize footer text</string>
