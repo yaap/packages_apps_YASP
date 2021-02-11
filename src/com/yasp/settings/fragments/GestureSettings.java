@@ -30,6 +30,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
+import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
 @SearchIndexable
 public class GestureSettings extends SettingsPreferenceFragment implements
@@ -38,9 +39,13 @@ public class GestureSettings extends SettingsPreferenceFragment implements
     private static final String KEY_TORCH_LONG_PRESS_POWER_TIMEOUT =
             "torch_long_press_power_timeout";
     private static final String KEY_SCREENSHOT_DELAY = "screenshot_gesture_delay";
+    private static final String KEY_VOL_MUSIC_CONTROL = "volume_button_music_control";
+    private static final String KEY_VOL_MUSIC_CONTROL_DELAY = "volume_button_music_control_delay";
 
     private ListPreference mTorchLongPressPowerTimeout;
     private CustomSeekBarPreference mScreenshotDelay;
+    private SystemSettingSwitchPreference mVolMusicControl;
+    private CustomSeekBarPreference mVolMusicControlDelay;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -63,6 +68,19 @@ public class GestureSettings extends SettingsPreferenceFragment implements
                 KEY_SCREENSHOT_DELAY, 0, UserHandle.USER_CURRENT);
         mScreenshotDelay.setValue(value);
         mScreenshotDelay.setOnPreferenceChangeListener(this);
+
+        mVolMusicControlDelay = (CustomSeekBarPreference) findPreference(KEY_VOL_MUSIC_CONTROL_DELAY);
+        value = Settings.System.getIntForUser(resolver,
+                KEY_VOL_MUSIC_CONTROL_DELAY, 500, UserHandle.USER_CURRENT);
+        mVolMusicControlDelay.setValue(value);
+        mVolMusicControlDelay.setOnPreferenceChangeListener(this);
+
+        mVolMusicControl = (SystemSettingSwitchPreference) findPreference(KEY_VOL_MUSIC_CONTROL);
+        boolean enabled = Settings.System.getIntForUser(resolver,
+                KEY_VOL_MUSIC_CONTROL, 0, UserHandle.USER_CURRENT) == 1;
+        mVolMusicControl.setChecked(enabled);
+        mVolMusicControl.setOnPreferenceChangeListener(this);
+        mVolMusicControlDelay.setVisible(enabled);
     }
 
     @Override
@@ -82,6 +100,17 @@ public class GestureSettings extends SettingsPreferenceFragment implements
             int value = (Integer) newValue;
             Settings.System.putIntForUser(resolver,
                     KEY_SCREENSHOT_DELAY, value, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mVolMusicControl) {
+            boolean enabled = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver,
+                    KEY_VOL_MUSIC_CONTROL, enabled ? 1 : 0, UserHandle.USER_CURRENT);
+            mVolMusicControlDelay.setVisible(enabled);
+            return true;
+        } else if (preference == mVolMusicControlDelay) {
+            int value = (Integer) newValue;
+            Settings.System.putIntForUser(resolver,
+                    KEY_VOL_MUSIC_CONTROL_DELAY, value, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

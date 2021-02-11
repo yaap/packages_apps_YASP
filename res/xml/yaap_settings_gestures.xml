@@ -73,6 +73,16 @@
             android:summary="@string/volume_rocker_music_controls_summary"
             android:defaultValue="false" />
 
+        <com.yasp.settings.preferences.CustomSeekBarPreference
+            android:key="volume_button_music_control_delay"
+            android:title="@string/screenshot_gesture_delay_title"
+            android:summary="@string/volume_rocker_music_controls_delay_summary"
+            android:defaultValue="500"
+            android:max="2000"
+            settings:min="300"
+            settings:interval="100"
+            settings:units="ms" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -83,10 +93,10 @@
             android:key="screenshot_gesture_delay"
             android:title="@string/screenshot_gesture_delay_title"
             android:summary="@string/screenshot_gesture_delay_summary"
+            android:defaultValue="0"
             android:max="500"
             settings:min="0"
             settings:interval="100"
-            settings:defaultValue="0"
             settings:units="ms" />
 
     </PreferenceCategory>
