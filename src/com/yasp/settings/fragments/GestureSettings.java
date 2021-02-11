@@ -15,7 +15,13 @@
  */
 package com.yasp.settings.fragments;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
+
+import androidx.preference.Preference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -23,14 +29,57 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.yasp.settings.preferences.CustomSeekBarPreference;
+import com.yasp.settings.preferences.SystemSettingSwitchPreference;
+
 @SearchIndexable
-public class GestureSettings extends SettingsPreferenceFragment {
+public class GestureSettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+
+    private static final String KEY_VOL_MUSIC_CONTROL = "volume_button_music_control";
+    private static final String KEY_VOL_MUSIC_CONTROL_DELAY = "volume_button_music_control_delay";
+
+    private SystemSettingSwitchPreference mVolMusicControl;
+    private CustomSeekBarPreference mVolMusicControlDelay;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.yaap_settings_gestures);
+
+        final ContentResolver resolver = getContentResolver();
+
+        mVolMusicControlDelay = (CustomSeekBarPreference) findPreference(KEY_VOL_MUSIC_CONTROL_DELAY);
+        int value = Settings.System.getIntForUser(resolver,
+                KEY_VOL_MUSIC_CONTROL_DELAY, 500, UserHandle.USER_CURRENT);
+        mVolMusicControlDelay.setValue(value);
+        mVolMusicControlDelay.setOnPreferenceChangeListener(this);
+
+        mVolMusicControl = (SystemSettingSwitchPreference) findPreference(KEY_VOL_MUSIC_CONTROL);
+        boolean enabled = Settings.System.getIntForUser(resolver,
+                KEY_VOL_MUSIC_CONTROL, 0, UserHandle.USER_CURRENT) == 1;
+        mVolMusicControl.setChecked(enabled);
+        mVolMusicControl.setOnPreferenceChangeListener(this);
+        mVolMusicControlDelay.setVisible(enabled);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mVolMusicControl) {
+            boolean enabled = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver,
+                    KEY_VOL_MUSIC_CONTROL, enabled ? 1 : 0, UserHandle.USER_CURRENT);
+            mVolMusicControlDelay.setVisible(enabled);
+            return true;
+        } else if (preference == mVolMusicControlDelay) {
+            int value = (Integer) newValue;
+            Settings.System.putIntForUser(resolver,
+                    KEY_VOL_MUSIC_CONTROL_DELAY, value, UserHandle.USER_CURRENT);
+            return true;
+        }
+        return false;
     }
 
     @Override
