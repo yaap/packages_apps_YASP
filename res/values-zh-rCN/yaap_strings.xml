@@ -63,6 +63,10 @@
     <!-- Double tap-to-sleep on statusbar -->
     <string name="double_tap_to_sleep_title">状态栏</string>
     <string name="double_tap_to_sleep_summary">双击状态栏使设备进入睡眠状态</string>
+	
+    <!-- QS footer running services -->
+    <string name="qs_footer_services_show_title">运行中的服务</string>
+    <string name="qs_footer_services_show_summary">在QS页脚中显示运行中的服务的快捷图标</string>
 
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">显示QS页脚文字</string>
@@ -106,6 +110,12 @@
     <string name="screenshot_category_title">屏幕截图</string>
     <string name="screenshot_gesture_delay_title">激活延迟</string>
     <string name="screenshot_gesture_delay_summary">屏幕截图手势激活延迟</string>
+	
+    <!-- Volume keys control music playback -->
+    <string name="volume_button_header">音量按钮</string>
+    <string name="volume_rocker_music_controls_title">播放控制</string>
+    <string name="volume_rocker_music_controls_summary">屏幕关闭时，长按音量键将切换音乐曲目</string>
+    <string name="volume_rocker_music_controls_delay_summary">长按控制播放的延迟</string>
 
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">锁屏充电信息</string>
