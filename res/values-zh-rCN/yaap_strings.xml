@@ -63,7 +63,7 @@
     <!-- Double tap-to-sleep on statusbar -->
     <string name="double_tap_to_sleep_title">状态栏</string>
     <string name="double_tap_to_sleep_summary">双击状态栏使设备进入睡眠状态</string>
-	
+
     <!-- QS footer running services -->
     <string name="qs_footer_services_show_title">运行中的服务</string>
     <string name="qs_footer_services_show_summary">在QS页脚中显示运行中的服务的快捷图标</string>
@@ -90,7 +90,7 @@
 
     <!-- Notification headers -->
     <string name="notification_headers_title">通知标题</string>
-    <string name="notification_headers_summary">在通知阴影中显示标题\n需要重新启动系统界面</string>
+    <string name="notification_headers_summary">在通知阴影中显示标题</string>
 
     <!-- Long press power for torch -->
     <string name="power_category_header">电源按钮</string>
@@ -110,7 +110,7 @@
     <string name="screenshot_category_title">屏幕截图</string>
     <string name="screenshot_gesture_delay_title">激活延迟</string>
     <string name="screenshot_gesture_delay_summary">屏幕截图手势激活延迟</string>
-	
+
     <!-- Volume keys control music playback -->
     <string name="volume_button_header">音量按钮</string>
     <string name="volume_rocker_music_controls_title">播放控制</string>
@@ -128,7 +128,7 @@
     <!-- SmartSpace -->
     <string name="smart_space_title">智能显示</string>
     <string name="smart_space_summary">在锁定屏幕上显示天气和事件等信息\n需要重新启动系统界面</string>
-	
+
 	<!-- FOD on doze -->
     <string name="fod_on_doze_title">指纹图标睡眠</string>
     <string name="fod_on_doze_summary">在环境显示和息屏显示上显示指纹图标。这只会隐藏图标，不会禁用指纹功能</string>
@@ -235,7 +235,7 @@
     <string name="flashlight_on_call_ignore_dnd_summary">在免打扰模式下是否闪烁</string>
     <string name="flashlight_on_call_rate_title">闪烁速度</string>
     <string name="flashlight_on_call_rate_summary">来电时手电筒的闪烁率</string>
-	
+
     <!-- Battery light -->
     <string name="battery_light_settings">电池指示灯</string>
     <string name="battery_light_enable">开</string>
@@ -289,7 +289,7 @@
     <string name="about_phone_title">关于手机</string>
     <string name="about_phone_summary">打开设置 > 系统的关于页面</string>
     <string name="designer_title">设计师</string>
-	
+
 	<!-- Pulse -->
     <string name="pulse_help_policy_notice_summary">在设备扬声器上收听时，脉冲可能不适用于某些音频源</string>
     <string name="pulse_cat_title">脉冲</string>
@@ -322,5 +322,5 @@
     <string name="pulse_filled_block_size">块大小</string>
     <string name="pulse_empty_block_size">块间距</string>
     <string name="pulse_unavailable_no_navbar">导航栏被隐藏</string>
-	
+
 </resources>

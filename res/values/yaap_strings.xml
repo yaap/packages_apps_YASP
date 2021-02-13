@@ -90,7 +90,7 @@
 
     <!-- Notification headers -->
     <string name="notification_headers_title">Notification Headers</string>
-    <string name="notification_headers_summary">Show headers in the notification shade\nRequires a SystemUI restart</string>
+    <string name="notification_headers_summary">Show headers in the notification shade</string>
 
     <!-- Long press power for torch -->
     <string name="power_category_header">Power Button</string>

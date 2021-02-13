@@ -72,7 +72,7 @@
 
     <!-- Notification headers -->
     <string name="notification_headers_title">Панель уведомлений</string>
-    <string name="notification_headers_summary">Показывать заголовки в тени уведомлений\nТребуется перезагрузка SystemUI</string>
+    <string name="notification_headers_summary">Показывать заголовки в тени уведомлений</string>
 
     <!-- Long press power for torch -->
     <string name="power_category_header">Кнопка питания</string>
