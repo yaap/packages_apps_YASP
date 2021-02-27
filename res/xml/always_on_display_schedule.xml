@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2017-2019 The PixelDust Project
+<!-- Copyright (C) 2021 Yet Another AOSP Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,23 +15,23 @@
 -->
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/lockscreen_title"
+    android:title="@string/always_on_display_schedule_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <com.yasp.settings.preferences.SecureSettingListPreference
+        android:key="doze_always_on_auto_mode"
+        android:title="@string/night_display_auto_mode_title"
+        android:dialogTitle="@string/night_display_auto_mode_title"
+        android:entries="@array/doze_always_on_auto_mode_entries"
+        android:entryValues="@array/doze_always_on_auto_mode_values"
+        android:persistent="false" />
+
     <Preference
-        android:key="always_on_display_schedule"
-        android:title="@string/always_on_display_schedule_title"
-        android:fragment="com.yasp.settings.fragments.AODSchedule" />
+        android:key="doze_always_on_auto_since"
+        android:title="@string/night_display_start_time_title" />
 
-    <com.yasp.settings.preferences.SystemSettingSwitchPreference
-        android:key="screen_off_fod"
-        android:title="@string/screen_off_fod_title"
-        android:summary="@string/screen_off_fod_summary"
-        android:defaultValue="true" />
+    <Preference
+        android:key="doze_always_on_auto_till"
+        android:title="@string/night_display_end_time_title" />
 
-    <com.yasp.settings.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_battery_info"
-        android:title="@string/lockscreen_battery_info_title"
-        android:summary="@string/lockscreen_battery_info_summary"
-        android:defaultValue="true" />
 </PreferenceScreen>
