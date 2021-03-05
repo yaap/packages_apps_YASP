@@ -54,6 +54,11 @@
     <string name="color_down_arrow" translatable="false">"↓"</string>
     <string name="longpress_info">长按盒子保存颜色</string>
 
+    <!-- AOD Schedule -->
+    <string name="always_on_display_schedule_title">环境显示时间表</string>
+    <string name="always_on_display_schedule_sunset">日落</string>
+    <string name="always_on_display_schedule_sunrise">日出</string>
+
     <!-- Double Tap -->
     <string name="dtts_category_header">双击进入睡眠状态</string>
     <!-- Double Tap Lockscreen to Sleep -->
