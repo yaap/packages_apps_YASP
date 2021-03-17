@@ -11,7 +11,19 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_info_background"/>
-    <foreground android:drawable="@drawable/ic_info_foreground"/>
-</adaptive-icon>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <com.android.settingslib.widget.AdaptiveIconShapeDrawable
+            android:width="@dimen/dashboard_tile_image_size"
+            android:height="@dimen/dashboard_tile_image_size"
+            android:color="@color/homepage_network_background" />
+    </item>
+
+    <item
+        android:width="@dimen/dashboard_tile_foreground_image_size"
+        android:height="@dimen/dashboard_tile_foreground_image_size"
+        android:start="@dimen/dashboard_tile_foreground_image_inset"
+        android:top="@dimen/dashboard_tile_foreground_image_inset"
+        android:drawable="@drawable/ic_info_white" />
+</layer-list>
