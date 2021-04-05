@@ -77,6 +77,9 @@
     <string name="maintainer">Device Maintainer</string>
     <string name="maintainer_name" translatable="false"></string>
     <string name="maintainer_telegram" translatable="false"></string>
+    <string name="kernel">Kernel Developer</string>
+    <string name="kernel_name" translatable="false"></string>
+    <string name="kernel_telegram" translatable="false"></string>
     <string name="about_tg_title">Telegram Group</string>
     <string name="about_tg_summary">Official, Global Telegram Group</string>
     <string name="about_tg_link" translatable="false">https://t.me/yaapcommon</string>

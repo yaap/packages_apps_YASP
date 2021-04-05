@@ -46,6 +46,7 @@ public class About extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener, Indexable {
 
     private static final String PREF_MAINTAINER = "maintainer";
+    private static final String PREF_KERNEL = "kernel";
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -61,6 +62,13 @@ public class About extends SettingsPreferenceFragment implements
             maintainerName.setVisible(false);
         } else if (res.getString(R.string.maintainer_telegram).equals("")) {
             maintainerName.setEnabled(false);
+        }
+
+        Preference kernelName = (Preference) findPreference(PREF_KERNEL);
+        if (kernelName.getTitle().equals("")) {
+            kernelName.setVisible(false);
+        } else if (res.getString(R.string.kernel_telegram).equals("")) {
+            kernelName.setEnabled(false);
         }
     }
 

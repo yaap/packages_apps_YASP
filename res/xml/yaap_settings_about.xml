@@ -65,6 +65,16 @@
         </Preference>
 
         <Preference
+            android:key="kernel"
+            android:title="@string/kernel_name"
+            android:summary="@string/kernel"
+            settings:enableCopying="true" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/kernel_telegram"/>
+        </Preference>
+
+        <Preference
             android:key="designer_pref"
             android:title="@string/designer_name"
             android:summary="@string/designer_title">
