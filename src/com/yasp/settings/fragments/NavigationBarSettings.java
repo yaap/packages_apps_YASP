@@ -38,19 +38,16 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.SystemSettingListPreference;
-import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
 @SearchIndexable
 public class NavigationBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String NAVBAR_VISIBILITY = "navbar_visibility";
-    private static final String NAVBAR_INVERSE = "navigation_bar_inverse";
     private static final String NAVBAR_LAYOUT = "navbar_layout_views";
     private static final String PULSE_CATEGORY = "pulse_category";
 
     private SwitchPreference mNavbarVisibility;
-    private SystemSettingSwitchPreference mNavbarInverse;
     private SystemSettingListPreference mNavbarLayout;
     private Preference mPulse;
 
@@ -71,13 +68,10 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
         updateBarVisibleAndUpdatePrefs(showing);
         mNavbarVisibility.setOnPreferenceChangeListener(this);
 
-        mNavbarInverse = (SystemSettingSwitchPreference) findPreference(NAVBAR_INVERSE);
         mNavbarLayout = (SystemSettingListPreference) findPreference(NAVBAR_LAYOUT);
         int navMode = res.getInteger(
                 com.android.internal.R.integer.config_navBarInteractionMode);
         if (navMode == NAV_BAR_MODE_GESTURAL) {
-            mNavbarInverse.setEnabled(false);
-            mNavbarInverse.setSummary(R.string.navbar_gesture_enabled);
             mNavbarLayout.setEnabled(false);
             mNavbarLayout.setSummary(R.string.navbar_gesture_enabled);
         }
