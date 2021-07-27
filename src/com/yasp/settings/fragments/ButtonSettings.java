@@ -32,6 +32,7 @@ import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.hwkeys.ActionConstants;
+import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
@@ -53,6 +54,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private static final String CATEGORY_BACK = "back_key";
     private static final String CATEGORY_ASSIST = "assist_key";
     private static final String CATEGORY_APPSWITCH = "app_switch_key";
+    private static final String CATEGORY_HWKEYS = "hardware_keys";
 
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
@@ -152,6 +154,12 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
         // search/assist key
         if (!hasAssistKey) {
             prefScreen.removePreference(assistCategory);
+        }
+
+        if (ActionUtils.hasNavbarByDefault(getActivity())) {
+            final PreferenceCategory hwCategory =
+                    (PreferenceCategory) prefScreen.findPreference(CATEGORY_HWKEYS);
+            prefScreen.removePreference(hwCategory);
         }
 
         // let super know we can load ActionPreferences
