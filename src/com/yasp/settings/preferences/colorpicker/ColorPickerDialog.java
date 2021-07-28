@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.view.KeyEvent;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.android.settings.R;
@@ -117,8 +116,7 @@ public class ColorPickerDialog extends AlertDialog implements ColorPickerView.On
 
     /**
      * Set a OnColorChangedListener to get notified when the color selected by the user has changed.
-     *
-     * @param listener
+     * @param listener the listener to set
      */
     void setOnColorChangedListener(OnColorChangedListener listener) {
         mListener = listener;

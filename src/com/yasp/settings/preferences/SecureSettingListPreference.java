@@ -17,7 +17,6 @@
 package com.yasp.settings.preferences;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 
 public class SecureSettingListPreference extends ListPreference {

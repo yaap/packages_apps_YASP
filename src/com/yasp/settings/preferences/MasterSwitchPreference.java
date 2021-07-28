@@ -18,11 +18,12 @@ package com.yasp.settings.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.preference.PreferenceViewHolder;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Switch;
+
+import androidx.preference.PreferenceViewHolder;
 
 import com.android.settings.R;
 
@@ -63,18 +64,15 @@ public class MasterSwitchPreference extends TwoTargetPreference {
         super.onBindViewHolder(holder);
         final View widgetView = holder.findViewById(android.R.id.widget_frame);
         if (widgetView != null) {
-            widgetView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mSwitch != null && !mSwitch.isEnabled()) {
-                        return;
-                    }
+            widgetView.setOnClickListener(v -> {
+                if (mSwitch != null && !mSwitch.isEnabled()) {
+                    return;
+                }
+                setChecked(!mChecked);
+                if (!callChangeListener(mChecked)) {
                     setChecked(!mChecked);
-                    if (!callChangeListener(mChecked)) {
-                        setChecked(!mChecked);
-                    } else {
-                        persistBoolean(mChecked);
-                    }
+                } else {
+                    persistBoolean(mChecked);
                 }
             });
         }

@@ -16,7 +16,7 @@
  * Adapter for displaying custom actions in a list
  */
 
-package com.yasp.settings.preferences;
+package com.yasp.settings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +38,9 @@ import com.android.internal.util.hwkeys.Config.ActionConfig;
 import com.android.settings.R;
 
 public class CustomActionListAdapter extends BaseAdapter {
-    private LayoutInflater mInflater;
-    private Context mContext;
-    private List<ActionConfig> mCustomActions = new ArrayList<ActionConfig>();
+    private final LayoutInflater mInflater;
+    private final Context mContext;
+    private final List<ActionConfig> mCustomActions = new ArrayList<>();
 
     public CustomActionListAdapter(Context context) {
         mContext = context;
@@ -86,17 +86,15 @@ public class CustomActionListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        final Context ctx = mContext;
         if (convertView != null) {
             holder = (ViewHolder) convertView.getTag();
         } else {
             convertView = mInflater.inflate(R.layout.custom_action_item, null, false);
             holder = new ViewHolder();
             convertView.setTag(holder);
-            holder.title = (TextView) convertView.findViewById(com.android.internal.R.id.title);
-            holder.summary = (TextView) convertView
-                    .findViewById(com.android.internal.R.id.summary);
-            holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+            holder.title = convertView.findViewById(com.android.internal.R.id.title);
+            holder.summary = convertView.findViewById(com.android.internal.R.id.summary);
+            holder.icon = convertView.findViewById(R.id.icon);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) holder.icon.getLayoutParams();
             params.width = holder.icon.getMaxWidth();
             params.height = holder.icon.getMaxHeight();
@@ -108,7 +106,7 @@ public class CustomActionListAdapter extends BaseAdapter {
         ActionConfig config = getItem(position);
         holder.title.setText(config.getLabel());
         holder.icon.setBackgroundResource(R.drawable.fab_accent);
-        holder.icon.setImageDrawable(config.getDefaultIcon(ctx));
+        holder.icon.setImageDrawable(config.getDefaultIcon(mContext));
         holder.summary.setVisibility(View.GONE);
 
         return convertView;

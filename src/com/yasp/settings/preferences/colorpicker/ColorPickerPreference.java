@@ -18,10 +18,9 @@
 
 package com.yasp.settings.preferences.colorpicker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -40,7 +39,7 @@ import android.widget.LinearLayout;
 import com.android.settings.R;
 
 /**
- * A preference type that allows a user to choose a time
+ * A preference type that allows a user to choose a color
  *
  * @author Sergey Margaritov
  */
@@ -59,8 +58,6 @@ public class ColorPickerPreference extends Preference implements
     static final int DEF_VALUE_DEFAULT = -6;
     boolean mUsesDefaultButton = false;
     int mDefValue = -1;
-
-    private EditText mEditText;
 
     public ColorPickerPreference(Context context) {
         super(context);
@@ -88,7 +85,7 @@ public class ColorPickerPreference extends Preference implements
     }
 
     private void init(Context context, AttributeSet attrs) {
-        mDensity = getContext().getResources().getDisplayMetrics().density;
+        mDensity = context.getResources().getDisplayMetrics().density;
         setOnPreferenceClickListener(this);
         if (attrs != null) {
             mAlphaSliderEnabled = attrs.getAttributeBooleanValue(null, "alphaSlider", false);
@@ -105,12 +102,7 @@ public class ColorPickerPreference extends Preference implements
         mView = view;
         super.onBindViewHolder(view);
 
-        view.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(null);
-            }
-        });
+        view.itemView.setOnClickListener((View.OnClickListener) v -> showDialog(null));
 
         widgetFrameView = ((LinearLayout) view
                 .findViewById(android.R.id.widget_frame));
@@ -157,16 +149,12 @@ public class ColorPickerPreference extends Preference implements
         widgetFrameView.setMinimumWidth(0);
         defView.setBackground(getContext().getDrawable(R.drawable.ic_settings_backup_restore));
         defView.setTag("default");
-        defView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    getOnPreferenceChangeListener().onPreferenceChange(ColorPickerPreference.this,
-                            Integer.valueOf(mDefValue));
-                    onColorChanged(mDefValue);
-                } catch (NullPointerException e) {
-                }
-            }
+        defView.setOnClickListener(v -> {
+            try {
+                getOnPreferenceChangeListener().onPreferenceChange(ColorPickerPreference.this,
+                        mDefValue);
+                onColorChanged(mDefValue);
+            } catch (NullPointerException ignored) {}
         });
 
         // sorcery for a linear layout ugh
@@ -211,6 +199,7 @@ public class ColorPickerPreference extends Preference implements
         iView.setTag("preview");
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onColorChanged(int color) {
         if (isPersistent()) {
@@ -220,12 +209,7 @@ public class ColorPickerPreference extends Preference implements
         setPreviewColor();
         try {
             getOnPreferenceChangeListener().onPreferenceChange(this, color);
-        } catch (NullPointerException e) {
-        }
-        try {
-            mEditText.setText(Integer.toString(color, 16));
-        } catch (NullPointerException e) {
-        }
+        } catch (NullPointerException ignored) {}
     }
 
     public boolean onPreferenceClick(Preference preference) {
@@ -244,14 +228,14 @@ public class ColorPickerPreference extends Preference implements
         }
         mDialog.show();
         mDialog.getWindow().setSoftInputMode(
-                android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 
     /**
      * Toggle Alpha Slider visibility (by default it's disabled)
      *
-     * @param enable
+     * @param enable whether to show
      */
     public void setAlphaSliderEnabled(boolean enable) {
         mAlphaSliderEnabled = enable;
@@ -275,9 +259,7 @@ public class ColorPickerPreference extends Preference implements
 
     /**
      * For custom purposes. Not used by ColorPickerPreferrence
-     *
-     * @param color
-     * @author Unknown
+     * @param color the int color to convert
      */
     public static String convertToARGB(int color) {
         String alpha = Integer.toHexString(Color.alpha(color));
@@ -327,9 +309,8 @@ public class ColorPickerPreference extends Preference implements
     /**
      * For custom purposes. Not used by ColorPickerPreferrence
      *
-     * @param argb
-     * @throws NumberFormatException
-     * @author Unknown
+     * @param argb the argb string to convert
+     * @throws NumberFormatException if the string is malformatted
      */
     public static int convertToColorInt(String argb) throws NumberFormatException {
 
@@ -369,7 +350,7 @@ public class ColorPickerPreference extends Preference implements
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        if (state == null || !(state instanceof SavedState)) {
+        if (!(state instanceof SavedState)) {
             // Didn't save state for us in onSaveInstanceState
             super.onRestoreInstanceState(state);
             return;

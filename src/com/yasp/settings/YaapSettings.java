@@ -33,16 +33,14 @@ import com.android.settings.SettingsPreferenceFragment;
 public class YaapSettings extends SettingsPreferenceFragment {
     private static final String BUTTON_CATEGORY = "buttonsettings_category";
 
-    private Preference mButtonPref;
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.yaap_settings);
         final PreferenceScreen prefScreen = getPreferenceScreen();
         if (ActionUtils.hasNavbarByDefault(getActivity())) {
-            mButtonPref = (Preference) findPreference(BUTTON_CATEGORY);
-            prefScreen.removePreference(mButtonPref);
+            Preference buttonPref = findPreference(BUTTON_CATEGORY);
+            prefScreen.removePreference(buttonPref);
         }
     }
 
@@ -52,7 +50,7 @@ public class YaapSettings extends SettingsPreferenceFragment {
     }
 
     public static void lockCurrentOrientation(Activity activity) {
-        int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int currentRotation = activity.getDisplay().getRotation();
         int orientation = activity.getResources().getConfiguration().orientation;
         int frozenRotation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
         switch (currentRotation) {

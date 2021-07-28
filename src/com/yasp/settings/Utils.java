@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2017-2019 The PixelDust Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -19,38 +19,23 @@ package com.yasp.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
-import android.net.ConnectivityManager;
 import android.os.UserManager;
 import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.DisplayInfo;
 import android.view.Surface;
-import android.view.WindowManager;
 
 import java.lang.Runtime;
 
 public final class Utils {
     private static final String TAG = "YaspUtils";
-
-    // Device types
-    private static final int DEVICE_PHONE = 0;
-    private static final int DEVICE_HYBRID = 1;
-    private static final int DEVICE_TABLET = 2;
-
-    // Device type reference
-    private static int sDeviceType = -1;
 
     // Magisk app name
     private static final String MAGISK_APP = "com.topjohnwu.magisk";
@@ -64,49 +49,9 @@ public final class Utils {
         return telephony != null && telephony.isVoiceCapable();
     }
 
-    public static boolean isWifiOnly(Context context) {
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
-                Context.CONNECTIVITY_SERVICE);
-        return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
-    }
-
     public static boolean hasMultipleUsers(Context context) {
         return ((UserManager) context.getSystemService(Context.USER_SERVICE))
                 .getUsers().size() > 1;
-    }
-
-    private static int getScreenType(Context context) {
-        if (sDeviceType == -1) {
-            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-           DisplayInfo outDisplayInfo = new DisplayInfo();
-            wm.getDefaultDisplay().getDisplayInfo(outDisplayInfo);
-            int shortSize = Math.min(outDisplayInfo.logicalHeight, outDisplayInfo.logicalWidth);
-            int shortSizeDp = shortSize * DisplayMetrics.DENSITY_DEFAULT
-                    / outDisplayInfo.logicalDensityDpi;
-            if (shortSizeDp < 600) {
-                // 0-599dp: "phone" UI with a separate status & navigation bar
-                sDeviceType =  DEVICE_PHONE;
-            } else if (shortSizeDp < 720) {
-                // 600-719dp: "phone" UI with modifications for larger screens
-                sDeviceType = DEVICE_HYBRID;
-            } else {
-                // 720dp: "tablet" UI with a single combined status & navigation bar
-                sDeviceType = DEVICE_TABLET;
-            }
-        }
-        return sDeviceType;
-    }
-
-    public static boolean isPhone(Context context) {
-        return getScreenType(context) == DEVICE_PHONE;
-    }
-
-    public static boolean isHybrid(Context context) {
-        return getScreenType(context) == DEVICE_HYBRID;
-    }
-
-    public static boolean isTablet(Context context) {
-        return getScreenType(context) == DEVICE_TABLET;
     }
 
     /**
@@ -133,7 +78,7 @@ public final class Utils {
         try {
             final PackageInfo sys = pm.getPackageInfo("android", PackageManager.GET_SIGNATURES);
             return getFirstSignature(sys);
-        } catch (NameNotFoundException e) {
+        } catch (NameNotFoundException ignored) {
         }
         return null;
     }
@@ -159,7 +104,7 @@ public final class Utils {
 
     /**
      * Locks the activity orientation to the current device orientation
-     * @param activity
+     * @param activity the activity object to check orientation for
      */
     public static void lockCurrentOrientation(Activity activity) {
         int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();

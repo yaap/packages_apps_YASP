@@ -37,16 +37,16 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         View.OnClickListener, View.OnLongClickListener {
     protected final String TAG = getClass().getName();
     private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
-    protected static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
+    protected static final String ANDROID_NS = "http://schemas.android.com/apk/res/android";
 
     protected int mInterval = 1;
-    protected boolean mShowSign = false;
+    protected boolean mShowSign;
     protected String mUnits = "";
-    protected boolean mContinuousUpdates = false;
+    protected boolean mContinuousUpdates;
 
     protected int mMinValue = 0;
     protected int mMaxValue = 255;
-    protected boolean mDefaultValueExists = false;
+    protected boolean mDefaultValueExists;
     protected int mDefaultValue;
 
     protected int mValue;
@@ -57,7 +57,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     protected ImageView mPlusImageView;
     protected SeekBar mSeekBar;
 
-    protected boolean mTrackingTouch = false;
+    protected boolean mTrackingTouch;
     protected int mTrackingValue;
 
     public CustomSeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -82,10 +82,10 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             Log.e(TAG, "Invalid interval value", e);
         }
         mMinValue = attrs.getAttributeIntValue(SETTINGS_NS, "min", mMinValue);
-        mMaxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", mMaxValue);
+        mMaxValue = attrs.getAttributeIntValue(ANDROID_NS, "max", mMaxValue);
         if (mMaxValue < mMinValue)
             mMaxValue = mMinValue;
-        String defaultValue = attrs.getAttributeValue(ANDROIDNS, "defaultValue");
+        String defaultValue = attrs.getAttributeValue(ANDROID_NS, "defaultValue");
         mDefaultValueExists = defaultValue != null && !defaultValue.isEmpty();
         if (mDefaultValueExists) {
             mDefaultValue = getLimitedValue(Integer.parseInt(defaultValue));
@@ -127,11 +127,12 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
                 }
                 // remove the existing seekbar (there may not be one) and add ours
                 newContainer.removeAllViews();
-                newContainer.addView(mSeekBar, ViewGroup.LayoutParams.FILL_PARENT,
+                newContainer.addView(mSeekBar,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         } catch (Exception ex) {
-            Log.e(TAG, "Error binding view: " + ex.toString());
+            Log.e(TAG, "Error binding view: " + ex);
         }
 
         mSeekBar.setMax(getSeekValue(mMaxValue));
@@ -155,15 +156,15 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     }
 
     protected int getLimitedValue(int v) {
-        return v < mMinValue ? mMinValue : (v > mMaxValue ? mMaxValue : v);
+        return v < mMinValue ? mMinValue : Math.min(v, mMaxValue);
     }
 
     protected int getSeekValue(int v) {
-        return 0 - Math.floorDiv(mMinValue - v, mInterval);
+        return -Math.floorDiv(mMinValue - v, mInterval);
     }
 
     protected String getTextValue(int v) {
-        return (mShowSign && v > 0 ? "+" : "") + String.valueOf(v) + mUnits;
+        return (mShowSign && v > 0 ? "+" : "") + v + mUnits;
     }
 
     protected void updateValueViews() {
@@ -201,10 +202,6 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         }
     }
 
-    protected void changeValue(int newValue) {
-        // for subclasses
-    }
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         int newValue = getLimitedValue(mMinValue + (progress * mInterval));
@@ -218,7 +215,6 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
                 return;
             }
             // change accepted, store it
-            changeValue(newValue);
             persistInt(newValue);
 
             mValue = newValue;
@@ -268,9 +264,8 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         return true;
     }
 
-    // dont need too much shit about initial and default values
+    // don't need too much shit about initial and default values
     // its all done in constructor already
-
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         if (restoreValue)
@@ -282,7 +277,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         if (defaultValue instanceof Integer)
             setDefaultValue((Integer) defaultValue, mSeekBar != null);
         else
-            setDefaultValue(defaultValue == null ? (String) null : defaultValue.toString(), mSeekBar != null);
+            setDefaultValue(defaultValue == null ? null : defaultValue.toString(), mSeekBar != null);
     }
 
     public void setDefaultValue(int newValue, boolean update) {
