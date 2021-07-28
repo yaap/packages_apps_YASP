@@ -20,14 +20,11 @@ import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.UserHandle;
+import android.os.Looper;
 import android.provider.Settings;
 
-import androidx.preference.ListPreference;
 import androidx.preference.SwitchPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.internal.logging.nano.MetricsProto;
@@ -48,7 +45,6 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
     private static final String PULSE_CATEGORY = "pulse_category";
 
     private SwitchPreference mNavbarVisibility;
-    private SystemSettingListPreference mNavbarLayout;
     private Preference mPulse;
 
     private boolean mIsNavSwitchingMode = false;
@@ -60,7 +56,7 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.yaap_settings_navigation);
         final Resources res = getResources();
 
-        mNavbarVisibility = (SwitchPreference) findPreference(NAVBAR_VISIBILITY);
+        mNavbarVisibility = findPreference(NAVBAR_VISIBILITY);
 
         boolean showing = Settings.System.getInt(getContentResolver(),
                 Settings.System.FORCE_SHOW_NAVBAR,
@@ -68,7 +64,7 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
         updateBarVisibleAndUpdatePrefs(showing);
         mNavbarVisibility.setOnPreferenceChangeListener(this);
 
-        mNavbarLayout = (SystemSettingListPreference) findPreference(NAVBAR_LAYOUT);
+        SystemSettingListPreference mNavbarLayout = findPreference(NAVBAR_LAYOUT);
         int navMode = res.getInteger(
                 com.android.internal.R.integer.config_navBarInteractionMode);
         if (navMode == NAV_BAR_MODE_GESTURAL) {
@@ -84,7 +80,7 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
             updatePulseEnablement(showing);
         }
 
-        mHandler = new Handler();
+        mHandler = new Handler(Looper.getMainLooper());
     }
 
     private void updateBarVisibleAndUpdatePrefs(boolean showing) {
@@ -114,12 +110,7 @@ public class NavigationBarSettings extends SettingsPreferenceFragment implements
                     showing ? 1 : 0);
             updateBarVisibleAndUpdatePrefs(showing);
             updatePulseEnablement(showing);
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mIsNavSwitchingMode = false;
-                }
-            }, 1500);
+            mHandler.postDelayed(() -> mIsNavSwitchingMode = false, 1500);
             return true;
         }
         return false;

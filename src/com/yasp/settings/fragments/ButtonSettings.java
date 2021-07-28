@@ -16,11 +16,8 @@
 package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
-import android.content.res.Resources;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.os.Vibrator;
 import android.provider.Settings;
 
 import androidx.preference.PreferenceCategory;
@@ -35,10 +32,9 @@ import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
-import com.yasp.settings.preferences.ActionFragment;
+import com.yasp.settings.fragments.ActionFragment;
 
 @SearchIndexable
 public class ButtonSettings extends ActionFragment implements OnPreferenceChangeListener {
@@ -76,22 +72,18 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.yaap_settings_button);
-        final Resources res = getResources();
-        final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
 
-        mHwKeyDisable = (SwitchPreference) findPreference(HWKEY_DISABLE);
+        mHwKeyDisable = findPreference(HWKEY_DISABLE);
         int keysDisabled = Settings.Secure.getIntForUser(getContentResolver(),
                 Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
                 UserHandle.USER_CURRENT);
         mHwKeyDisable.setChecked(keysDisabled != 0);
         mHwKeyDisable.setOnPreferenceChangeListener(this);
 
-        mBacklightTimeout =
-                (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
+        mBacklightTimeout = findPreference(KEY_BACKLIGHT_TIMEOUT);
 
-        mButtonBrightness_sw =
-                (SwitchPreference) findPreference(KEY_BUTTON_BRIGHTNESS_SW);
+        mButtonBrightness_sw = findPreference(KEY_BUTTON_BRIGHTNESS_SW);
 
         if (mBacklightTimeout != null) {
             mBacklightTimeout.setOnPreferenceChangeListener(this);
@@ -120,16 +112,11 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
 
         // load categories and init/remove preferences based on device
         // configuration
-        final PreferenceCategory backCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_BACK);
-        final PreferenceCategory homeCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_HOME);
-        final PreferenceCategory menuCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_MENU);
-        final PreferenceCategory assistCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_ASSIST);
-        final PreferenceCategory appSwitchCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_APPSWITCH);
+        final PreferenceCategory backCategory = prefScreen.findPreference(CATEGORY_BACK);
+        final PreferenceCategory homeCategory = prefScreen.findPreference(CATEGORY_HOME);
+        final PreferenceCategory menuCategory = prefScreen.findPreference(CATEGORY_MENU);
+        final PreferenceCategory assistCategory = prefScreen.findPreference(CATEGORY_ASSIST);
+        final PreferenceCategory appSwitchCategory = prefScreen.findPreference(CATEGORY_APPSWITCH);
 
         // back key
         if (!hasBackKey) {

@@ -16,19 +16,14 @@
 package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.text.TextUtils;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.SettingsPreferenceFragment;
@@ -41,11 +36,6 @@ import com.yasp.settings.preferences.SystemSettingListPreference;
 import com.yasp.settings.preferences.SystemSettingMasterSwitchPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 import com.yasp.settings.Utils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @SearchIndexable
 public class NotificationsSettings extends SettingsPreferenceFragment implements
@@ -71,31 +61,27 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        PreferenceCategory incallVibCategory = findPreference(INCALL_VIB_OPTIONS);
         if (!Utils.isVoiceCapable(getActivity())) {
             prefScreen.removePreference(incallVibCategory);
         }
 
-        mFlashOnCallRate = (CustomSeekBarPreference)
-                findPreference(PREF_FLASH_ON_CALL_RATE);
+        mFlashOnCallRate = findPreference(PREF_FLASH_ON_CALL_RATE);
         int value = Settings.System.getInt(resolver,
                 Settings.System.FLASHLIGHT_ON_CALL_RATE, 1);
         mFlashOnCallRate.setValue(value);
         mFlashOnCallRate.setOnPreferenceChangeListener(this);
 
-        mFlashOnCallIgnoreDND = (SystemSettingSwitchPreference)
-                findPreference(PREF_FLASH_ON_CALL_DND);
+        mFlashOnCallIgnoreDND = findPreference(PREF_FLASH_ON_CALL_DND);
         value = Settings.System.getInt(resolver,
                 Settings.System.FLASHLIGHT_ON_CALL, 0);
         mFlashOnCallIgnoreDND.setVisible(value > 1);
         mFlashOnCallRate.setVisible(value != 0);
 
-        mFlashOnCall = (SystemSettingListPreference)
-                findPreference(PREF_FLASH_ON_CALL);
+        mFlashOnCall = findPreference(PREF_FLASH_ON_CALL);
         mFlashOnCall.setOnPreferenceChangeListener(this);
 
-        mBatteryLight = (SystemSettingMasterSwitchPreference)
-                findPreference(KEY_BATT_LIGHT);
+        mBatteryLight = findPreference(KEY_BATT_LIGHT);
         boolean hasLed = getResources().getBoolean(
                 com.android.internal.R.bool.config_hasNotificationLed);
         if (hasLed) {
@@ -107,8 +93,7 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
             mBatteryLight.setVisible(false);
         }
 
-        mEdgeLightning = (SystemSettingMasterSwitchPreference)
-                findPreference(KEY_EDGE_LIGHTNING);
+        mEdgeLightning = findPreference(KEY_EDGE_LIGHTNING);
         boolean enabled = Settings.System.getIntForUser(resolver,
                 KEY_EDGE_LIGHTNING, 0, UserHandle.USER_CURRENT) == 1;
         mEdgeLightning.setChecked(enabled);

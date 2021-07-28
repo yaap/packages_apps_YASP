@@ -16,25 +16,13 @@
 package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.text.format.DateFormat;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
-import androidx.preference.PreferenceScreen;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -43,11 +31,6 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
-import com.yasp.settings.preferences.SystemSettingSwitchPreference;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @SearchIndexable
 public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
@@ -56,11 +39,9 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
     private static final String NETWORK_TRAFFIC_FONT_SIZE  = "network_traffic_font_size";
     private static final String NETWORK_TRAFFIC_LOCATION = "network_traffic_location";
     private static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
-    private static final String NETWORK_TRAFFIC_ARROW = "network_traffic_arrow";
 
     private ListPreference mNetTrafficLocation;
     private CustomSeekBarPreference mThreshold;
-    private SystemSettingSwitchPreference mShowArrows;
     private ListPreference mNetTrafficType;
     private CustomSeekBarPreference mNetTrafficSize;
 
@@ -68,41 +49,39 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.yaap_settings_net_traffic);
-        PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
         int type = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_TYPE, 0, UserHandle.USER_CURRENT);
-        mNetTrafficType = (ListPreference) findPreference("network_traffic_type");
+        mNetTrafficType = findPreference("network_traffic_type");
         mNetTrafficType.setValue(String.valueOf(type));
         mNetTrafficType.setSummary(mNetTrafficType.getEntry());
         mNetTrafficType.setOnPreferenceChangeListener(this);
 
         int NetTrafficSize = Settings.System.getInt(resolver,
                 Settings.System.NETWORK_TRAFFIC_FONT_SIZE, 36);
-        mNetTrafficSize = (CustomSeekBarPreference) findPreference(NETWORK_TRAFFIC_FONT_SIZE);
+        mNetTrafficSize = findPreference(NETWORK_TRAFFIC_FONT_SIZE);
         mNetTrafficSize.setValue(NetTrafficSize);
         mNetTrafficSize.setOnPreferenceChangeListener(this);
 
-        mNetTrafficLocation = (ListPreference) findPreference(NETWORK_TRAFFIC_LOCATION);
+        mNetTrafficLocation = findPreference(NETWORK_TRAFFIC_LOCATION);
         int location = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0, UserHandle.USER_CURRENT);
         mNetTrafficLocation.setOnPreferenceChangeListener(this);
         mNetTrafficLocation.setValue(String.valueOf(location));
         mNetTrafficLocation.setSummary(mNetTrafficLocation.getEntry());
 
-        mThreshold = (CustomSeekBarPreference) findPreference(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+        mThreshold = findPreference(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
         int value = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 1, UserHandle.USER_CURRENT);
         mThreshold.setValue(value);
         mThreshold.setOnPreferenceChangeListener(this);
-        mShowArrows = (SystemSettingSwitchPreference) findPreference(NETWORK_TRAFFIC_ARROW);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mNetTrafficLocation) {
-            int location = Integer.valueOf((String) objValue);
+            int location = Integer.parseInt((String) objValue);
             // 0=sb; 1=expanded sb
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, location, UserHandle.USER_CURRENT);
@@ -117,7 +96,7 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
                     UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mNetTrafficType) {
-            int val = Integer.valueOf((String) objValue);
+            int val = Integer.parseInt((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.NETWORK_TRAFFIC_TYPE, val,
                     UserHandle.USER_CURRENT);

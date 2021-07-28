@@ -18,7 +18,6 @@ package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
@@ -26,7 +25,6 @@ import android.provider.Settings;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 
@@ -35,21 +33,19 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.yaap.YaapUtils;
 import com.yasp.settings.preferences.colorpicker.ColorPickerPreference;
 
 import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @SearchIndexable
 public class PulseSettings extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, Indexable {
+        OnPreferenceChangeListener, Indexable {
 
-    private static final String TAG = PulseSettings.class.getSimpleName();
     private static final String NAVBAR_PULSE_ENABLED_KEY = "navbar_pulse_enabled";
     private static final String LOCKSCREEN_PULSE_ENABLED_KEY = "lockscreen_pulse_enabled";
     private static final String PULSE_SMOOTHING_KEY = "pulse_smoothing_enabled";
@@ -84,20 +80,20 @@ public class PulseSettings extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getContentResolver();
 
-        mNavbarPulse = (SwitchPreference) findPreference(NAVBAR_PULSE_ENABLED_KEY);
+        mNavbarPulse = findPreference(NAVBAR_PULSE_ENABLED_KEY);
         boolean navbarPulse = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.NAVBAR_PULSE_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
         mNavbarPulse.setChecked(navbarPulse);
         mNavbarPulse.setOnPreferenceChangeListener(this);
 
-        mLockscreenPulse = (SwitchPreference) findPreference(LOCKSCREEN_PULSE_ENABLED_KEY);
+        mLockscreenPulse = findPreference(LOCKSCREEN_PULSE_ENABLED_KEY);
         boolean lockscreenPulse = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.LOCKSCREEN_PULSE_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
         mLockscreenPulse.setChecked(lockscreenPulse);
         mLockscreenPulse.setOnPreferenceChangeListener(this);
 
-        mColorModePref = (ListPreference) findPreference(PULSE_COLOR_MODE_KEY);
-        mColorPickerPref = (ColorPickerPreference) findPreference(PULSE_COLOR_MODE_CHOOSER_KEY);
+        mColorModePref = findPreference(PULSE_COLOR_MODE_KEY);
+        mColorPickerPref = findPreference(PULSE_COLOR_MODE_CHOOSER_KEY);
         mLavaSpeedPref = findPreference(PULSE_COLOR_MODE_LAVA_SPEED_KEY);
         mColorModePref.setOnPreferenceChangeListener(this);
         mColorPickerPref.setDefaultValue(YaapUtils.getThemeAccentColor(getContext()));
@@ -112,12 +108,9 @@ public class PulseSettings extends SettingsPreferenceFragment implements
         mRenderMode = findPreference(PULSE_RENDER_MODE_KEY);
         mRenderMode.setOnPreferenceChangeListener(this);
 
-        mFadingBarsCat = (PreferenceCategory) findPreference(
-                PULSE_RENDER_CATEGORY_FADING);
-        mSolidBarsCat = (PreferenceCategory) findPreference(
-                PULSE_RENDER_CATEGORY_SOLID);
-
-        mPulseSmoothing = (SwitchPreference) findPreference(PULSE_SMOOTHING_KEY);
+        mFadingBarsCat = findPreference(PULSE_RENDER_CATEGORY_FADING);
+        mSolidBarsCat = findPreference(PULSE_RENDER_CATEGORY_SOLID);
+        mPulseSmoothing = findPreference(PULSE_SMOOTHING_KEY);
 
         updateAllPrefs();
     }
@@ -138,10 +131,10 @@ public class PulseSettings extends SettingsPreferenceFragment implements
             updateAllPrefs();
             return true;
         } else if (preference == mColorModePref) {
-            updateColorPrefs(Integer.valueOf(String.valueOf(newValue)));
+            updateColorPrefs(Integer.parseInt(String.valueOf(newValue)));
             return true;
         } else if (preference == mRenderMode) {
-            updateRenderCategories(Integer.valueOf(String.valueOf(newValue)));
+            updateRenderCategories(Integer.parseInt(String.valueOf(newValue)));
             return true;
         } else if (preference == mColorPickerPref) {
             int val = (Integer) newValue;
@@ -185,7 +178,9 @@ public class PulseSettings extends SettingsPreferenceFragment implements
 
     private void updateColorPrefs(int val) {
         switch (val) {
+            default:
             case COLOR_TYPE_ACCENT:
+            case COLOR_TYPE_AUTO:
                 mColorPickerPref.setEnabled(false);
                 mLavaSpeedPref.setEnabled(false);
                 break;
@@ -196,10 +191,6 @@ public class PulseSettings extends SettingsPreferenceFragment implements
             case COLOR_TYPE_LAVALAMP:
                 mColorPickerPref.setEnabled(false);
                 mLavaSpeedPref.setEnabled(true);
-                break;
-            case COLOR_TYPE_AUTO:
-                mColorPickerPref.setEnabled(false);
-                mLavaSpeedPref.setEnabled(false);
                 break;
         }
     }
@@ -221,7 +212,7 @@ public class PulseSettings extends SettingsPreferenceFragment implements
                         Context context, boolean enabled) {
                     final SearchIndexableResource sir = new SearchIndexableResource(context);
                     sir.xmlResId = R.xml.pulse_settings;
-                    return Arrays.asList(sir);
+                    return Collections.singletonList(sir);
                 }
 
                 @Override

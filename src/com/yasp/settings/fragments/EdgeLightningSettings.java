@@ -16,15 +16,12 @@
 package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.TypedValue;
+
+import androidx.preference.Preference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -41,14 +38,13 @@ import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
-    private static String KEY_AMBIENT = "ambient_notification_light_enabled";
-    private static String KEY_DURATION = "ambient_notification_light_duration";
-    private static String KEY_REPEATS = "ambient_notification_light_repeats";
-    private static String KEY_TIMEOUT = "ambient_notification_light_timeout";
-    private static String KEY_COLOR_MODE = "ambient_notification_color_mode";
-    private static String KEY_COLOR = "ambient_notification_light_color";
+    private static final String KEY_AMBIENT = "ambient_notification_light_enabled";
+    private static final String KEY_DURATION = "ambient_notification_light_duration";
+    private static final String KEY_REPEATS = "ambient_notification_light_repeats";
+    private static final String KEY_TIMEOUT = "ambient_notification_light_timeout";
+    private static final String KEY_COLOR_MODE = "ambient_notification_color_mode";
+    private static final String KEY_COLOR = "ambient_notification_light_color";
 
-    private SystemSettingSwitchPreference mAmbientPref;
     private CustomSeekBarPreference mDurationPref;
     private CustomSeekBarPreference mRepeatsPref;
     private SystemSettingListPreference mTimeoutPref;
@@ -62,7 +58,7 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         final ContentResolver resolver = getContentResolver();
         final int accentColor = getAccentColor();
 
-        mAmbientPref = (SystemSettingSwitchPreference) findPreference(KEY_AMBIENT);
+        SystemSettingSwitchPreference mAmbientPref = findPreference(KEY_AMBIENT);
         boolean aodEnabled = Settings.Secure.getIntForUser(resolver,
                     Settings.Secure.DOZE_ALWAYS_ON, 0, UserHandle.USER_CURRENT) == 1;
         if (!aodEnabled) {
@@ -71,19 +67,19 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
             mAmbientPref.setSummary(R.string.aod_disabled);
         }
 
-        mDurationPref = (CustomSeekBarPreference) findPreference(KEY_DURATION);
+        mDurationPref = findPreference(KEY_DURATION);
         int value = Settings.System.getIntForUser(resolver,
                 KEY_DURATION, 2, UserHandle.USER_CURRENT);
         mDurationPref.setValue(value);
         mDurationPref.setOnPreferenceChangeListener(this);
 
-        mRepeatsPref = (CustomSeekBarPreference) findPreference(KEY_REPEATS);
+        mRepeatsPref = findPreference(KEY_REPEATS);
         int repeats = Settings.System.getIntForUser(resolver,
                 KEY_REPEATS, 0, UserHandle.USER_CURRENT);
         mRepeatsPref.setValue(repeats);
         mRepeatsPref.setOnPreferenceChangeListener(this);
 
-        mTimeoutPref = (SystemSettingListPreference) findPreference(KEY_TIMEOUT);
+        mTimeoutPref = findPreference(KEY_TIMEOUT);
         value = Settings.System.getIntForUser(resolver,
                 KEY_TIMEOUT, accentColor, UserHandle.USER_CURRENT);
         mTimeoutPref.setValue(Integer.toString(value));
@@ -91,11 +87,11 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         mTimeoutPref.setOnPreferenceChangeListener(this);
         updateTimeoutEnablement(repeats);
 
-        mColorPref = (ColorPickerPreference) findPreference(KEY_COLOR);
+        mColorPref = findPreference(KEY_COLOR);
         value = Settings.System.getIntForUser(resolver,
                 KEY_COLOR, accentColor, UserHandle.USER_CURRENT);
         mColorPref.setDefaultColor(accentColor);
-        String colorHex = String.format("#%08x", (0xFFFFFFFF & value));
+        String colorHex = String.format("#%08x", value);
         if (value == accentColor) {
             mColorPref.setSummary(R.string.default_string);
         } else {
@@ -104,7 +100,7 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         mColorPref.setNewPreviewColor(value);
         mColorPref.setOnPreferenceChangeListener(this);
 
-        mColorModePref = (SystemSettingListPreference) findPreference(KEY_COLOR_MODE);
+        mColorModePref = findPreference(KEY_COLOR_MODE);
         value = Settings.System.getIntForUser(resolver,
                 KEY_COLOR_MODE, 0, UserHandle.USER_CURRENT);
         mColorModePref.setValue(Integer.toString(value));
@@ -132,14 +128,14 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
             updateTimeoutEnablement(value);
             return true;
         } else if (preference == mTimeoutPref) {
-            int value = Integer.valueOf((String) newValue);
+            int value = Integer.parseInt((String) newValue);
             int index = mTimeoutPref.findIndexOfValue((String) newValue);
             mTimeoutPref.setSummary(mTimeoutPref.getEntries()[index]);
             Settings.System.putIntForUser(resolver,
                     KEY_TIMEOUT, value, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mColorModePref) {
-            int value = Integer.valueOf((String) newValue);
+            int value = Integer.parseInt((String) newValue);
             int index = mColorModePref.findIndexOfValue((String) newValue);
             mColorModePref.setSummary(mColorModePref.getEntries()[index]);
             Settings.System.putIntForUser(resolver,
@@ -149,8 +145,8 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         } else if (preference == mColorPref) {
             int accentColor = getAccentColor();
             String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            if (hex.equals(String.format("#%08x", (0xFFFFFFFF & accentColor)))) {
+                    Integer.parseInt(String.valueOf(newValue)));
+            if (hex.equals(String.format("#%08x", accentColor))) {
                 preference.setSummary(R.string.default_string);
             } else {
                 preference.setSummary(hex);

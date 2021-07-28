@@ -52,8 +52,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
         final boolean hasFOD = getResources().getBoolean(
                 com.android.internal.R.bool.config_needCustomFODView);
         if (!hasFOD) {
-            SecureSettingSwitchPreference fodOnDozePref =
-                    (SecureSettingSwitchPreference) findPreference("fod_on_doze");
+            SecureSettingSwitchPreference fodOnDozePref = findPreference("fod_on_doze");
             getPreferenceScreen().removePreference(fodOnDozePref);
         }
 

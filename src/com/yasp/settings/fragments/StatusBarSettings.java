@@ -16,24 +16,12 @@
 package com.yasp.settings.fragments;
 
 import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.text.format.DateFormat;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceGroup;
-import androidx.preference.PreferenceScreen;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -44,10 +32,6 @@ import com.android.settingslib.search.SearchIndexable;
 import com.yasp.settings.preferences.SystemSettingListPreference;
 import com.yasp.settings.preferences.SystemSettingMasterSwitchPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @SearchIndexable
 public class StatusBarSettings extends SettingsPreferenceFragment implements
@@ -67,28 +51,23 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.yaap_settings_statusbar);
-        PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        mNetTrafficState = (SystemSettingMasterSwitchPreference)
-                findPreference(NETWORK_TRAFFIC_STATE);
+        mNetTrafficState = findPreference(NETWORK_TRAFFIC_STATE);
         mNetTrafficState.setOnPreferenceChangeListener(this);
         boolean enabled = Settings.System.getInt(resolver,
                 Settings.System.NETWORK_TRAFFIC_STATE, 0) == 1;
         mNetTrafficState.setChecked(enabled);
 
-        mBatteryPercentInside = (SystemSettingSwitchPreference)
-                findPreference(SHOW_BATTERY_PERCENT_INSIDE);
-        mBatteryPercent = (SystemSettingSwitchPreference)
-                findPreference(SHOW_BATTERY_PERCENT);
+        mBatteryPercentInside = findPreference(SHOW_BATTERY_PERCENT_INSIDE);
+        mBatteryPercent = findPreference(SHOW_BATTERY_PERCENT);
         enabled = Settings.System.getIntForUser(resolver,
                 SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT) == 1;
         mBatteryPercent.setChecked(enabled);
         mBatteryPercent.setOnPreferenceChangeListener(this);
         mBatteryPercentInside.setEnabled(enabled);
 
-        mBatteryStyle = (SystemSettingListPreference)
-                findPreference(BATTERY_STYLE);
+        mBatteryStyle = findPreference(BATTERY_STYLE);
         int value = Settings.System.getIntForUser(resolver,
                 BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
         mBatteryStyle.setValue(Integer.toString(value));
@@ -106,7 +85,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     Settings.System.NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
             return true;
         } else if (preference == mBatteryStyle) {
-            int value = Integer.valueOf((String) objValue);
+            int value = Integer.parseInt((String) objValue);
             int index = mBatteryStyle.findIndexOfValue((String) objValue);
             mBatteryStyle.setSummary(mBatteryStyle.getEntries()[index]);
             Settings.System.putIntForUser(resolver,

@@ -15,27 +15,20 @@
  */
 package com.yasp.settings.fragments;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.internal.logging.nano.MetricsProto;
-import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 @SearchIndexable
-public class About extends SettingsPreferenceFragment implements
-        OnPreferenceChangeListener {
+public class About extends SettingsPreferenceFragment {
 
     private static final String PREF_MAINTAINER = "maintainer";
     private static final String PREF_KERNEL = "kernel";
@@ -46,27 +39,20 @@ public class About extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.yaap_settings_about);
         final Resources res = getResources();
-        final ContentResolver resolver = getActivity().getContentResolver();
-        final PreferenceScreen prefScreen = getPreferenceScreen();
 
-        Preference maintainerName = (Preference) findPreference(PREF_MAINTAINER);
+        Preference maintainerName = findPreference(PREF_MAINTAINER);
         if (maintainerName.getTitle().equals("")) {
             maintainerName.setVisible(false);
         } else if (res.getString(R.string.maintainer_telegram).equals("")) {
             maintainerName.setEnabled(false);
         }
 
-        Preference kernelName = (Preference) findPreference(PREF_KERNEL);
+        Preference kernelName = findPreference(PREF_KERNEL);
         if (kernelName.getTitle().equals("")) {
             kernelName.setVisible(false);
         } else if (res.getString(R.string.kernel_telegram).equals("")) {
             kernelName.setEnabled(false);
         }
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
     }
 
     @Override

@@ -23,15 +23,12 @@ import static com.yasp.settings.fragments.LockScreenSettings.MODE_MIXED_SUNRISE;
 
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.format.DateFormat;
-import android.widget.TimePicker;
 
 import androidx.preference.Preference;
-import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -60,7 +57,6 @@ public class AODSchedule extends SettingsPreferenceFragment implements
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.always_on_display_schedule);
-        PreferenceScreen screen = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
         mSincePref = findPreference(SINCE_PREF_KEY);
@@ -70,7 +66,7 @@ public class AODSchedule extends SettingsPreferenceFragment implements
 
         int mode = Settings.Secure.getIntForUser(resolver,
                 MODE_KEY, MODE_DISABLED, UserHandle.USER_CURRENT);
-        mModePref = (SecureSettingListPreference) findPreference(MODE_KEY);
+        mModePref = findPreference(MODE_KEY);
         mModePref.setValue(String.valueOf(mode));
         mModePref.setSummary(mModePref.getEntry());
         mModePref.setOnPreferenceChangeListener(this);
@@ -96,9 +92,8 @@ public class AODSchedule extends SettingsPreferenceFragment implements
         String[] times = getCustomTimeSetting();
         boolean isSince = preference == mSincePref;
         int hour, minute;
-        TimePickerDialog.OnTimeSetListener listener = (view, hourOfDay, minute1) -> {
-            updateTimeSetting(isSince, hourOfDay, minute1);
-        };
+        TimePickerDialog.OnTimeSetListener listener = (view, hourOfDay, minute1) ->
+                updateTimeSetting(isSince, hourOfDay, minute1);
         if (isSince) {
             String[] sinceValues = times[0].split(":", 0);
             hour = Integer.parseInt(sinceValues[0]);

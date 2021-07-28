@@ -55,27 +55,26 @@ public class GestureSettings extends SettingsPreferenceFragment implements
 
         final ContentResolver resolver = getContentResolver();
 
-        mTorchLongPressPowerTimeout =
-                (ListPreference) findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
+        mTorchLongPressPowerTimeout = findPreference(KEY_TORCH_LONG_PRESS_POWER_TIMEOUT);
         mTorchLongPressPowerTimeout.setOnPreferenceChangeListener(this);
         int value = Settings.System.getInt(resolver,
                 Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT, 0);
         mTorchLongPressPowerTimeout.setValue(Integer.toString(value));
         mTorchLongPressPowerTimeout.setSummary(mTorchLongPressPowerTimeout.getEntry());
 
-        mScreenshotDelay = (CustomSeekBarPreference) findPreference(KEY_SCREENSHOT_DELAY);
+        mScreenshotDelay = findPreference(KEY_SCREENSHOT_DELAY);
         value = Settings.System.getIntForUser(resolver,
                 KEY_SCREENSHOT_DELAY, 0, UserHandle.USER_CURRENT);
         mScreenshotDelay.setValue(value);
         mScreenshotDelay.setOnPreferenceChangeListener(this);
 
-        mVolMusicControlDelay = (CustomSeekBarPreference) findPreference(KEY_VOL_MUSIC_CONTROL_DELAY);
+        mVolMusicControlDelay = findPreference(KEY_VOL_MUSIC_CONTROL_DELAY);
         value = Settings.System.getIntForUser(resolver,
                 KEY_VOL_MUSIC_CONTROL_DELAY, 500, UserHandle.USER_CURRENT);
         mVolMusicControlDelay.setValue(value);
         mVolMusicControlDelay.setOnPreferenceChangeListener(this);
 
-        mVolMusicControl = (SystemSettingSwitchPreference) findPreference(KEY_VOL_MUSIC_CONTROL);
+        mVolMusicControl = findPreference(KEY_VOL_MUSIC_CONTROL);
         boolean enabled = Settings.System.getIntForUser(resolver,
                 KEY_VOL_MUSIC_CONTROL, 0, UserHandle.USER_CURRENT) == 1;
         mVolMusicControl.setChecked(enabled);

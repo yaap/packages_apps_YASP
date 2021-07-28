@@ -17,7 +17,7 @@
  * class that holds target widget state
  */
 
-package com.yasp.settings.preferences;
+package com.yasp.settings.fragments;
 
 import java.util.ArrayList;
 
@@ -28,9 +28,9 @@ import com.android.internal.util.hwkeys.Config;
 import com.android.internal.util.hwkeys.Config.ActionConfig;
 import com.android.internal.util.hwkeys.Config.ButtonConfig;
 
-import com.yasp.settings.preferences.ShortcutPickHelper;
+import com.yasp.settings.CustomActionListAdapter;
 import com.yasp.settings.preferences.ActionPreference;
-import com.yasp.settings.preferences.CustomActionListAdapter;
+import com.yasp.settings.ShortcutPickHelper;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -57,7 +57,6 @@ public class ActionFragment extends SettingsPreferenceFragment implements
     private String mHolderTag;
     private Defaults mDefaults;
     private ArrayList<ButtonConfig> mButtons;
-    private ArrayList<ButtonConfig> mDefaultButtons;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -69,7 +68,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
             }
         }
         mPicker = new ShortcutPickHelper(getActivity(), this);
-        mPrefHolder = new ArrayList<ActionPreference>();
+        mPrefHolder = new ArrayList<>();
     }
 
     @Override
@@ -120,12 +119,9 @@ public class ActionFragment extends SettingsPreferenceFragment implements
         switch (dialogId) {
             case DIALOG_CATEGORY: {
                 Dialog dialog;
-                final DialogInterface.OnClickListener categoryClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
-                        onTargetChange(getResources().getStringArray(R.array.action_dialog_values)[item]);
-                        dialog.dismiss();
-                    }
+                final DialogInterface.OnClickListener categoryClickListener = (dialog1, item) -> {
+                    onTargetChange(getResources().getStringArray(R.array.action_dialog_values)[item]);
+                    dialog1.dismiss();
                 };
                 dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.choose_action_title)
@@ -142,12 +138,9 @@ public class ActionFragment extends SettingsPreferenceFragment implements
                     adapter.removeAction(ActionHandler.SYSTEMUI_TASK_HOME);
                     adapter.removeAction(ActionHandler.SYSTEMUI_TASK_BACK);
                 }
-                final DialogInterface.OnClickListener customActionClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
-                        findAndUpdatePreference(adapter.getItem(item), mHolderTag);
-                        dialog.dismiss();
-                    }
+                final DialogInterface.OnClickListener customActionClickListener = (dialog12, item) -> {
+                    findAndUpdatePreference(adapter.getItem(item), mHolderTag);
+                    dialog12.dismiss();
                 };
                 dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(getString(R.string.action_entry_custom_action))
@@ -212,7 +205,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
 
     protected void loadAndSetConfigs() {
         mButtons = Config.getConfig(getActivity(), mDefaults);
-        mDefaultButtons = Config.getDefaultConfig(getActivity(), mDefaults);
+        ArrayList<ButtonConfig> mDefaultButtons = Config.getDefaultConfig(getActivity(), mDefaults);
         for (ActionPreference pref : mPrefHolder) {
             pref.setDefaults(mDefaults);
             ButtonConfig button = mButtons.get(pref.getConfigMap().button);
@@ -225,9 +218,8 @@ public class ActionFragment extends SettingsPreferenceFragment implements
     }
 
     private void onTargetChange(String uri) {
-        if (uri == null) {
-            return;
-        } else if (uri.equals(getString(R.string.action_value_default_action))) {
+        if (uri == null) return;
+        if (uri.equals(getString(R.string.action_value_default_action))) {
             findAndUpdatePreference(null, mHolderTag);
         } else if (uri.equals(getString(R.string.action_value_select_app))) {
             mPicker.pickShortcut(null, null, getId());

@@ -15,11 +15,8 @@
  */
 package com.yasp.settings.fragments;
 
-import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
@@ -44,15 +41,13 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
     private ColorPickerPreference mReallyFullColor;
     private SystemSettingSwitchPreference mLowBatteryBlinking;
 
-    private PreferenceCategory mColorCategory;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.battery_light_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
-        mColorCategory = (PreferenceCategory) findPreference("battery_light_cat");
+        PreferenceCategory mColorCategory = findPreference("battery_light_cat");
 
         mLowBatteryBlinking = (SystemSettingSwitchPreference)prefSet.findPreference("battery_light_low_blinking");
         if (getResources().getBoolean(
@@ -68,7 +63,7 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
             int color = Settings.System.getIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_LOW_COLOR, 0xFFFF0000,
                             UserHandle.USER_CURRENT);
-            mLowColor = (ColorPickerPreference) findPreference("battery_light_low_color");
+            mLowColor = findPreference("battery_light_low_color");
             mLowColor.setAlphaSliderEnabled(false);
             mLowColor.setNewPreviewColor(color);
             mLowColor.setOnPreferenceChangeListener(this);
@@ -76,7 +71,7 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
             color = Settings.System.getIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_MEDIUM_COLOR, 0xFFFFFF00,
                             UserHandle.USER_CURRENT);
-            mMediumColor = (ColorPickerPreference) findPreference("battery_light_medium_color");
+            mMediumColor = findPreference("battery_light_medium_color");
             mMediumColor.setAlphaSliderEnabled(false);
             mMediumColor.setNewPreviewColor(color);
             mMediumColor.setOnPreferenceChangeListener(this);
@@ -84,7 +79,7 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
             color = Settings.System.getIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_FULL_COLOR, 0xFFFFFF00,
                             UserHandle.USER_CURRENT);
-            mFullColor = (ColorPickerPreference) findPreference("battery_light_full_color");
+            mFullColor = findPreference("battery_light_full_color");
             mFullColor.setAlphaSliderEnabled(false);
             mFullColor.setNewPreviewColor(color);
             mFullColor.setOnPreferenceChangeListener(this);
@@ -92,7 +87,7 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
             color = Settings.System.getIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR, 0xFF00FF00,
                             UserHandle.USER_CURRENT);
-            mReallyFullColor = (ColorPickerPreference) findPreference("battery_light_reallyfull_color");
+            mReallyFullColor = findPreference("battery_light_reallyfull_color");
             mReallyFullColor.setAlphaSliderEnabled(false);
             mReallyFullColor.setNewPreviewColor(color);
             mReallyFullColor.setOnPreferenceChangeListener(this);
@@ -108,30 +103,30 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference.equals(mLowColor)) {
-            int color = ((Integer) newValue).intValue();
+            int color = (Integer) newValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_LOW_COLOR, color,
                     UserHandle.USER_CURRENT);
             return true;
         } else if (preference.equals(mMediumColor)) {
-            int color = ((Integer) newValue).intValue();
+            int color = (Integer) newValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_MEDIUM_COLOR, color,
                     UserHandle.USER_CURRENT);
             return true;
         } else if (preference.equals(mFullColor)) {
-            int color = ((Integer) newValue).intValue();
+            int color = (Integer) newValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_FULL_COLOR, color,
                     UserHandle.USER_CURRENT);
             return true;
         } else if (preference.equals(mReallyFullColor)) {
-            int color = ((Integer) newValue).intValue();
+            int color = (Integer) newValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR, color,
                     UserHandle.USER_CURRENT);
             return true;
-        } else if (preference == mLowBatteryBlinking) {
+        } else if (preference.equals(mLowBatteryBlinking)) {
             boolean value = (Boolean) newValue;
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.BATTERY_LIGHT_LOW_BLINKING, value ? 1 : 0,
