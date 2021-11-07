@@ -25,4 +25,11 @@
         android:summary="@string/network_traffic_state_summary"
         android:fragment="com.yasp.settings.fragments.NetTrafficMonSettings"
         android:defaultValue="false" />
+
+    <!-- Double tap to sleep -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_gesture"
+        android:title="@string/double_tap_sleep_gesture_title"
+        android:summary="@string/double_tap_sleep_gesture_summary"
+        android:defaultValue="false" />
 </PreferenceScreen>
