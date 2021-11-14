@@ -19,6 +19,12 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="screen_off_fod"
+        android:title="@string/screen_off_fod_title"
+        android:summary="@string/screen_off_fod_summary"
+        android:defaultValue="true" />
+
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_battery_info"
         android:title="@string/lockscreen_battery_info_title"
         android:summary="@string/lockscreen_battery_info_summary"
