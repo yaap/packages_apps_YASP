@@ -19,6 +19,7 @@ import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.provider.DeviceConfig;
 import android.provider.Settings;
 
 import androidx.preference.Preference;
@@ -42,9 +43,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
     private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
     private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
+    private static final String LOCATION_DEVICE_CONFIG = "location_indicators_enabled";
 
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
     private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
+    private static final String LOCATION_INDICATOR = "enable_location_privacy_indicator";
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
@@ -89,6 +92,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                 COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
+
+        SecureSettingSwitchPreference locationIndicator = findPreference(LOCATION_INDICATOR);
+        def = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
+                LOCATION_DEVICE_CONFIG, false);
+        locationIndicator.setDefaultValue(def);
+        locationIndicator.setChecked(Settings.Secure.getInt(resolver,
+                LOCATION_INDICATOR, def ? 1 : 0) == 1);
 
         mBatteryPercentInside = (SystemSettingSwitchPreference)
                 findPreference(SHOW_BATTERY_PERCENT_INSIDE);
