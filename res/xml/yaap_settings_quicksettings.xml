@@ -40,4 +40,11 @@
         android:dependency="qs_footer_text_show"
         android:defaultValue="YAAP" />
 
+    <!-- Gaming macro QS tile -->
+    <Preference
+        android:key="gaming_mode_tile"
+        android:title="@string/gaming_mode_tile_title"
+        android:summary="@string/gaming_mode_tile_summary"
+        android:fragment="com.yasp.settings.fragments.GamingMode" />
+
 </PreferenceScreen>
