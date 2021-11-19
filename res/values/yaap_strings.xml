@@ -174,4 +174,8 @@
     <string name="volume_rocker_music_controls_summary">When the screen is off, long-pressing the volume keys will seek music tracks</string>
     <string name="volume_rocker_music_controls_delay_title">Playback control activation delay</string>
 
+    <!-- Advanced reboot  -->
+    <string name="advanced_reboot_title">Advanced reboot</string>
+    <string name="advanced_reboot_summary">Allow rebooting to recovery and bootloader</string>
+
 </resources>
