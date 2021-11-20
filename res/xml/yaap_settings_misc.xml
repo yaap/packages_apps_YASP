@@ -25,4 +25,11 @@
         android:summary="@string/advanced_reboot_summary"
         android:defaultValue="false" />
 
+    <!-- Monet -->
+    <Preference
+        android:key="monet_settings"
+        android:title="@string/monet_engine_settings_title"
+        android:summary="@string/monet_engine_settings_summary"
+        android:fragment="com.yasp.settings.fragments.MonetSettings" />
+
 </PreferenceScreen>
