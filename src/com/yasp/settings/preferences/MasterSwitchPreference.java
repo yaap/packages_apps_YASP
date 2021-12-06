@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.android.settings.R;
+import com.android.settingslib.widget.TwoTargetPreference;
 
 /**
  * A custom preference that provides inline switch toggle. It has a mandatory field for title, and
