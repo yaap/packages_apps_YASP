@@ -47,6 +47,14 @@
         android:dependency="qs_footer_text_show"
         android:defaultValue="YAAP" />
 
+    <!-- Media player in QS -->
+    <com.yasp.settings.preferences.GlobalSettingSwitchPreference
+        android:key="qs_media_controls"
+        android:title="@string/qs_media_controls_title"
+        android:summaryOn="@string/qs_media_controls_summary_on"
+        android:summaryOff="@string/qs_media_controls_summary_off"
+        android:defaultValue="true" />
+
     <!-- Gaming macro QS tile -->
     <Preference
         android:key="gaming_mode_tile"

@@ -268,4 +268,9 @@
     <string name="keygaurd_media_art_title">Media art</string>
     <string name="keygaurd_media_art_summary">Display media art as lockscreen background</string>
 
+    <!-- QS media player -->
+    <string name="qs_media_controls_title">Media player</string>
+    <string name="qs_media_controls_summary_on">Show media player in QS\nRequires a SystemUI restart</string>
+    <string name="qs_media_controls_summary_off">Show media player as a notification\nRequires a SystemUI restart</string>
+
 </resources>
