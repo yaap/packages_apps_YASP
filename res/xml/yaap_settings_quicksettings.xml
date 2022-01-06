@@ -26,6 +26,14 @@
         android:fragment="com.yasp.settings.fragments.BrightnessSliderSettings"
         android:defaultValue="true" />
 
+    <!-- QS Battery estimates -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="qs_show_battery_estimate"
+        android:title="@string/qs_show_battery_estimate_title"
+        android:summaryOn="@string/qs_show_battery_estimate_summary_on"
+        android:summaryOff="@string/qs_show_battery_estimate_summary_off"
+        android:defaultValue="true" />
+
     <!-- QS footer running services -->
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="qs_footer_services_show"
