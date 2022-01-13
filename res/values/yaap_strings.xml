@@ -281,4 +281,10 @@
     <string name="location_privacy_indicator_summary_on">Show location in the privacy chip\nNeeds a reboot to take effect</string>
     <string name="location_privacy_indicator_summary_off">Show location in status bar icons\nNeeds a reboot to take effect</string>
 
+    <!-- Clock position -->
+    <string name="statusbar_clock_position_title">Clock position</string>
+    <string name="statusbar_clock_position_left">Left</string>
+    <string name="statusbar_clock_position_center">Center</string>
+    <string name="statusbar_clock_position_right">Right</string>
+
 </resources>
