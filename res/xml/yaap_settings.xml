@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:title="@string/yaap_settings_title" >
 
         <!-- Status Bar -->
@@ -49,7 +49,8 @@
         <Preference
             android:key="gestures_category"
             android:title="@string/gestures_title"
-            android:fragment="com.yasp.settings.fragments.GestureSettings"
+            android:fragment="com.android.settings.gestures.GestureSettings"
+            settings:controller="com.android.settings.gestures.GesturesSettingPreferenceController"
             android:icon="@drawable/ic_settings_pdgestures"/>
 
         <!-- Lock Screen -->
