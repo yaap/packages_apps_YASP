@@ -43,6 +43,12 @@
         android:defaultValue="false" />
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="gaming_mode_battery_schedule"
+        android:title="@string/gaming_mode_battery_schedule_title"
+        android:summary="@string/gaming_mode_battery_schedule_summary"
+        android:defaultValue="false" />
+
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="gaming_mode_brightness_enabled"
         android:title="@string/gaming_mode_brightness_enabled_title"
         android:summary="@string/gaming_mode_brightness_enabled_summary"
