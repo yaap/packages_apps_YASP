@@ -62,7 +62,7 @@
         android:max="100"
         settings:min="0"
         settings:defaultValue="80"
-        settings:interval="5"
+        settings:interval="1"
         settings:units="%" />
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
