@@ -36,6 +36,13 @@
         android:summary="@string/gaming_mode_zen_summary"
         android:defaultValue="false" />
 
+    <com.yasp.settings.preferences.SystemSettingListPreference
+        android:key="gaming_mode_ringer"
+        android:title="@string/gaming_mode_ringer_title"
+        android:entries="@array/gaming_mode_ringer_entries"
+        android:entryValues="@array/gaming_mode_ringer_values"
+        android:defaultValue="0" />
+
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="gaming_mode_night_light"
         android:title="@string/gaming_mode_night_light_title"
