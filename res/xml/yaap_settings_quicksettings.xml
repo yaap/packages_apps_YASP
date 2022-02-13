@@ -68,6 +68,6 @@
         android:key="gaming_mode_tile"
         android:title="@string/gaming_mode_tile_title"
         android:summary="@string/gaming_mode_tile_summary"
-        android:fragment="com.yasp.settings.fragments.GamingMode" />
+        android:fragment="com.android.settings.gaming.GamingModeFragment" />
 
 </PreferenceScreen>
