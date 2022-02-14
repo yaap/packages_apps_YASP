@@ -22,7 +22,6 @@
     <com.yasp.settings.preferences.SystemSettingMasterSwitchPreference
         android:key="network_traffic_state"
         android:title="@string/network_traffic_state_title"
-        android:summary="@string/network_traffic_state_summary"
         android:fragment="com.yasp.settings.fragments.NetTrafficMonSettings"
         android:defaultValue="false" />
 
