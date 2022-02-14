@@ -70,8 +70,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mNetTrafficState = findPreference(NETWORK_TRAFFIC_STATE);
         mNetTrafficState.setOnPreferenceChangeListener(this);
         boolean enabled = Settings.System.getInt(resolver,
-                Settings.System.NETWORK_TRAFFIC_STATE, 0) == 1;
+                NETWORK_TRAFFIC_STATE, 0) == 1;
         mNetTrafficState.setChecked(enabled);
+        updateNetTrafficSummary(enabled);
 
         mCombinedIcons = findPreference(COBINED_STATUSBAR_ICONS);
         Resources sysUIRes = null;
@@ -125,12 +126,18 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateNetTrafficSummary();
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mNetTrafficState) {
             boolean enabled = (boolean) objValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
+            Settings.System.putInt(resolver, NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
+            updateNetTrafficSummary(enabled);
             return true;
         } else if (preference == mClockPosition) {
             int value = Integer.parseInt((String) objValue);
@@ -160,6 +167,28 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             return true;
         }
         return false;
+    }
+
+    private void updateNetTrafficSummary() {
+        final boolean enabled = Settings.System.getInt(
+                getActivity().getContentResolver(),
+                NETWORK_TRAFFIC_STATE, 0) == 1;
+        updateNetTrafficSummary(enabled);
+    }
+
+    private void updateNetTrafficSummary(boolean enabled) {
+        if (mNetTrafficState == null) return;
+        String summary = getActivity().getString(R.string.switch_off_text);
+        if (enabled) {
+            final boolean onStatus = Settings.System.getInt(
+                    getActivity().getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0) == 0;
+            summary = getActivity().getString(R.string.network_traffic_state_summary);
+            summary += " " + (onStatus
+                    ? getActivity().getString(R.string.traffic_statusbar)
+                    : getActivity().getString(R.string.traffic_expanded_statusbar));
+        }
+        mNetTrafficState.setSummary(summary);
     }
 
     private void updatePercentEnablement(boolean enabled) {
