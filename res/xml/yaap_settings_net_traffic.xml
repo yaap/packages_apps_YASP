@@ -12,8 +12,8 @@
 -->
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/network_traffic_state_title"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/network_traffic_state_title">
 
     <ListPreference
         android:key="network_traffic_location"
@@ -35,8 +35,8 @@
         android:key="network_traffic_autohide_threshold"
         android:title="@string/network_traffic_autohide_threshold_title"
         android:max="10"
-        settings:min="0"
-        settings:defaultValue="1"
+        android:min="0"
+        android:defaultValue="1"
         settings:units="KB/s" />
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
@@ -50,7 +50,7 @@
         android:title="@string/network_traffic_font_size_title"
         android:max="15"
         android:min="6"
-        settings:defaultValue="10"
+        android:defaultValue="10"
         settings:units="dp" />
 
 </PreferenceScreen>
