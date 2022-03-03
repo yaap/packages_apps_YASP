@@ -267,4 +267,10 @@
     <!-- SystemUI tuner -->
     <string name="ui_tuner_title">SystemUI tuner</string>
 
+    <!-- Volume key cursor control  -->
+    <string name="volume_key_cursor_control_title">Volume cursor control</string>
+    <string name="volume_key_cursor_control_disabled">Disabled</string>
+    <string name="volume_key_cursor_control_left">up - left, down - right</string>
+    <string name="volume_key_cursor_control_right">up - right, down - left</string>
+
 </resources>
