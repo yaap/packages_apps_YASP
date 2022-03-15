@@ -41,18 +41,15 @@
     <string name="disabled">禁用</string>
 
     <!-- Color Picker -->
-        <string name="dialog_color_picker">颜色选择器</string>
+    <string name="dialog_color_picker">颜色选择器</string>
     <string name="press_color_to_apply">点击下面的颜色应用你的设置</string>
     <string name="arrow_right">→</string>
     <string name="arrow_down">↓</string>
     <string name="hex">Hex:</string>
-    <string name="hex_hint" translatable="false">#FFDDDDDD</string>
     <string name="hex_check_button_text">预览</string>
     <string name="hex_reset_button_text">重置</string>
     <string name="set">设置</string>
     <string name="color_default">默认</string>
-    <string name="color_right_arrow" translatable="false">"→"</string>
-    <string name="color_down_arrow" translatable="false">"↓"</string>
     <string name="longpress_info">长按盒子保存颜色</string>
 
     <!-- Lockscreen battery info indicator  -->
@@ -60,7 +57,7 @@
     <string name="lockscreen_battery_info_summary">充电时在锁定屏幕上显示目前最大电流和电压以及电池温度</string>
 
     <!-- QS footer running services -->
-        <string name="qs_footer_services_show_title">运行中的服务</string>
+    <string name="qs_footer_services_show_title">运行中的服务</string>
     <string name="qs_footer_services_show_summary">在QS页脚中显示运行中的服务的快捷图标</string>
 
     <!-- QS footer text -->
@@ -73,33 +70,17 @@
     <string name="about_team_category">团队</string>
     <string name="about_external_category">外部链接</string>
     <string name="about_dev_title">联合发起人</string>
-    <string name="about_dev_name">Adhitya Mohan</string>
-    <string name="about_dev_git" translatable="false">https://github.com/poad42</string>
     <string name="about_dev2_title">联合发起人</string>
-    <string name="about_dev2_name">Ido Ben-Hur</string>
-    <string name="about_dev2_git" translatable="false">https://github.com/idoybh</string>
     <string name="about_dev3_title">成员</string>
-    <string name="about_dev3_name">Omkar Chandorkar</string>
-    <string name="about_dev3_git" translatable="false">https://github.com/gotenksIN</string>
     <string name="maintainer">设备维护者</string>
-    <string name="maintainer_name" translatable="false"></string>
-    <string name="maintainer_telegram" translatable="false"></string>
     <string name="kernel">内核开发者</string>
-    <string name="kernel_name" translatable="false"></string>
-    <string name="kernel_telegram" translatable="false"></string>
     <string name="about_tg_title">Telegram 群组</string>
     <string name="about_tg_summary">官方国际Telegram群组</string>
-    <string name="about_tg_link" translatable="false">https://t.me/yaapcommon</string>
     <string name="about_git_title">源代码</string>
     <string name="about_git_summary">在GitHub上查看我们的源代码</string>
-    <string name="about_git_link" translatable="false">https://github.com/yaap</string>
     <string name="about_phone_title">关于手机</string>
     <string name="about_phone_summary">打开系统的关于页面</string>
     <string name="designer_title">设计师</string>
-    <string name="designer_name">Ahmed Harhash</string>
-    <string name="designer_tg" translatable="false">https://t.me/Lacentix</string>
-    <string name="designer2_name">The Knight</string>
-    <string name="designer2_tg" translatable="false">https://t.me/IamTheKnight</string>
 
     <!-- Statusbar network traffic monitor -->
     <string name="network_traffic_state_title">显示网速</string>
