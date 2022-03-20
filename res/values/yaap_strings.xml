@@ -260,10 +260,6 @@
     <string name="statusbar_clock_position_center">Center</string>
     <string name="statusbar_clock_position_right">Right</string>
 
-    <!-- Keyguard force small clock -->
-    <string name="lockscreen_small_clock_title">Force small clock</string>
-    <string name="lockscreen_small_clock_summary">Don\'t switch to the big clock when there are no notifications</string>
-
     <!-- SystemUI tuner -->
     <string name="ui_tuner_title">SystemUI tuner</string>
 

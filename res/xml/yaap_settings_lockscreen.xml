@@ -24,12 +24,6 @@
         android:fragment="com.yasp.settings.fragments.AODSchedule" />
 
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_small_clock"
-        android:title="@string/lockscreen_small_clock_title"
-        android:summary="@string/lockscreen_small_clock_summary"
-        android:defaultValue="false" />
-
-    <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="screen_off_fod"
         android:title="@string/screen_off_fod_title"
         android:summary="@string/screen_off_fod_summary"
