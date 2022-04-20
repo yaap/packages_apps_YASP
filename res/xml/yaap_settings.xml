@@ -93,6 +93,6 @@
             android:key="about_category"
             android:title="@string/about_title"
             android:fragment="com.yasp.settings.fragments.About"
-            android:icon="@drawable/ic_info"/>
+            android:icon="@drawable/ic_about"/>
 
 </PreferenceScreen>
