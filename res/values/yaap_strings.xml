@@ -269,4 +269,8 @@
     <string name="volume_key_cursor_control_left">up - left, down - right</string>
     <string name="volume_key_cursor_control_right">up - right, down - left</string>
 
+    <!-- Brightness control -->
+    <string name="status_bar_brightness_control_title">Brightness control</string>
+    <string name="status_bar_brightness_control_summary">Adjust brightness by sliding across the status bar</string>
+
 </resources>
