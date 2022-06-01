@@ -18,6 +18,7 @@ package com.yasp.settings.fragments;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -64,6 +65,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
     private static final String LOCATION_INDICATOR_KEY = "location_indicators_enabled";
     private static final String CAMERA_MIC_INDICATOR_KEY = "camera_mic_icons_enabled";
+    private static final String KEY_NOTIFICATION_COUNT = "status_bar_notif_count";
 
     private SystemSettingMasterSwitchPreference mNetTrafficState;
     private SystemSettingListPreference mClockPosition;
@@ -122,6 +124,25 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         enabled = getDeviceConfig(CAMERA_MIC_INDICATOR_KEY);
         mCameraMicIndicator.setChecked(enabled);
         mCameraMicIndicator.setOnPreferenceChangeListener(this);
+
+        // Get config_statusBarShowNumber from SystemUI
+        Context sysUiContext;
+        try {
+            sysUiContext = getActivity().createPackageContext(SYSTEMUI_PACKAGE,
+                    Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+        } catch (NameNotFoundException e) {
+            // Nothing to do, If SystemUI was not found you have bigger issues :)
+            sysUiContext = getActivity();
+        }
+        Resources sysUiRes = sysUiContext.getResources();
+        final int resId = sysUiRes.getIdentifier("config_statusBarShowNumber", "bool", SYSTEMUI_PACKAGE);
+        final boolean isDefaultEnabled = sysUiRes.getBoolean(resId);
+
+        SwitchPreference notifCountPref = findPreference(KEY_NOTIFICATION_COUNT);
+        enabled = Settings.System.getIntForUser(resolver,
+                KEY_NOTIFICATION_COUNT, isDefaultEnabled ? 1 : 0,
+                UserHandle.USER_CURRENT) == 1;
+        notifCountPref.setChecked(enabled);
     }
 
     @Override

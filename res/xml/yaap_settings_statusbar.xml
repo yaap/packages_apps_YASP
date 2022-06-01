@@ -39,6 +39,13 @@
         android:summary="@string/status_bar_brightness_control_summary"
         android:defaultValue="false" />
 
+    <!-- Notification Counter -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="status_bar_notif_count"
+        android:title="@string/status_bar_notif_count_title"
+        android:summary="@string/status_bar_notif_count_summary"
+        android:defaultValue="false" />
+
     <!-- WiFi standard icon -->
     <com.yasp.settings.preferences.SecureSettingSwitchPreference
         android:key="show_wifi_standard_icon"
