@@ -46,6 +46,13 @@
         android:summary="@string/combined_status_bar_signal_icons_summary"
         android:defaultValue="false" />
 
+    <!-- Combined signal icons -->
+    <com.yasp.settings.preferences.SecureSettingSwitchPreference
+        android:key="show_wifi_standard_icon"
+        android:title="@string/show_wifi_standard_icon_title"
+        android:summary="@string/show_wifi_standard_icon_summary"
+        android:defaultValue="false" />
+
     <!-- Location privacy indicator -->
     <com.yasp.settings.preferences.SecureSettingSwitchPreference
         android:key="enable_location_privacy_indicator"
