@@ -39,14 +39,7 @@
         android:summary="@string/status_bar_brightness_control_summary"
         android:defaultValue="false" />
 
-    <!-- Combined signal icons -->
-    <com.yasp.settings.preferences.SecureSettingSwitchPreference
-        android:key="show_combined_status_bar_signal_icons"
-        android:title="@string/combined_status_bar_signal_icons"
-        android:summary="@string/combined_status_bar_signal_icons_summary"
-        android:defaultValue="false" />
-
-    <!-- Combined signal icons -->
+    <!-- WiFi standard icon -->
     <com.yasp.settings.preferences.SecureSettingSwitchPreference
         android:key="show_wifi_standard_icon"
         android:title="@string/show_wifi_standard_icon_title"
