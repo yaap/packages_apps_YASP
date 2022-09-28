@@ -41,14 +41,12 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
     private static String KEY_AMBIENT = "ambient_notification_light_enabled";
     private static String KEY_DURATION = "ambient_notification_light_duration";
     private static String KEY_REPEATS = "ambient_notification_light_repeats";
-    private static String KEY_TIMEOUT = "ambient_notification_light_timeout";
     private static String KEY_COLOR_MODE = "ambient_notification_color_mode";
     private static String KEY_COLOR = "ambient_notification_light_color";
 
     private SystemSettingSwitchPreference mAmbientPref;
     private CustomSeekBarPreference mDurationPref;
     private CustomSeekBarPreference mRepeatsPref;
-    private SystemSettingListPreference mTimeoutPref;
     private SystemSettingListPreference mColorModePref;
     private ColorPickerPreference mColorPref;
 
@@ -79,14 +77,6 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
                 KEY_REPEATS, 0, UserHandle.USER_CURRENT);
         mRepeatsPref.setValue(repeats);
         mRepeatsPref.setOnPreferenceChangeListener(this);
-
-        mTimeoutPref = (SystemSettingListPreference) findPreference(KEY_TIMEOUT);
-        value = Settings.System.getIntForUser(resolver,
-                KEY_TIMEOUT, accentColor, UserHandle.USER_CURRENT);
-        mTimeoutPref.setValue(Integer.toString(value));
-        mTimeoutPref.setSummary(mTimeoutPref.getEntry());
-        mTimeoutPref.setOnPreferenceChangeListener(this);
-        updateTimeoutEnablement(repeats);
 
         mColorPref = (ColorPickerPreference) findPreference(KEY_COLOR);
         value = Settings.System.getIntForUser(resolver,
@@ -126,14 +116,6 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
             int value = (Integer) newValue;
             Settings.System.putIntForUser(resolver,
                     KEY_REPEATS, value, UserHandle.USER_CURRENT);
-            updateTimeoutEnablement(value);
-            return true;
-        } else if (preference == mTimeoutPref) {
-            int value = Integer.valueOf((String) newValue);
-            int index = mTimeoutPref.findIndexOfValue((String) newValue);
-            mTimeoutPref.setSummary(mTimeoutPref.getEntries()[index]);
-            Settings.System.putIntForUser(resolver,
-                    KEY_TIMEOUT, value, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mColorModePref) {
             int value = Integer.valueOf((String) newValue);
@@ -164,18 +146,5 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         final TypedValue value = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.colorAccent, value, true);
         return value.data;
-    }
-
-    private void updateTimeoutEnablement(int repeats) {
-        if (repeats == 0) {
-            int value = Settings.System.getIntForUser(getContentResolver(),
-                    KEY_TIMEOUT, 0, UserHandle.USER_CURRENT);
-            mTimeoutPref.setValue(Integer.toString(value));
-            mTimeoutPref.setSummary(mTimeoutPref.getEntry());
-            mTimeoutPref.setEnabled(true);
-        } else {
-            mTimeoutPref.setSummary(R.string.set_to_zero);
-            mTimeoutPref.setEnabled(false);
-        }
     }
 }
