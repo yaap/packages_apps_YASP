@@ -60,13 +60,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
     private static final String LOCATION_INDICATOR = "enable_location_privacy_indicator";
-    private static final String CLOCK_POSITION = "statusbar_clock_position";
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
 
     private SystemSettingMasterSwitchPreference mNetTrafficState;
-    private SystemSettingListPreference mClockPosition;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
     private SystemSettingSwitchPreference mBatteryPercentInside;
@@ -78,7 +76,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        mNetTrafficState = findPreference(NETWORK_TRAFFIC_STATE);
+        mNetTrafficState = (SystemSettingMasterSwitchPreference)
+                findPreference(NETWORK_TRAFFIC_STATE);
         mNetTrafficState.setOnPreferenceChangeListener(this);
         boolean enabled = Settings.System.getInt(resolver,
                 NETWORK_TRAFFIC_STATE, 0) == 1;
@@ -92,23 +91,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         locationIndicator.setChecked(Settings.Secure.getInt(resolver,
                 LOCATION_INDICATOR, def ? 1 : 0) == 1);
 
-        mClockPosition = findPreference(CLOCK_POSITION);
-        int value = Settings.System.getIntForUser(resolver,
-                CLOCK_POSITION, 0, UserHandle.USER_CURRENT);
-        mClockPosition.setValue(Integer.toString(value));
-        mClockPosition.setSummary(mClockPosition.getEntry());
-        mClockPosition.setOnPreferenceChangeListener(this);
-
-        mBatteryPercentInside = findPreference(SHOW_BATTERY_PERCENT_INSIDE);
-        mBatteryPercent = findPreference(SHOW_BATTERY_PERCENT);
+        mBatteryPercentInside = (SystemSettingSwitchPreference)
+                findPreference(SHOW_BATTERY_PERCENT_INSIDE);
+        mBatteryPercent = (SystemSettingSwitchPreference)
+                findPreference(SHOW_BATTERY_PERCENT);
         enabled = Settings.System.getIntForUser(resolver,
                 SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT) == 1;
         mBatteryPercent.setChecked(enabled);
         mBatteryPercent.setOnPreferenceChangeListener(this);
         mBatteryPercentInside.setEnabled(enabled);
 
-        mBatteryStyle = findPreference(BATTERY_STYLE);
-        value = Settings.System.getIntForUser(resolver,
+        mBatteryStyle = (SystemSettingListPreference)
+                findPreference(BATTERY_STYLE);
+        int value = Settings.System.getIntForUser(resolver,
                 BATTERY_STYLE, 0, UserHandle.USER_CURRENT);
         mBatteryStyle.setValue(Integer.toString(value));
         mBatteryStyle.setSummary(mBatteryStyle.getEntry());
@@ -129,13 +124,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             boolean enabled = (boolean) objValue;
             Settings.System.putInt(resolver, NETWORK_TRAFFIC_STATE, enabled ? 1 : 0);
             updateNetTrafficSummary(enabled);
-            return true;
-        } else if (preference == mClockPosition) {
-            int value = Integer.parseInt((String) objValue);
-            int index = mClockPosition.findIndexOfValue((String) objValue);
-            mClockPosition.setSummary(mClockPosition.getEntries()[index]);
-            Settings.System.putIntForUser(resolver,
-                    CLOCK_POSITION, value, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mBatteryStyle) {
             int value = Integer.valueOf((String) objValue);

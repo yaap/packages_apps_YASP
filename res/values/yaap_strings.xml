@@ -232,12 +232,6 @@
     <string name="location_privacy_indicator_summary_on">Show location in the privacy chip</string>
     <string name="location_privacy_indicator_summary_off">Show location in status bar icons</string>
 
-    <!-- Clock position -->
-    <string name="statusbar_clock_position_title">Clock position</string>
-    <string name="statusbar_clock_position_left">Left</string>
-    <string name="statusbar_clock_position_center">Center</string>
-    <string name="statusbar_clock_position_right">Right</string>
-
     <!-- SystemUI tuner -->
     <string name="ui_tuner_title">SystemUI tuner</string>
 
