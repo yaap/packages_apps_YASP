@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.provider.DeviceConfig;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.text.TextUtils;
@@ -61,12 +62,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
+    private static final String LOCATION_INDICATOR_KEY = "location_indicators_enabled";
+    private static final String CAMERA_MIC_INDICATOR_KEY = "camera_mic_icons_enabled";
 
     private SystemSettingMasterSwitchPreference mNetTrafficState;
     private SystemSettingListPreference mClockPosition;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
     private SystemSettingSwitchPreference mBatteryPercentInside;
+    private SwitchPreference mLocationIndicator;
+    private SwitchPreference mCameraMicIndicator;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -104,6 +109,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mBatteryStyle.setSummary(mBatteryStyle.getEntry());
         mBatteryStyle.setOnPreferenceChangeListener(this);
         updatePercentEnablement(value != 2);
+
+        mLocationIndicator = findPreference(LOCATION_INDICATOR_KEY);
+        enabled = getDeviceConfig(LOCATION_INDICATOR_KEY);
+        mLocationIndicator.setChecked(enabled);
+        mLocationIndicator.setSummary(enabled
+                ? mLocationIndicator.getSwitchTextOn()
+                : mLocationIndicator.getSwitchTextOff());
+        mLocationIndicator.setOnPreferenceChangeListener(this);
+
+        mCameraMicIndicator = findPreference(CAMERA_MIC_INDICATOR_KEY);
+        enabled = getDeviceConfig(CAMERA_MIC_INDICATOR_KEY);
+        mCameraMicIndicator.setChecked(enabled);
+        mCameraMicIndicator.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -141,6 +159,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     SHOW_BATTERY_PERCENT, enabled ? 1 : 0);
             mBatteryPercentInside.setEnabled(enabled);
             return true;
+        } else if (preference == mLocationIndicator) {
+            boolean enabled = (boolean) objValue;
+            mLocationIndicator.setSummary(enabled
+                ? mLocationIndicator.getSwitchTextOn()
+                : mLocationIndicator.getSwitchTextOff());
+            updateDeviceConfig(LOCATION_INDICATOR_KEY, enabled);
+            return true;
+        } else if (preference == mCameraMicIndicator) {
+            boolean enabled = (boolean) objValue;
+            updateDeviceConfig(CAMERA_MIC_INDICATOR_KEY, enabled);
+            return true;
         }
         return false;
     }
@@ -170,6 +199,15 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private void updatePercentEnablement(boolean enabled) {
         mBatteryPercent.setEnabled(enabled);
         mBatteryPercentInside.setEnabled(enabled && mBatteryPercent.isChecked());
+    }
+
+    private boolean getDeviceConfig(String key) {
+        return DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY, key, true);
+    }
+
+    private void updateDeviceConfig(String key, boolean enabled) {
+        DeviceConfig.setProperty(DeviceConfig.NAMESPACE_PRIVACY,
+                key, String.valueOf(enabled), false /* makeDefault */);
     }
 
     @Override

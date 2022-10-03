@@ -46,6 +46,21 @@
         android:summary="@string/show_wifi_standard_icon_summary"
         android:defaultValue="false" />
 
+    <!-- Location privacy indicator -->
+    <SwitchPreference
+        android:key="location_indicators_enabled"
+        android:title="@string/location_privacy_indicator_title"
+        android:summaryOn="@string/location_privacy_indicator_summary_on"
+        android:summaryOff="@string/location_privacy_indicator_summary_off"
+        android:defaultValue="true" />
+
+    <!-- Camera & Mic privacy indicator -->
+    <SwitchPreference
+        android:key="camera_mic_icons_enabled"
+        android:title="@string/camera_mic_indicator_title"
+        android:summary="@string/camera_mic_indicator_summary"
+        android:defaultValue="true" />
+
     <!-- Clock position -->
     <com.yasp.settings.preferences.SystemSettingListPreference
         android:key="statusbar_clock_position"
