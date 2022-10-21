@@ -257,4 +257,8 @@
     <string name="camera_mic_indicator_title">Camera and microphone indicators</string>
     <string name="camera_mic_indicator_summary">Show camera and microphone in the privacy chip</string>
 
+    <!-- Separate signal icons -->
+    <string name="separate_signal_icons_title">Separate signal icons</string>
+    <string name="separate_signal_icons_summary">Show signal and WiFi separately\nRequires a SystemUI restart</string>
+
 </resources>
