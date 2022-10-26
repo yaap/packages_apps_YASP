@@ -64,7 +64,7 @@
     <string name="qs_footer_services_show_summary">在快速設定底部顯示開啟此頁面的捷徑</string>
 
     <!-- QS footer text -->
-    <string name="qs_footer_text_show_title">在快速設定底部顯示文字</string>
+    <string name="qs_footer_text_show_title">快速設定底部文字</string>
     <string name="qs_footer_text_string_title">自訂文字</string>
     <string name="qs_footer_text_string_summary">留空以使用預設文字（YAAP）</string>
 
