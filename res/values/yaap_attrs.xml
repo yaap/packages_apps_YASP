@@ -44,4 +44,8 @@
         <attr name="continuousUpdates" format="boolean" />
     </declare-styleable>
 
+    <!-- Base attributes available to OverlaySwitchPreference. -->
+    <declare-styleable name="OverlaySwitchPreference">
+        <attr name="dkey" format="string" />
+    </declare-styleable>
 </resources>

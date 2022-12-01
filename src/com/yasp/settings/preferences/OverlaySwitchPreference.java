@@ -16,69 +16,92 @@
 
 package com.yasp.settings.preferences;
 
+import static android.os.UserHandle.CURRENT;
 import static android.os.UserHandle.USER_CURRENT;
 
 import android.content.Context;
-import android.content.om.IOverlayManager;
+import android.content.om.OverlayManager;
+import android.content.om.OverlayManagerTransaction;
+import android.content.om.OverlayIdentifier;
 import android.content.om.OverlayInfo;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.util.AttributeSet;
 import android.util.Log;
 
 import androidx.preference.SwitchPreference;
 
 import java.lang.SecurityException;
+import java.util.List;
 
 public class OverlaySwitchPreference extends SwitchPreference {
     private final static String TAG = "OverlaySwitchPreference";
-    private IOverlayManager mOverlayManager;
+    private final static String SETTINGSNS = "http://schemas.android.com/apk/res-auto";
+
+    private final String mDisableKey;
+    private final OverlayManager mOverlayManager;
 
     public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        mDisableKey = attrs.getAttributeValue(SETTINGSNS, "dkey");
+        mOverlayManager = context.getSystemService(OverlayManager.class);
     }
 
     public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, 0);
     }
 
     public OverlaySwitchPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, com.android.internal.R.attr.switchPreferenceStyle);
     }
 
     public OverlaySwitchPreference(Context context) {
-        super(context);
+        this(context, null);
     }
 
     @Override
     public void onAttached() {
         super.onAttached();
-        mOverlayManager = IOverlayManager.Stub.asInterface(
-                ServiceManager.getService(Context.OVERLAY_SERVICE));
         if (mOverlayManager == null) return;
         OverlayInfo info = null;
-        try {
-            info = mOverlayManager.getOverlayInfo(getKey(), USER_CURRENT);
-        } catch (RemoteException e) {
-            Log.e(TAG, "Failed getting overlay " + getKey() + " info");
-            e.printStackTrace();
-        }
-        if (info != null) {
-            setChecked(info.isEnabled());
-        }
+        info = mOverlayManager.getOverlayInfo(getOverlayID(getKey()), CURRENT);
+        if (info != null) setChecked(info.isEnabled());
     }
 
     @Override
     public void setChecked(boolean checked) {
         if (mOverlayManager == null) return;
+        OverlayManagerTransaction.Builder transaction = new OverlayManagerTransaction.Builder();
+        transaction.setEnabled(getOverlayID(getKey()), checked, USER_CURRENT);
+        if (mDisableKey != null && !mDisableKey.isEmpty())
+            transaction.setEnabled(getOverlayID(mDisableKey), !checked, USER_CURRENT);
         try {
-            mOverlayManager.setEnabled(getKey(), checked, USER_CURRENT);
-        } catch (SecurityException | RemoteException e) {
-            Log.e(TAG, "Failed setting overlay " + getKey() + " to " +
-                    (checked ? "enabled" : "disabled"));
+            mOverlayManager.commit(transaction.build());
+        } catch (SecurityException | IllegalStateException e) {
+            Log.e(TAG, "Failed setting overlay(s), future logs will point the reason");
             e.printStackTrace();
             return;
         }
         super.setChecked(checked);
+    }
+
+    private OverlayIdentifier getOverlayID(String name) throws IllegalStateException {
+        if (mOverlayManager == null) return null;
+        if (name.contains(":")) {
+            // specific overlay name in a package
+            final String[] value = name.split(":");
+            final String pkgName = value[0];
+            final String overlayName = value[1];
+            final List<OverlayInfo> infos =
+                    mOverlayManager.getOverlayInfosForTarget(pkgName, CURRENT);
+            for (OverlayInfo info : infos) {
+                if (overlayName.equals(info.getOverlayName()))
+                    return info.getOverlayIdentifier();
+            }
+            throw new IllegalStateException("No overlay found for " + name);
+        }
+        // package with only one overlay
+        return mOverlayManager.getOverlayInfo(name, CURRENT).getOverlayIdentifier();
     }
 }
