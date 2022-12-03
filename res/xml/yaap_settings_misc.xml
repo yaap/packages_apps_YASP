@@ -34,6 +34,13 @@
         android:entryValues="@array/volume_key_cursor_control_values"
         android:defaultValue="0" />
 
+    <!-- Monet settings -->
+    <Preference
+        android:key="monet_settings"
+        android:title="@string/monet_settings_title"
+        android:summary="@string/monet_settings_sammary"
+        android:fragment="com.yasp.settings.fragments.MonetSettings" />
+
     <!-- SystemUI tuner -->
     <Preference
         android:key="ui_tuner"
