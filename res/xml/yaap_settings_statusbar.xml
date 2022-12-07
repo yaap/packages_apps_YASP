@@ -46,13 +46,6 @@
         android:summary="@string/show_wifi_standard_icon_summary"
         android:defaultValue="false" />
 
-    <!-- Separate signal icons -->
-    <com.yasp.settings.preferences.OverlaySwitchPreference
-        android:key="com.android.systemui.flags.no_combined_icons"
-        android:title="@string/separate_signal_icons_title"
-        android:summary="@string/separate_signal_icons_summary"
-        android:defaultValue="false" />
-
     <!-- Location privacy indicator -->
     <SwitchPreference
         android:key="location_indicators_enabled"
