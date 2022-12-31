@@ -53,7 +53,7 @@
     <string name="longpress_info">长按盒子保存颜色</string>
 
     <!-- Lockscreen battery info indicator  -->
-<string name="lockscreen_battery_info_title">锁屏充电信息</string>
+    <string name="lockscreen_battery_info_title">锁屏充电信息</string>
     <string name="lockscreen_battery_info_summary">充电时在锁定屏幕上显示目前最大电流和电压以及电池温度</string>
 
     <!-- QS footer running services -->
@@ -237,5 +237,28 @@
     <string name="location_privacy_indicator_summary_off">在状态栏上显示位置指示器</string>
     <string name="camera_mic_indicator_title">相机与麦克风指示器</string>
     <string name="camera_mic_indicator_summary">在隐私卡片上显示相机与麦克风指示器</string>
+
+    <!-- Monet settings -->
+    <string name="monet_settings_title">主题设置</string>
+    <string name="monet_settings_sammary">一些额外的设置来自定义monet引擎</string>
+    <string name="theme_style_title">主题风格</string>
+    <string name="theme_style_tonal_spot">Tonal Spot (默认)</string>
+    <string name="color_source_title">颜色源头</string>
+    <string name="color_source_both">两者 (默认)</string>
+    <string name="color_source_home">主屏幕壁纸</string>
+    <string name="color_source_lock">锁定屏幕壁纸</string>
+    <string name="color_source_preset">预设</string>
+    <string name="accent_color_title">强调色</string>
+    <string name="accent_color_summary">覆盖默认强调色</string>
+    <string name="accent_background_title">背景强调色</string>
+    <string name="accent_background_summary">为背景选择不同的强调色</string>
+    <string name="bg_color_title">背景颜色</string>
+    <string name="bg_color_summary">覆盖默认背景强调色</string>
+    <string name="luminance_factor_title">亮度</string>
+    <string name="luminance_factor_summary">越高的值会使颜色更亮</string>
+    <string name="chroma_factor_title">色度</string>
+    <string name="chroma_factor_summary">越高的值会使颜色饱和度更高</string>
+    <string name="tint_background_title">背景色调</string>
+    <string name="tint_background_summary">使亮度和色度选择也会影响背景颜色</string>
 
 </resources>
