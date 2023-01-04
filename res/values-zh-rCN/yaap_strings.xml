@@ -240,7 +240,7 @@
 
     <!-- Monet settings -->
     <string name="monet_settings_title">主题设置</string>
-    <string name="monet_settings_sammary">一些额外的设置来自定义monet引擎</string>
+    <string name="monet_settings_summary">一些额外的设置来自定义monet引擎</string>
     <string name="theme_style_title">主题风格</string>
     <string name="theme_style_tonal_spot">Tonal Spot (默认)</string>
     <string name="color_source_title">颜色源头</string>
