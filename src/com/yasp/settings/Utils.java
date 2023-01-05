@@ -30,8 +30,6 @@ import android.content.res.Resources.NotFoundException;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
-import android.hardware.fingerprint.FingerprintManager;
-import android.hardware.fingerprint.FingerprintSensorPropertiesInternal;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.UserManager;
@@ -43,7 +41,6 @@ import android.view.Surface;
 import android.view.WindowManager;
 
 import java.lang.Runtime;
-import java.util.List;
 
 public final class Utils {
     private static final String TAG = "YaspUtils";
@@ -241,18 +238,5 @@ public final class Utils {
         }
 
         return false;
-    }
-
-    /**
-     * Checks if the device has udfps
-     * @param context context for getting FingerprintManager
-     * @return true is udfps is present
-     */
-    public static boolean hasUDFPS(Context context) {
-        final FingerprintManager fingerprintManager =
-                context.getSystemService(FingerprintManager.class);
-        final List<FingerprintSensorPropertiesInternal> props =
-                fingerprintManager.getSensorPropertiesInternal();
-        return props != null && props.size() == 1 && props.get(0).isAnyUdfpsType();
     }
 }
