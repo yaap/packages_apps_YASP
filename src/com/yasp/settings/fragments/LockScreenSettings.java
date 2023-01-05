@@ -28,13 +28,10 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
-import com.yasp.settings.Utils;
-
 @SearchIndexable
 public class LockScreenSettings extends SettingsPreferenceFragment {
 
     private static final String AOD_SCHEDULE_KEY = "always_on_display_schedule";
-    private static final String SCREEN_OFF_FOD_KEY = "screen_off_fod";
 
     static final int MODE_DISABLED = 0;
     static final int MODE_NIGHT = 1;
@@ -43,7 +40,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
     static final int MODE_MIXED_SUNRISE = 4;
 
     Preference mAODPref;
-    Preference mFODPref;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -53,11 +49,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
 
         mAODPref = findPreference(AOD_SCHEDULE_KEY);
         updateAlwaysOnSummary();
-
-        mFODPref = findPreference(SCREEN_OFF_FOD_KEY);
-        if (!Utils.hasUDFPS(getActivity())) {
-            removePreference(SCREEN_OFF_FOD_KEY);
-        }
     }
 
     @Override
