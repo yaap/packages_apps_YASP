@@ -97,8 +97,6 @@
     <string name="notification_headers_summary">הצג כותרות להתראות בחלונית ההתראות</string>
 
     <!-- Screen off FOD -->
-    <string name="screen_off_fod_title">טביעת אצבע במסך כבוי</string>
-    <string name="screen_off_fod_summary">השאר את חיישן טביעת האצבע פעיל גם כאשר המסך כבוי</string>
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">רטטים בזמן שיחה</string>

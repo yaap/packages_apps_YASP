@@ -103,8 +103,6 @@
     <string name="notification_headers_summary">在通知阴影中显示标题</string>
 
     <!-- Screen off FOD -->
-    <string name="screen_off_fod_title">息屏指纹</string>
-    <string name="screen_off_fod_summary">息屏时可以使用屏下指纹</string>
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">通话震动选项</string>

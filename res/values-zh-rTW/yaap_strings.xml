@@ -103,8 +103,6 @@
     <string name="notification_headers_summary">在通知面板上針對不同類型的通知顯示標題</string>
 
     <!-- Screen off FOD -->
-    <string name="screen_off_fod_title">一律啟用指紋</string>
-    <string name="screen_off_fod_summary">螢幕關閉時仍可使用螢幕指紋解鎖</string>
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">通話震動設定</string>

@@ -109,8 +109,6 @@
     <string name="notification_headers_summary">Отображать разделяющие заголовки категорий уведомлений в шторке</string>
 
     <!-- Screen off FOD -->
-    <string name="screen_off_fod_title">Отпечаток пальца на выключеном экране</string>
-    <string name="screen_off_fod_summary">Считывать отпечаток пальца даже когда экран выключен</string>
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">Вибрация при звонке</string>
