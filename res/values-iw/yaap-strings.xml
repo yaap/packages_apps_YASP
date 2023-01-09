@@ -27,7 +27,6 @@
     <string name="recents_title">אפלקציות אחרונות</string>
     <string name="statusbar_title">שורת המצב</string>
     <string name="volume_title">הגדרות ווליום</string>
-    <string name="flashlight_category">פנס</string>
 
     <!-- General strings -->
     <string name="ok">אישור</string>

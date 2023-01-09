@@ -30,7 +30,6 @@
     <string name="recents_title">總覽</string>
     <string name="statusbar_title">狀態列</string>
     <string name="volume_title">音量設定</string>
-    <string name="flashlight_category">手電筒</string>
 
     <!-- General strings -->
     <string name="ok">確定</string>

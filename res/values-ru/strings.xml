@@ -30,7 +30,6 @@
     <string name="recents_title">Последние приложения</string>
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
-    <string name="flashlight_category">Вспышка</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
