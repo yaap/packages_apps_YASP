@@ -149,9 +149,6 @@
     <string name="torch_power_button_gesture_lp">לחיצה ארוכה על כפתור הנעילה</string>
 
     <!-- Volume keys control music playback -->
-    <string name="volume_rocker_music_controls_title">שליטה במדיה</string>
-    <string name="volume_rocker_music_controls_summary">כאשר המסך כבוי, לחיצה ארוכה על כפתורי הווליום תעביר שירים</string>
-    <string name="volume_rocker_music_controls_delay_title">דיליי לפני הפעלה</string>
 
     <!-- Advanced reboot  -->
     <string name="advanced_reboot_title">אתחול מורכב</string>
@@ -174,15 +171,7 @@
     <string name="gaming_mode_screen_off_summary">המאקרו יכבה עם כיבוי המסך</string>
 
     <!-- Monet engine -->
-    <string name="monet_engine_settings_title">מנוע מונט</string>
-    <string name="monet_engine_settings_summary">בחר את צבע המסך, צבעוניות ובהירות</string>
-    <string name="accurate_shades_title">השתמש בהצללה מדוייקת</string>
-    <string name="use_wallpaper_color_title">השתמש בצבעים מהטפט</string>
-    <string name="color_override_title">בורר צבע עיקרי</string>
-    <string name="color_override_summary">בחר צבע עיקרי משלך במקום הצבע שנבחר לבד על ידי מונט</string>
     <string name="chroma_factor_title">צבעוניות</string>
-    <string name="linear_lightness_title">השתמש בבהירות משלך</string>
-    <string name="white_luminance_title">בהירות</string>
 
     <!-- Battery customizations -->
     <string name="battery_options">סוללה</string>
@@ -218,13 +207,6 @@
     <string name="ambient_notification_light_duration_summary">זמן משך לכל הנפשה</string>
     <string name="ambient_notification_light_repeats_title">חזרות</string>
     <string name="ambient_notification_light_repeats_summary">כמות הפעמים שההנפשה תתבצע\n0 לאין-סוף</string>
-    <string name="ambient_notification_light_timeout_title">פסק זמן</string>
-    <string name="ambient_notification_light_timeout_forever">תמיד</string>
-    <string name="ambient_notification_light_timeout_half_minute">30 שניות</string>
-    <string name="ambient_notification_light_timeout_minute">דקת אחת</string>
-    <string name="ambient_notification_light_timeout_three_minutes">3 דקות</string>
-    <string name="ambient_notification_light_timeout_five_minutes">5 דקות</string>
-    <string name="ambient_notification_light_timeout_ten_minutes">10 דקות</string>
     <string name="set_to_zero">קבע חזרות ל0 על מנת להפעיל</string>
     <string name="ambient_notification_color_mode_title">מצב צבע</string>
     <string name="ambient_notification_color_mode_accent">צבע עיקרי</string>
@@ -234,8 +216,6 @@
     <string name="ambient_notification_light_color_title">צבע ידני</string>
 
     <!-- Combined signal icons in status bar -->
-    <string name="combined_status_bar_signal_icons">סמלילי קליטה משולבים</string>
-    <string name="combined_status_bar_signal_icons_summary">אפשר סמלילי קליטה משולבים בשורת המצב\nדורש אתחול על מנת לעבוד</string>
 
     <!-- Lockscreen media art -->
     <string name="keygaurd_media_art_title">תמונת מדיה</string>

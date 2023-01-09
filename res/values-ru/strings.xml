@@ -172,15 +172,7 @@
     <string name="advanced_reboot_summary">Добавить различные варианты перезагрузки в меню выключения</string>
 
     <!-- Monet engine -->
-    <string name="monet_engine_settings_title">Настройки темы Monet</string>
-    <string name="monet_engine_settings_summary">Основной цвет, насыщенность и яркость</string>
-    <string name="accurate_shades_title">Использовать точные оттенки</string>
-    <string name="use_wallpaper_color_title">Использовать цвет обоев</string>
-    <string name="color_override_title">Выбрать собственный цвет акцента</string>
-    <string name="color_override_summary">Выберите собственный оттенок для построения на нём темы Monet</string>
     <string name="chroma_factor_title">Насыщенность</string>
-    <string name="linear_lightness_title">Пользовательские значения насыщенности</string>
-    <string name="white_luminance_title">Яркость</string>
 
     <!-- Battery customizations -->
     <string name="battery_options">Батарея</string>
@@ -216,13 +208,6 @@
     <string name="ambient_notification_light_duration_summary">Время проигрывания анимации после получения уведомления</string>
     <string name="ambient_notification_light_repeats_title">Повторения</string>
     <string name="ambient_notification_light_repeats_summary">Количество повторений (выберите 0 для постоянного повторения)</string>
-    <string name="ambient_notification_light_timeout_title">Повторять через</string>
-    <string name="ambient_notification_light_timeout_forever">показать один раз</string>
-    <string name="ambient_notification_light_timeout_half_minute">30 секунд</string>
-    <string name="ambient_notification_light_timeout_minute">1 минуту</string>
-    <string name="ambient_notification_light_timeout_three_minutes">3 минуты</string>
-    <string name="ambient_notification_light_timeout_five_minutes">5 минут</string>
-    <string name="ambient_notification_light_timeout_ten_minutes">10 минут</string>
     <string name="set_to_zero">Для активации выберете 0 в пункте - Повторения</string>
     <string name="ambient_notification_color_mode_title">Тип цвета</string>
     <string name="ambient_notification_color_mode_accent">Цвет акцента</string>
@@ -232,8 +217,6 @@
     <string name="ambient_notification_light_color_title">Пользовательский цвет</string>
 
     <!-- Combined signal icons in status bar -->
-    <string name="combined_status_bar_signal_icons">Комбинированная иконка сети</string>
-    <string name="combined_status_bar_signal_icons_summary"> Показывать иконку только используемого, в данный момент, типа сети (для применения перезагрузите SystemUI)</string>
 
     <!-- Lockscreen media art -->
     <string name="keygaurd_media_art_title">Обложка</string>

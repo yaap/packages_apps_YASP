@@ -239,7 +239,5 @@
     <string name="camera_mic_indicator_summary">在狀態列右側另外顯示</string>
 
     <!-- Separate signal icons -->
-    <string name="separate_signal_icons_title">分離訊號圖示</string>
-    <string name="separate_signal_icons_summary">將行動數據及 Wi-Fi 分別顯示\n需要重新啟動使用者介面來套用</string>
 
 </resources>
