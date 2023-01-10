@@ -30,6 +30,7 @@
     <string name="recents_title">Последние приложения</string>
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
+    <string name="flashlight_category">Вспышка</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
@@ -45,13 +46,10 @@
     <string name="arrow_right">→</string>
     <string name="arrow_down">↓</string>
     <string name="hex">Hex:</string>
-    <string name="hex_hint" translatable="false">#FFDDDDDD</string>
-    <string name="hex_check_button_text">PREVIEW</string>
+    <string name="hex_check_button_text">Предпросмотр</string>
     <string name="hex_reset_button_text">Сбросить</string>
     <string name="set">Выбрать</string>
     <string name="color_default">Стандартное значение</string>
-    <string name="color_right_arrow" translatable="false">"→"</string>
-    <string name="color_down_arrow" translatable="false">"↓"</string>
     <string name="longpress_info">Удерживайте для сохранения цвета</string>
 
     <!-- Lockscreen battery info indicator  -->
@@ -73,32 +71,21 @@
     <string name="about_external_category">Дополнительно</string>
     <string name="about_dev_title">Co-Lead</string>
     <string name="about_dev_name">Adhitya Mohan</string>
-    <string name="about_dev_git" translatable="false">https://github.com/poad42</string>
     <string name="about_dev2_title">Co-Lead</string>
     <string name="about_dev2_name">Ido Ben-Hur</string>
-    <string name="about_dev2_git" translatable="false">https://github.com/idoybh</string>
     <string name="about_dev3_title">Member</string>
     <string name="about_dev3_name">Omkar Chandorkar</string>
-    <string name="about_dev3_git" translatable="false">https://github.com/gotenksIN</string>
     <string name="maintainer">Device Maintainer</string>
-    <string name="maintainer_name" translatable="false"></string>
-    <string name="maintainer_telegram" translatable="false"></string>
     <string name="kernel">Kernel Developer</string>
-    <string name="kernel_name" translatable="false"></string>
-    <string name="kernel_telegram" translatable="false"></string>
     <string name="about_tg_title">Telegram</string>
     <string name="about_tg_summary">Официальная группа в Telegram</string>
-    <string name="about_tg_link" translatable="false">https://t.me/yaapcommon</string>
     <string name="about_git_title">Source Code</string>
     <string name="about_git_summary">Исходники проекта на GitHub</string>
-    <string name="about_git_link" translatable="false">https://github.com/yaap</string>
     <string name="about_phone_title">О телефоне</string>
     <string name="about_phone_summary">Открыть стандартный раздел - О телефоне</string>
     <string name="designer_title">Designer</string>
     <string name="designer_name">Ahmed Harhash</string>
-    <string name="designer_tg" translatable="false">https://t.me/Lacentix</string>
     <string name="designer2_name">The Knight</string>
-    <string name="designer2_tg" translatable="false">https://t.me/i_TheKnight</string>
 
     <!-- Statusbar network traffic monitor -->
     <string name="network_traffic_state_title">Скорость сети</string>
@@ -106,7 +93,7 @@
     <string name="network_traffic_location_title">Расположение</string>
     <string name="traffic_statusbar">в статус-баре</string>
     <string name="traffic_expanded_statusbar">в заголовке быстрых настроек</string>
-    <string name="network_traffic_autohide_threshold_title">Порог неактивности</string>
+    <string name="network_traffic_autohide_threshold_title">Порог отображения</string>
     <string name="network_traffic_arrow_title">Показывать стрелки</string>
     <string name="network_traffic_arrow_summary">Индикатор загрузки / выгрузки</string>
     <string name="network_traffic_type">Режим отображения</string>
@@ -123,7 +110,7 @@
 
     <!-- Screen off FOD -->
     <string name="screen_off_fod_title">Отпечаток пальца на выключеном экране</string>
-    <string name="screen_off_fod_summary">Считывать отпечаток пальца даже, когда экран выключен</string>
+    <string name="screen_off_fod_summary">Считывать отпечаток пальца даже когда экран выключен</string>
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">Вибрация при звонке</string>
@@ -132,22 +119,28 @@
     <string name="incall_vibrate_disconnect_title">При отключении</string>
 
     <!-- Blink flashlight for incoming calls -->
-    <string name="flashlight_on_call_title">Световой сигнал при входящих вызовах</string>
+    <string name="flashlight_on_call_title">Мигать вспышкой при входящих вызовах</string>
     <string name="flashlight_on_call_disabled">Отключено</string>
     <string name="flashlight_on_call_ringer">Во время рингтона</string>
     <string name="flashlight_on_call_no_ringer">Во время того, как рингтон заглушен</string>
     <string name="flashlight_on_call_silent">Во время полной тишины (без вибрации и рингтона)</string>
     <string name="flashlight_on_call_always">Всегда</string>
     <string name="flashlight_on_call_ignore_dnd_title">Игнорировать режим не беспокоить</string>
-    <string name="flashlight_on_call_ignore_dnd_summary">Использовать световой сигнал, даже если активен режим не беспокоить</string>
+    <string name="flashlight_on_call_ignore_dnd_summary">Использовать вспышку, даже если активен режим не беспокоить</string>
     <string name="flashlight_on_call_rate_title">Частота</string>
-    <string name="flashlight_on_call_rate_summary">Как быстро повторять световой сигнал</string>
+    <string name="flashlight_on_call_rate_summary">Как быстро мигать вспышкой</string>
+
+    <!-- Blink flashlight for notifications -->
+    <string name="notification_torch_title">Мигать фонариком при уведомлении</string>
+    <string name="notification_torch_summary">Стандартные. Существуют настройки для каждого канала уведомлений</string>
+    <string name="notification_torch_slider1">Количество миганий</string>
+    <string name="notification_torch_slider2">Частота миганий</string>
 
     <!-- Brightness slider -->
     <string name="qs_show_brightness_title">Яркость</string>
     <string name="qs_show_brightness_summary">Отображение ползунка яркости и другие настройки</string>
     <string name="qs_brightness_position_bottom_title">Яркость снизу</string>
-    <string name="qs_brightness_position_bottom_summary">Перенести ползунок яркости в нижний колонтитул быстрых настроек</string>
+    <string name="qs_brightness_position_bottom_summary">Перенести ползунок яркости вниз быстрых настроек</string>
     <string name="qs_show_auto_brightness_title">Переключатель автояркости</string>
     <string name="qs_show_auto_brightness_summary">Отображать рядом с ползунком яркости переключатель режимов автояркости</string>
 
@@ -169,9 +162,6 @@
     <!-- Advanced reboot  -->
     <string name="advanced_reboot_title">Расширенная перезагрузка</string>
     <string name="advanced_reboot_summary">Добавить различные варианты перезагрузки в меню выключения</string>
-
-    <!-- Monet engine -->
-    <string name="chroma_factor_title">Насыщенность</string>
 
     <!-- Battery customizations -->
     <string name="battery_options">Батарея</string>
@@ -215,8 +205,6 @@
     <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
     <string name="ambient_notification_light_color_title">Пользовательский цвет</string>
 
-    <!-- Combined signal icons in status bar -->
-
     <!-- Lockscreen media art -->
     <string name="keygaurd_media_art_title">Обложка</string>
     <string name="keygaurd_media_art_summary">Обложка текущего трека в качестве фона экрана блокировки</string>
@@ -230,11 +218,6 @@
     <string name="qs_show_battery_estimate_title">Прогноз батареи</string>
     <string name="qs_show_battery_estimate_summary_on">Вместо процентов в быстрых настройках показано примерное время полной разрядки (для применения перезагрузите SystemUI)</string>
     <string name="qs_show_battery_estimate_summary_off">В быстрых настройках не показано примерное время полной разрядки (для применения перезагрузите SystemUI)</string>
-
-    <!-- Location privacy indicator -->
-    <string name="location_privacy_indicator_title">Индикатор доступа к местоположению</string>
-    <string name="location_privacy_indicator_summary_on">Показывать локацию в privacy chip</string>
-    <string name="location_privacy_indicator_summary_off">Показывать локацию, как иконку в статус-баре</string>
 
     <!-- Clock position -->
     <string name="statusbar_clock_position_title">Расположение часов</string>
@@ -254,5 +237,50 @@
     <!-- Brightness control -->
     <string name="status_bar_brightness_control_title">Контроль яркости</string>
     <string name="status_bar_brightness_control_summary">Управлять яркостью, проведя по статус-бару</string>
+
+    <!-- Wi-Fi Standard icon -->
+    <string name="show_wifi_standard_icon_title">Отображать стандарт Wi-Fi</string>
+    <string name="show_wifi_standard_icon_summary">Отображает стандарт подключения в икноке Wi-Fi</string>
+
+    <!-- Privacy indicators -->
+    <string name="location_privacy_indicator_title">Индикатор доступа к местоположению</string>
+    <string name="location_privacy_indicator_summary_on">Отображать зеленую точку в островке безопасности</string>
+    <string name="location_privacy_indicator_summary_off">Отображать иконку в статус-баре</string>
+    <string name="camera_mic_indicator_title">Индикатор доступа к камере и микрофону</string>
+    <string name="camera_mic_indicator_summary">Отображать зеленую точку в островке безопасности</string>
+    
+    <!-- Monet settings -->
+    <string name="monet_settings_title">Настройки Monet</string>
+    <string name="monet_settings_summary">Дополнительных настройки для движка тем Monet</string>
+    <string name="theme_style_title">Стиль темы</string>
+    <string name="theme_style_tonal_spot">Тоновое пятно (По умолчанию)</string>
+    <string name="theme_style_vibrant">Яркий</string>
+    <string name="theme_style_expressive">Выразительный</string>
+    <string name="theme_style_spritz">Брызги</string>
+    <string name="theme_style_rainbow">Радуга</string>
+    <string name="theme_style_fruit_salad">Фруктовый салат</string>
+    <string name="theme_style_muted">Приглушенный</string>
+    <string name="theme_style_content">Умиротворенный</string>
+    <string name="color_source_title">Источник цвета</string>
+    <string name="color_source_both">Обои на главном экране и экране блокировки (По умолчанию)</string>
+    <string name="color_source_home">Обои на главном экране</string>
+    <string name="color_source_lock">Обои на экране блокировки</string>
+    <string name="color_source_preset">Вручную</string>
+    <string name="accent_color_title">Акцентый цвет</string>
+    <string name="accent_color_summary">Переопределяет главный цветовой акцент</string>
+    <string name="accent_background_title">Акцент фона</string>
+    <string name="accent_background_summary">Выберете несколько разных цветов для фона</string>
+    <string name="bg_color_title">Цвет фона</string>
+    <string name="bg_color_summary">Переопределяет цветовой акцент для фона</string>
+    <string name="luminance_factor_title">Яркость</string>
+    <string name="luminance_factor_summary">Высокие значения дадут более яркие цвета</string>
+    <string name="chroma_factor_title">Цветность</string>
+    <string name="chroma_factor_summary">Высокие значения дадут более насыщенные цвета</string>
+    <string name="tint_background_title">Оттенок фона</string>
+    <string name="tint_background_summary">Применить настройки Яркости и Цветности так же и для фонового цвета</string>
+
+     <!-- Notification count -->
+    <string name="status_bar_notif_count_title">Счётчик уведомлений</string>
+    <string name="status_bar_notif_count_summary">Отображать счётчик ожидающих уведомлений в правом нижнем углу иконки уведомления</string>
 
 </resources>
