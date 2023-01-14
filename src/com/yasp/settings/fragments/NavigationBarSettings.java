@@ -15,26 +15,30 @@
  */
 package com.yasp.settings.fragments;
 
-import android.os.Bundle;
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 @SearchIndexable
-public class NavigationBarSettings extends SettingsPreferenceFragment {
+public class NavigationBarSettings extends DashboardFragment {
+
+    private static final String TAG = "NavigationBarSettings";
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-
-        addPreferencesFromResource(R.xml.yaap_settings_navigation);
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_navigation;
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

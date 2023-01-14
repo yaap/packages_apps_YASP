@@ -31,9 +31,9 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.SecureSettingMasterSwitchPreference;
@@ -43,9 +43,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SearchIndexable
-public class QuickSettings extends SettingsPreferenceFragment implements
+public class QuickSettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String TAG = "QuickSettings";
     private static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
     private static final String BRIGHTNESS_SLIDER = "qs_show_brightness";
 
@@ -53,9 +54,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     private SecureSettingMasterSwitchPreference mBrightnessSlider;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_quicksettings;
+    }
+
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.yaap_settings_quicksettings);
+
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
@@ -105,6 +111,11 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

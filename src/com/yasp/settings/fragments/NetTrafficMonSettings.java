@@ -37,9 +37,9 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
@@ -50,9 +50,10 @@ import java.util.Collections;
 import java.util.List;
 
 @SearchIndexable
-public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
+public class NetTrafficMonSettings extends DashboardFragment implements
         OnPreferenceChangeListener {
 
+    private static final String TAG = "NetTrafficMonSettings";
     private static final String NETWORK_TRAFFIC_FONT_SIZE  = "network_traffic_font_size";
     private static final String NETWORK_TRAFFIC_LOCATION = "network_traffic_location";
     private static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
@@ -65,9 +66,14 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
     private CustomSeekBarPreference mNetTrafficSize;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_net_traffic;
+    }
+
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.yaap_settings_net_traffic);
+
         PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
@@ -136,6 +142,11 @@ public class NetTrafficMonSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

@@ -26,14 +26,16 @@ import androidx.preference.PreferenceScreen;
 import android.provider.Settings;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 
 import com.yasp.settings.preferences.colorpicker.ColorPickerPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
-public class BatteryLightSettings extends SettingsPreferenceFragment implements
+public class BatteryLightSettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener {
+
+    private static final String TAG = "BatteryLightSettings";
 
     private ColorPickerPreference mLowColor;
     private ColorPickerPreference mMediumColor;
@@ -44,9 +46,13 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
     private PreferenceCategory mColorCategory;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.battery_light_settings;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.battery_light_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
         mColorCategory = (PreferenceCategory) findPreference("battery_light_cat");
@@ -101,6 +107,11 @@ public class BatteryLightSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

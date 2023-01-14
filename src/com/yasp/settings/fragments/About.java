@@ -28,6 +28,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
@@ -40,17 +41,22 @@ import java.util.List;
 import java.util.Map;
 
 @SearchIndexable
-public class About extends SettingsPreferenceFragment implements
+public class About extends DashboardFragment implements
         OnPreferenceChangeListener {
 
+    private static final String TAG = "YaapSettings-About";
     private static final String PREF_MAINTAINER = "maintainer";
     private static final String PREF_KERNEL = "kernel";
+
+    @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_about;
+    }
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.yaap_settings_about);
         final Resources res = getResources();
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
@@ -78,6 +84,11 @@ public class About extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

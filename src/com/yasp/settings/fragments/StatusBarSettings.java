@@ -38,9 +38,9 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.SecureSettingSwitchPreference;
@@ -53,9 +53,10 @@ import java.util.Collections;
 import java.util.List;
 
 @SearchIndexable
-public class StatusBarSettings extends SettingsPreferenceFragment implements
+public class StatusBarSettings extends DashboardFragment implements
         OnPreferenceChangeListener {
 
+    private static final String TAG = "StatusBarSettings";
     private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
 
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
@@ -76,9 +77,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mCameraMicIndicator;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_statusbar;
+    }
+
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.yaap_settings_statusbar);
+
         PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
@@ -234,6 +240,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

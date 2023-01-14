@@ -30,9 +30,9 @@ import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.yaap.YaapUtils;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.CustomSeekBarPreference;
@@ -42,9 +42,10 @@ import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 import com.yasp.settings.Utils;
 
 @SearchIndexable
-public class NotificationsSettings extends SettingsPreferenceFragment implements
+public class NotificationsSettings extends DashboardFragment implements
         OnPreferenceChangeListener {
 
+    private static final String TAG = "NotificationsSettings";
     private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
     private static final String FLASH_ON_CALL_OPTIONS = "on_call_flashlight_category";
     private static final String FLASH_ON_NOTIFICATION_OPTIONS = "notification_flashlight_category";
@@ -67,9 +68,14 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
     private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_notifications;
+    }
+
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.yaap_settings_notifications);
+
         PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
@@ -218,6 +224,11 @@ public class NotificationsSettings extends SettingsPreferenceFragment implements
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

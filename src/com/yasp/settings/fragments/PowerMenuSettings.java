@@ -16,23 +16,32 @@
 package com.yasp.settings.fragments;
 
 import com.android.internal.logging.nano.MetricsProto;
-
-import android.os.Bundle;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
 
-import com.android.settings.SettingsPreferenceFragment;
+@SearchIndexable
+public class PowerMenuSettings extends DashboardFragment {
 
-public class PowerMenuSettings extends SettingsPreferenceFragment {
+    private static final String TAG = "PowerMenuSettings";
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-
-        addPreferencesFromResource(R.xml.yaap_settings_power);
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_power;
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
     }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
+    }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.yaap_settings_power);
+
 }

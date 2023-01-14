@@ -27,22 +27,26 @@ import android.provider.Settings;
 import android.util.TypedValue;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.yasp.settings.preferences.colorpicker.ColorPickerPreference;
 import com.yasp.settings.preferences.CustomSeekBarPreference;
 import com.yasp.settings.preferences.SystemSettingListPreference;
 import com.yasp.settings.preferences.SystemSettingSwitchPreference;
 
-public class EdgeLightningSettings extends SettingsPreferenceFragment implements
+@SearchIndexable
+public class EdgeLightningSettings extends DashboardFragment implements
         Preference.OnPreferenceChangeListener {
 
-    private static String KEY_AMBIENT = "ambient_notification_light_enabled";
-    private static String KEY_DURATION = "ambient_notification_light_duration";
-    private static String KEY_REPEATS = "ambient_notification_light_repeats";
-    private static String KEY_COLOR_MODE = "ambient_notification_color_mode";
-    private static String KEY_COLOR = "ambient_notification_light_color";
+    private static final String TAG = "EdgeLightningSettings";
+    private static final String KEY_AMBIENT = "ambient_notification_light_enabled";
+    private static final String KEY_DURATION = "ambient_notification_light_duration";
+    private static final String KEY_REPEATS = "ambient_notification_light_repeats";
+    private static final String KEY_COLOR_MODE = "ambient_notification_color_mode";
+    private static final String KEY_COLOR = "ambient_notification_light_color";
 
     private SystemSettingSwitchPreference mAmbientPref;
     private CustomSeekBarPreference mDurationPref;
@@ -51,9 +55,14 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
     private ColorPickerPreference mColorPref;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.edge_lightning_settings;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.edge_lightning_settings);
+
         final ContentResolver resolver = getContentResolver();
         final int accentColor = getAccentColor();
 
@@ -105,6 +114,11 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         return MetricsProto.MetricsEvent.YASP;
     }
 
+    @Override
+    protected String getLogTag() {
+        return TAG;
+    }
+
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getContentResolver();
         if (preference == mDurationPref) {
@@ -147,4 +161,7 @@ public class EdgeLightningSettings extends SettingsPreferenceFragment implements
         getContext().getTheme().resolveAttribute(android.R.attr.colorAccent, value, true);
         return value.data;
     }
+
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.edge_lightning_settings);
 }

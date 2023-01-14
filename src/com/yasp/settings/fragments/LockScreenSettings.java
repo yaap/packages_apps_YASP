@@ -23,14 +23,15 @@ import android.provider.Settings;
 
 import androidx.preference.Preference;
 
+import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 @SearchIndexable
-public class LockScreenSettings extends SettingsPreferenceFragment {
+public class LockScreenSettings extends DashboardFragment {
 
+    private static final String TAG = "LockScreenSettings";
     private static final String AOD_SCHEDULE_KEY = "always_on_display_schedule";
 
     static final int MODE_DISABLED = 0;
@@ -42,10 +43,13 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
     Preference mAODPref;
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.yaap_settings_lockscreen;
+    }
+
+    @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
-        addPreferencesFromResource(R.xml.yaap_settings_lockscreen);
 
         mAODPref = findPreference(AOD_SCHEDULE_KEY);
         updateAlwaysOnSummary();
@@ -84,6 +88,11 @@ public class LockScreenSettings extends SettingsPreferenceFragment {
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.YASP;
+    }
+
+    @Override
+    protected String getLogTag() {
+        return TAG;
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
