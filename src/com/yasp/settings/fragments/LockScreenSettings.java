@@ -23,6 +23,7 @@ import android.provider.Settings;
 
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.SwitchPreference;
 
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
@@ -41,6 +42,7 @@ public class LockScreenSettings extends DashboardFragment
     private static final String AOD_SCHEDULE_KEY = "always_on_display_schedule";
     private static final String SHORTCUT_START_KEY = "lockscreen_shortcut_start";
     private static final String SHORTCUT_END_KEY = "lockscreen_shortcut_end";
+    private static final String SHORTCUT_ENFORCE_KEY = "lockscreen_shortcut_enforce";
 
     private static final String[] DEFAULT_START_SHORTCUT = new String[] { "home", "flashlight" };
     private static final String[] DEFAULT_END_SHORTCUT = new String[] { "wallet", "qr", "camera" };
@@ -51,9 +53,10 @@ public class LockScreenSettings extends DashboardFragment
     static final int MODE_MIXED_SUNSET = 3;
     static final int MODE_MIXED_SUNRISE = 4;
 
-    Preference mAODPref;
-    SystemSettingListPreference mStartShortcut;
-    SystemSettingListPreference mEndShortcut;
+    private Preference mAODPref;
+    private SystemSettingListPreference mStartShortcut;
+    private SystemSettingListPreference mEndShortcut;
+    private SwitchPreference mEnforceShortcut;
 
     @Override
     protected int getPreferenceScreenResId() {
@@ -69,9 +72,11 @@ public class LockScreenSettings extends DashboardFragment
 
         mStartShortcut = findPreference(SHORTCUT_START_KEY);
         mEndShortcut = findPreference(SHORTCUT_END_KEY);
+        mEnforceShortcut = findPreference(SHORTCUT_ENFORCE_KEY);
         updateShortcutSelection();
         mStartShortcut.setOnPreferenceChangeListener(this);
         mEndShortcut.setOnPreferenceChangeListener(this);
+        mEnforceShortcut.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -88,6 +93,11 @@ public class LockScreenSettings extends DashboardFragment
             return true;
         } else if (preference == mEndShortcut) {
             setShortcutSelection((String) objValue, false);
+            return true;
+        } else if (preference == mEnforceShortcut) {
+            final boolean value = (Boolean) objValue;
+            setShortcutSelection(mStartShortcut.getValue(), true, value);
+            setShortcutSelection(mEndShortcut.getValue(), false, value);
             return true;
         }
         return false;
@@ -137,18 +147,25 @@ public class LockScreenSettings extends DashboardFragment
     private void updateShortcutSelection() {
         final String value = getSettingsShortcutValue();
         final String[] split = value.split(";");
-        mStartShortcut.setValue(split[0].split(",")[0]);
+        final String[] start = split[0].split(",");
+        final String[] end = split[1].split(",");
+        mStartShortcut.setValue(start[0]);
         mStartShortcut.setSummary(mStartShortcut.getEntry());
-        mEndShortcut.setValue(split[1].split(",")[0]);
+        mEndShortcut.setValue(end[0]);
         mEndShortcut.setSummary(mEndShortcut.getEntry());
+        mEnforceShortcut.setChecked(start.length == 1 && end.length == 1);
     }
 
     private void setShortcutSelection(String value, boolean start) {
+        setShortcutSelection(value, start, mEnforceShortcut.isChecked());
+    }
+
+    private void setShortcutSelection(String value, boolean start, boolean single) {
         final String oldValue = getSettingsShortcutValue();
         final int splitIndex = start ? 0 : 1;
         String[] split = oldValue.split(";");
-        if (value.equals("none")) {
-            split[splitIndex] = "none";
+        if (value.equals("none") || single) {
+            split[splitIndex] = value;
         } else {
             StringBuilder sb = new StringBuilder(value);
             final String[] def = start ? DEFAULT_START_SHORTCUT : DEFAULT_END_SHORTCUT;
