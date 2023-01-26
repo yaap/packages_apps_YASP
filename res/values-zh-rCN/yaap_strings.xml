@@ -98,7 +98,7 @@
     <string name="show_network_traffic_up">上传</string>
     <string name="show_network_traffic_down">下载</string>
     <string name="show_network_traffic_all">同时显示</string>
-    <string name="network_traffic_font_size_title">单向显示32时字体大小</string>
+    <string name="network_traffic_font_size_title">单向显示时字体大小</string>
 
     <!-- Notification headers -->
     <string name="notification_headers_title">通知标题</string>
