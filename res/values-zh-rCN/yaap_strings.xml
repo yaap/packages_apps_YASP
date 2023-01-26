@@ -182,11 +182,11 @@
     <!-- Pulse notifications lightning -->
     <string name="pulse_ambient_light_title">通知光效</string>
     <string name="pulse_ambient_light_summary">收到通知时屏幕边缘显示光效</string>
-    <string name="ambient_notification_light_enabled_title">息屏显示启动时开启</string>
-    <string name="aod_disabled">息屏显示被禁用</string>
-    <string name="ambient_notification_light_enabled_summary">持续在息屏显示上光效</string>
-    <string name="ambient_notification_light_hide_aod_title">隐藏息屏显示</string>
-    <string name="ambient_notification_light_hide_aod_summary">屏幕闪光时隐藏息屏显示内容</string>
+    <string name="ambient_notification_light_enabled_title">环境显示启动时开启</string>
+    <string name="aod_disabled">环境显示被禁用</string>
+    <string name="ambient_notification_light_enabled_summary">持续在环境显示上光效</string>
+    <string name="ambient_notification_light_hide_aod_title">隐藏环境显示</string>
+    <string name="ambient_notification_light_hide_aod_summary">屏幕闪光时隐藏环境显示内容</string>
     <string name="ambient_notification_light_duration_title">持续时间</string>
     <string name="ambient_notification_light_duration_summary">通知光效完成所需时间</string>
     <string name="ambient_notification_light_repeats_title">重复次数</string>
