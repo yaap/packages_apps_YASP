@@ -63,6 +63,7 @@ public class StatusBarSettings extends DashboardFragment implements
     private static final String CLOCK_POSITION = "statusbar_clock_position";
     private static final String BATTERY_STYLE = "status_bar_battery_style";
     private static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String SHOW_BATTERY_PERCENT_CHARGING = "status_bar_show_battery_percent_charging";
     private static final String SHOW_BATTERY_PERCENT_INSIDE = "status_bar_show_battery_percent_inside";
     private static final String LOCATION_INDICATOR_KEY = "location_indicators_enabled";
     private static final String CAMERA_MIC_INDICATOR_KEY = "camera_mic_icons_enabled";
@@ -72,6 +73,7 @@ public class StatusBarSettings extends DashboardFragment implements
     private SystemSettingListPreference mClockPosition;
     private SystemSettingListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mBatteryPercent;
+    private SystemSettingSwitchPreference mBatteryPercentCharging;
     private SystemSettingSwitchPreference mBatteryPercentInside;
     private SwitchPreference mLocationIndicator;
     private SwitchPreference mCameraMicIndicator;
@@ -102,13 +104,18 @@ public class StatusBarSettings extends DashboardFragment implements
         mClockPosition.setSummary(mClockPosition.getEntry());
         mClockPosition.setOnPreferenceChangeListener(this);
 
-        mBatteryPercentInside = findPreference(SHOW_BATTERY_PERCENT_INSIDE);
         mBatteryPercent = findPreference(SHOW_BATTERY_PERCENT);
-        enabled = Settings.System.getIntForUser(resolver,
+        final boolean percentEnabled = Settings.System.getIntForUser(resolver,
                 SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT) == 1;
-        mBatteryPercent.setChecked(enabled);
+        mBatteryPercent.setChecked(percentEnabled);
         mBatteryPercent.setOnPreferenceChangeListener(this);
-        mBatteryPercentInside.setEnabled(enabled);
+
+        mBatteryPercentInside = findPreference(SHOW_BATTERY_PERCENT_INSIDE);
+        mBatteryPercentInside.setEnabled(percentEnabled);
+        final boolean percentInside = Settings.System.getIntForUser(resolver,
+                SHOW_BATTERY_PERCENT_INSIDE, 0, UserHandle.USER_CURRENT) == 1;
+        mBatteryPercentInside.setChecked(percentInside);
+        mBatteryPercentInside.setOnPreferenceChangeListener(this);
 
         mBatteryStyle = findPreference(BATTERY_STYLE);
         value = Settings.System.getIntForUser(resolver,
@@ -117,6 +124,9 @@ public class StatusBarSettings extends DashboardFragment implements
         mBatteryStyle.setSummary(mBatteryStyle.getEntry());
         mBatteryStyle.setOnPreferenceChangeListener(this);
         updatePercentEnablement(value != 2);
+
+        mBatteryPercentCharging = findPreference(SHOW_BATTERY_PERCENT_CHARGING);
+        updatePercentChargingEnablement(value, percentEnabled, percentInside);
 
         mLocationIndicator = findPreference(LOCATION_INDICATOR_KEY);
         enabled = getDeviceConfig(LOCATION_INDICATOR_KEY);
@@ -179,12 +189,21 @@ public class StatusBarSettings extends DashboardFragment implements
             Settings.System.putIntForUser(resolver,
                     BATTERY_STYLE, value, UserHandle.USER_CURRENT);
             updatePercentEnablement(value != 2);
+            updatePercentChargingEnablement(value, null, null);
             return true;
         } else if (preference == mBatteryPercent) {
             boolean enabled = (boolean) objValue;
             Settings.System.putInt(resolver,
                     SHOW_BATTERY_PERCENT, enabled ? 1 : 0);
             mBatteryPercentInside.setEnabled(enabled);
+            updatePercentChargingEnablement(null, enabled, null);
+            return true;
+        } else if (preference == mBatteryPercentInside) {
+            boolean enabled = (boolean) objValue;
+            Settings.System.putInt(resolver,
+                    SHOW_BATTERY_PERCENT_INSIDE, enabled ? 1 : 0);
+            // we already know style isn't text and percent is enabled
+            mBatteryPercentCharging.setEnabled(enabled);
             return true;
         } else if (preference == mLocationIndicator) {
             boolean enabled = (boolean) objValue;
@@ -226,6 +245,13 @@ public class StatusBarSettings extends DashboardFragment implements
     private void updatePercentEnablement(boolean enabled) {
         mBatteryPercent.setEnabled(enabled);
         mBatteryPercentInside.setEnabled(enabled && mBatteryPercent.isChecked());
+    }
+
+    private void updatePercentChargingEnablement(Integer style, Boolean percent, Boolean inside) {
+        if (style == null) style = Integer.valueOf(mBatteryStyle.getValue());
+        if (percent == null) percent = mBatteryPercent.isChecked();
+        if (inside == null) inside = mBatteryPercentInside.isChecked();
+        mBatteryPercentCharging.setEnabled(style != 2 && (!percent || inside));
     }
 
     private boolean getDeviceConfig(String key) {
