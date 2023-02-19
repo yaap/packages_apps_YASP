@@ -30,7 +30,8 @@
     <string name="recents_title">Последние приложения</string>
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
-    <string name="flashlight_category">Вспышка</string>
+    <string name="on_call_flashlight_category">Вспышка при звонке</string>
+    <string name="flashlight_category">Вспышка при уведомлениях</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
@@ -58,7 +59,7 @@
 
     <!-- QS footer running services -->
     <string name="qs_footer_services_show_title">Запущенные процессы</string>
-    <string name="qs_footer_services_show_summary">Показывать кнопку перехода к списку, запущенных процессов в нижнем колонтитуле быстрых настроек</string>
+    <string name="qs_footer_services_show_summary">Показывать кнопку перехода к списку запущенных процессов в нижнем колонтитуле быстрых настроек</string>
 
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">Отображать текст в нижнем колонтитуле быстрых настроек</string>
@@ -83,7 +84,7 @@
     <string name="about_git_summary">Исходники проекта на GitHub</string>
     <string name="about_phone_title">О телефоне</string>
     <string name="about_phone_summary">Открыть стандартный раздел - О телефоне</string>
-    <string name="designer_title">Designer</string>
+    <string name="designer_title">Дизайнер</string>
     <string name="designer_name">Ahmed Harhash</string>
     <string name="designer2_name">The Knight</string>
 
@@ -91,8 +92,8 @@
     <string name="network_traffic_state_title">Скорость сети</string>
     <string name="network_traffic_state_summary">Отображать</string>
     <string name="network_traffic_location_title">Расположение</string>
-    <string name="traffic_statusbar">в статус-баре</string>
-    <string name="traffic_expanded_statusbar">в заголовке быстрых настроек</string>
+    <string name="traffic_statusbar">В статус-баре</string>
+    <string name="traffic_expanded_statusbar">В заголовке быстрых настроек</string>
     <string name="network_traffic_autohide_threshold_title">Порог отображения</string>
     <string name="network_traffic_arrow_title">Показывать стрелки</string>
     <string name="network_traffic_arrow_summary">Индикатор загрузки / выгрузки</string>
@@ -119,12 +120,12 @@
     <!-- Blink flashlight for incoming calls -->
     <string name="flashlight_on_call_title">Мигать вспышкой при входящих вызовах</string>
     <string name="flashlight_on_call_disabled">Отключено</string>
-    <string name="flashlight_on_call_ringer">Во время рингтона</string>
-    <string name="flashlight_on_call_no_ringer">Во время того, как рингтон заглушен</string>
-    <string name="flashlight_on_call_silent">Во время полной тишины (без вибрации и рингтона)</string>
+    <string name="flashlight_on_call_ringer">При звонке</string>
+    <string name="flashlight_on_call_no_ringer">Во время того, как звонок заглушен</string>
+    <string name="flashlight_on_call_silent">Во время полной тишины (без вибрации и звонка)</string>
     <string name="flashlight_on_call_always">Всегда</string>
-    <string name="flashlight_on_call_ignore_dnd_title">Игнорировать режим не беспокоить</string>
-    <string name="flashlight_on_call_ignore_dnd_summary">Использовать вспышку, даже если активен режим не беспокоить</string>
+    <string name="flashlight_on_call_ignore_dnd_title">Игнорировать режим "не беспокоить"</string>
+    <string name="flashlight_on_call_ignore_dnd_summary">Использовать вспышку, даже если активен режим "не беспокоить"</string>
     <string name="flashlight_on_call_rate_title">Частота</string>
     <string name="flashlight_on_call_rate_summary">Как быстро мигать вспышкой</string>
 
@@ -150,11 +151,11 @@
     <string name="always_on_display_schedule_mixed_sunrise">Оставить включённым с восхода</string>
 
     <!--Double Tap to Sleep Lockscreen-->
-    <string name="double_tap_sleep_lockscreen_title">Выключение нажатием</string>
+    <string name="double_tap_sleep_lockscreen_title">Выключение двойным нажатием</string>
     <string name="double_tap_sleep_lockscreen_summary">Нажмите два раза на экран блокировки для отключения экрана</string>
 
     <!-- Double Tap to Sleep Statusbar -->
-    <string name="double_tap_sleep_gesture_title">Выключение нажатием</string>
+    <string name="double_tap_sleep_gesture_title">Выключение двойным нажатием</string>
     <string name="double_tap_sleep_gesture_summary">Нажмите два раза на статус-бар для отключения экрана</string>
 
     <!-- Advanced reboot  -->
@@ -238,7 +239,7 @@
 
     <!-- Wi-Fi Standard icon -->
     <string name="show_wifi_standard_icon_title">Отображать стандарт Wi-Fi</string>
-    <string name="show_wifi_standard_icon_summary">Отображает стандарт подключения в икноке Wi-Fi</string>
+    <string name="show_wifi_standard_icon_summary">Отображает стандарт подключения в иконке Wi-Fi</string>
 
     <!-- Privacy indicators -->
     <string name="location_privacy_indicator_title">Индикатор доступа к местоположению</string>
@@ -264,7 +265,7 @@
     <string name="color_source_home">Обои на главном экране</string>
     <string name="color_source_lock">Обои на экране блокировки</string>
     <string name="color_source_preset">Вручную</string>
-    <string name="accent_color_title">Акцентый цвет</string>
+    <string name="accent_color_title">Акцентный цвет</string>
     <string name="accent_color_summary">Переопределяет главный цветовой акцент</string>
     <string name="accent_background_title">Акцент фона</string>
     <string name="accent_background_summary">Выберете несколько разных цветов для фона</string>
@@ -280,5 +281,18 @@
      <!-- Notification count -->
     <string name="status_bar_notif_count_title">Счётчик уведомлений</string>
     <string name="status_bar_notif_count_summary">Отображать счётчик ожидающих уведомлений в правом нижнем углу иконки уведомления</string>
+
+    <!-- Lockscreen bottom shortcuts -->
+    <string name="lockscreen_shortcut_category">Ярлыки внизу экрана блокировки</string>
+    <string name="lockscreen_shortcut_start_title">Ярлык слева</string>
+    <string name="lockscreen_shortcut_end_title">Ярлык справа</string>
+    <string name="lockscreen_shortcut_wallet">Кошелек</string>
+    <string name="lockscreen_shortcut_home">Домой</string>
+    <string name="lockscreen_shortcut_flashlight">Фонарик</string>
+    <string name="lockscreen_shortcut_qr">QR-код</string>
+    <string name="lockscreen_shortcut_camera">Камера</string>
+    <string name="lockscreen_shortcut_none">Без ярлыков</string>
+    <string name="lockscreen_shortcut_enforce_title">Единый ярлык</string>
+    <string name="lockscreen_shortcut_enforce_summary">Сделать выбранный ярлык единственным существующим приоритетом\nНичего не будет отображаться, пока конкретный выбранный ярлык не станет доступным</string>
 
 </resources>
