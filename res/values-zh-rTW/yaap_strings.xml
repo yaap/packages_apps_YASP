@@ -216,10 +216,6 @@
     <string name="volume_key_cursor_control_left">上鍵 - 向左，下鍵 - 向右</string>
     <string name="volume_key_cursor_control_right">上鍵 - 向右，下鍵 - 向左</string>
 
-    <!-- Brightness control -->
-    <string name="status_bar_brightness_control_title">亮度調整</string>
-    <string name="status_bar_brightness_control_summary">在狀態列上滑動來調整亮度</string>
-
     <!-- Wi-Fi Standard icon -->
     <string name="show_wifi_standard_icon_title">顯示 Wi-Fi 類型</string>
     <string name="show_wifi_standard_icon_summary">在圖示上顯示目前連線的 Wi-Fi 類型</string>

@@ -229,10 +229,6 @@
     <string name="volume_key_cursor_control_left">вверх - лево, вниз - право</string>
     <string name="volume_key_cursor_control_right">вверх - право, вниз - лево</string>
 
-    <!-- Brightness control -->
-    <string name="status_bar_brightness_control_title">Контроль яркости</string>
-    <string name="status_bar_brightness_control_summary">Управлять яркостью, проведя по статус-бару</string>
-
     <!-- Wi-Fi Standard icon -->
     <string name="show_wifi_standard_icon_title">Отображать стандарт Wi-Fi</string>
     <string name="show_wifi_standard_icon_summary">Отображает стандарт подключения в иконке Wi-Fi</string>

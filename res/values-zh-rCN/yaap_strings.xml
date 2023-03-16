@@ -223,10 +223,6 @@
     <string name="volume_key_cursor_control_left">上键 - 向左, 下键 - 向右</string>
     <string name="volume_key_cursor_control_right">上键 - 向右, 下键 - 向左</string>
 
-    <!-- Brightness control -->
-    <string name="status_bar_brightness_control_title">亮度控制</string>
-    <string name="status_bar_brightness_control_summary">在通知栏上滑动以调整亮度</string>
-
     <!-- Wi-Fi Standard icon -->
     <string name="show_wifi_standard_icon_title">Wi-Fi 频段</string>
     <string name="show_wifi_standard_icon_summary">在 Wi-Fi 信号图标左侧显示 Wi-Fi 频段</string>
