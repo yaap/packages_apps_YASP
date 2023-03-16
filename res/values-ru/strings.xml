@@ -57,10 +57,6 @@
     <string name="lockscreen_battery_info_title">Информация о зарядке на экране блокировки</string>
     <string name="lockscreen_battery_info_summary">Отображать максимальный ток, вольтаж и температуру во время зарядки</string>
 
-    <!-- QS footer running services -->
-    <string name="qs_footer_services_show_title">Запущенные процессы</string>
-    <string name="qs_footer_services_show_summary">Показывать кнопку перехода к списку запущенных процессов в нижнем колонтитуле быстрых настроек</string>
-
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">Отображать текст в нижнем колонтитуле быстрых настроек</string>
     <string name="qs_footer_text_string_title">Собственный текст в нижнем колонтитуле быстрых настроек</string>

@@ -55,10 +55,6 @@
     <string name="lockscreen_battery_info_title">充電資訊</string>
     <string name="lockscreen_battery_info_summary">充電時，在鎖定畫面上顯示電壓、電流及電池溫度等資訊</string>
 
-    <!-- QS footer running services -->
-    <string name="qs_footer_services_show_title">正在運作的服務</string>
-    <string name="qs_footer_services_show_summary">在快速設定底部顯示開啟此頁面的捷徑</string>
-
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">快速設定底部文字</string>
     <string name="qs_footer_text_string_title">自訂文字</string>

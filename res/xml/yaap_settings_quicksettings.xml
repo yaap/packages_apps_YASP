@@ -34,13 +34,6 @@
         android:summaryOff="@string/qs_show_battery_estimate_summary_off"
         android:defaultValue="true" />
 
-    <!-- QS footer running services -->
-    <com.yasp.settings.preferences.SystemSettingSwitchPreference
-        android:key="qs_footer_services_show"
-        android:title="@string/qs_footer_services_show_title"
-        android:summary="@string/qs_footer_services_show_summary"
-        android:defaultValue="false" />
-
     <!-- QS footer text toggle -->
     <com.yasp.settings.preferences.SystemSettingSwitchPreference
         android:key="qs_footer_text_show"
