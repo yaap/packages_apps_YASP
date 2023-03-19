@@ -44,7 +44,7 @@ public class LockScreenSettings extends DashboardFragment
     private static final String SHORTCUT_END_KEY = "lockscreen_shortcut_end";
     private static final String SHORTCUT_ENFORCE_KEY = "lockscreen_shortcut_enforce";
 
-    private static final String[] DEFAULT_START_SHORTCUT = new String[] { "home", "flashlight" };
+    private static final String[] DEFAULT_START_SHORTCUT = new String[] { "home", "flashlight", "do_not_disturb" };
     private static final String[] DEFAULT_END_SHORTCUT = new String[] { "wallet", "qr_code_scanner", "camera" };
 
     static final int MODE_DISABLED = 0;
