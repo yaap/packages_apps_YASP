@@ -31,7 +31,7 @@
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
     <string name="on_call_flashlight_category">Вспышка при звонке</string>
-    <string name="flashlight_category">Вспышка при уведомлениях</string>
+    <string name="notification_flashlight_category">Вспышка при уведомлениях</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
