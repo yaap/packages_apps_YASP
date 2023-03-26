@@ -270,6 +270,7 @@
     <string name="lockscreen_shortcut_flashlight">手电筒</string>
     <string name="lockscreen_shortcut_qr">扫码</string>
     <string name="lockscreen_shortcut_camera">相机</string>
+    <string name="lockscreen_shortcut_dnd">勿扰模式</string>
     <string name="lockscreen_shortcut_none">无</string>
     <string name="lockscreen_shortcut_enforce_title">单捷径</string>
     <string name="lockscreen_shortcut_enforce_summary">强制使用选择的快捷方式\n在选定的快捷方式可用前，将不显示任何内容</string>
