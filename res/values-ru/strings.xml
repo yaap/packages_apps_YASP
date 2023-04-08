@@ -31,7 +31,7 @@
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
     <string name="on_call_flashlight_category">Вспышка при звонке</string>
-    <string name="flashlight_category">Вспышка при уведомлениях</string>
+    <string name="notification_flashlight_category">Вспышка при уведомлениях</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
@@ -72,11 +72,11 @@
     <string name="about_dev2_name">Ido Ben-Hur</string>
     <string name="about_dev3_title">Member</string>
     <string name="about_dev3_name">Omkar Chandorkar</string>
-    <string name="maintainer">Device Maintainer</string>
-    <string name="kernel">Kernel Developer</string>
+    <string name="maintainer">Сопровождающий устройства</string>
+    <string name="kernel">Разработчик ядра</string>
     <string name="about_tg_title">Telegram</string>
     <string name="about_tg_summary">Официальная группа в Telegram</string>
-    <string name="about_git_title">Source Code</string>
+    <string name="about_git_title">Исходный код</string>
     <string name="about_git_summary">Исходники проекта на GitHub</string>
     <string name="about_phone_title">О телефоне</string>
     <string name="about_phone_summary">Открыть стандартный раздел - О телефоне</string>
@@ -104,8 +104,6 @@
     <!-- Notification headers -->
     <string name="notification_headers_title">Заголовки уведомлений</string>
     <string name="notification_headers_summary">Отображать разделяющие заголовки категорий уведомлений в шторке</string>
-
-    <!-- Screen off FOD -->
 
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">Вибрация при звонке</string>
@@ -167,7 +165,9 @@
     <string name="battery_percent_title">Проценты</string>
     <string name="battery_percent_summary">Отображать оставшийся заряд в процентах</string>
     <string name="battery_percent_inside_title">Проценты внутри</string>
-    <string name="battery_percent_inside_summary">Отображать проценты заряда внутри значка</string>
+    <string name="battery_percent_inside_summary">Показывать проценты заряда внутри значка</string>
+    <string name="show_battery_percent_charging_title">Показывать проценты при зарядке</string>
+    <string name="show_battery_percent_charging_summary">Принудительное отображение процента рядом со значком при зарядке</string>
 
     <!-- Battery light -->
     <string name="battery_light_settings">Световая индикация во время зарядки</string>
@@ -283,6 +283,7 @@
     <string name="lockscreen_shortcut_flashlight">Фонарик</string>
     <string name="lockscreen_shortcut_qr">QR-код</string>
     <string name="lockscreen_shortcut_camera">Камера</string>
+    <string name="lockscreen_shortcut_dnd">Не беспокоить</string>
     <string name="lockscreen_shortcut_none">Без ярлыков</string>
     <string name="lockscreen_shortcut_enforce_title">Единый ярлык</string>
     <string name="lockscreen_shortcut_enforce_summary">Сделать выбранный ярлык единственным существующим приоритетом\nНичего не будет отображаться, пока конкретный выбранный ярлык не станет доступным</string>
