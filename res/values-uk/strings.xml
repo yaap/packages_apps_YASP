@@ -31,7 +31,7 @@
     <string name="statusbar_title">Статус-бар</string>
     <string name="volume_title">Звук</string>
     <string name="on_call_flashlight_category">Спалах при дзвінку</string>
-    <string name="flashlight_category">Спалах при повідомленнях</string>
+    <string name="notification_flashlight_category">Спалах при повідомленнях</string>
 
     <!-- General strings -->
     <string name="ok">Ок</string>
@@ -73,7 +73,7 @@
     <string name="about_dev3_title">Member</string>
     <string name="about_dev3_name">Omkar Chandorkar</string>
     <string name="maintainer">Device Maintainer</string>
-    <string name="kernel">Kernel Developer</string>
+    <string name="kernel">Розробник ядра</string>
     <string name="about_tg_title">Telegram</string>
     <string name="about_tg_summary">Офіційна група в Telegram</string>
     <string name="about_git_title">Source Code</string>
@@ -114,7 +114,7 @@
     <string name="incall_vibrate_disconnect_title">При відключенні</string>
 
     <!-- Blink flashlight for incoming calls -->
-    <string name="flashlight_on_call_title">Блимати спалахом під час вхідних викликів</string>
+    <string name="flashlight_on_call_title">Блимати ліхтариком під час вхідних викликів</string>
     <string name="flashlight_on_call_disabled">Відключено</string>
     <string name="flashlight_on_call_ringer">При дзвінку</string>
     <string name="flashlight_on_call_no_ringer">Під час того, як дзвінок заглушено</string>
@@ -168,7 +168,9 @@
     <string name="battery_percent_summary">Відображати залишковий заряд у відсотках</string>
     <string name="battery_percent_inside_title">Відсотки всередині</string>
     <string name="battery_percent_inside_summary">Відображати відсотки заряду всередині значка</string>
-
+    <string name="show_battery_percent_charging_title">Відсотки під час заряджання</string>
+    <string name="show_battery_percent_charging_summary">Відображати відсотки біля значка під час заряджання</string>
+	
     <!-- Battery light -->
     <string name="battery_light_settings">Світлова індикація під час заряджання</string>
     <string name="battery_light_enable">Активно</string>
