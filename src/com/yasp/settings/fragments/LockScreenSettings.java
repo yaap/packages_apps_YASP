@@ -15,7 +15,11 @@
  */
 package com.yasp.settings.fragments;
 
-import com.android.internal.logging.nano.MetricsProto;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_DISABLED;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_NIGHT;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_TIME;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNSET;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNRISE;
 
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -25,6 +29,7 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 
+import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -46,12 +51,6 @@ public class LockScreenSettings extends DashboardFragment
 
     private static final String[] DEFAULT_START_SHORTCUT = new String[] { "home", "flashlight", "do_not_disturb" };
     private static final String[] DEFAULT_END_SHORTCUT = new String[] { "wallet", "qr_code_scanner", "camera" };
-
-    static final int MODE_DISABLED = 0;
-    static final int MODE_NIGHT = 1;
-    static final int MODE_TIME = 2;
-    static final int MODE_MIXED_SUNSET = 3;
-    static final int MODE_MIXED_SUNRISE = 4;
 
     private Preference mAODPref;
     private SystemSettingListPreference mStartShortcut;

@@ -15,11 +15,11 @@
  */
 package com.yasp.settings.fragments;
 
-import static com.yasp.settings.fragments.LockScreenSettings.MODE_DISABLED;
-import static com.yasp.settings.fragments.LockScreenSettings.MODE_NIGHT;
-import static com.yasp.settings.fragments.LockScreenSettings.MODE_TIME;
-import static com.yasp.settings.fragments.LockScreenSettings.MODE_MIXED_SUNSET;
-import static com.yasp.settings.fragments.LockScreenSettings.MODE_MIXED_SUNRISE;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_DISABLED;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_NIGHT;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_TIME;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNSET;
+import static com.android.internal.util.yaap.AutoSettingConsts.MODE_MIXED_SUNRISE;
 
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
