@@ -44,9 +44,6 @@
     <!-- Color Picker -->
     <string name="dialog_color_picker">颜色选择器</string>
     <string name="press_color_to_apply">点击下面的颜色应用你的设置</string>
-    <string name="arrow_right">→</string>
-    <string name="arrow_down">↓</string>
-    <string name="hex">Hex:</string>
     <string name="hex_check_button_text">预览</string>
     <string name="hex_reset_button_text">重置</string>
     <string name="set">设置</string>
@@ -60,7 +57,7 @@
     <!-- QS footer text -->
     <string name="qs_footer_text_show_title">页脚文本</string>
     <string name="qs_footer_text_string_title">磁贴面板左下方文本</string>
-    <string name="qs_footer_text_string_summary">为空则显示 \"YAAP\"</string>
+    <string name="qs_footer_text_string_summary">为空则显示 YAAP</string>
 
     <!-- About -->
     <string name="about_title">关于</string>
@@ -202,13 +199,13 @@
 
     <!-- QS media player -->
     <string name="qs_media_controls_title">媒体播放器</string>
-    <string name="qs_media_controls_summary_on">在磁贴面板中显示媒体播放器，需要重新启动系统界面</string>
-    <string name="qs_media_controls_summary_off">将媒体播放器以通知的形式显示，需要重新启动系统界面</string>
+    <string name="qs_media_controls_summary_on">在磁贴面板中显示媒体播放器\n需要重启系统界面</string>
+    <string name="qs_media_controls_summary_off">将媒体播放器以通知的形式显示\n需要重启系统界面</string>
 
     <!-- QS Battery estimates -->
     <string name="qs_show_battery_estimate_title">电量预估</string>
-    <string name="qs_show_battery_estimate_summary_on">在磁贴面板上方显示电量预估</string>
-    <string name="qs_show_battery_estimate_summary_off">在磁贴面板上方隐藏电量预估</string>
+    <string name="qs_show_battery_estimate_summary_on">在磁贴面板上方显示电池预计可用时间</string>
+    <string name="qs_show_battery_estimate_summary_off">在磁贴面板上方隐藏电池预计可用时间</string>
 
     <!-- Clock position -->
     <string name="statusbar_clock_position_title">时间位置</string>
@@ -275,6 +272,6 @@
     <string name="lockscreen_shortcut_dnd">勿扰模式</string>
     <string name="lockscreen_shortcut_none">无</string>
     <string name="lockscreen_shortcut_enforce_title">单快捷方式</string>
-    <string name="lockscreen_shortcut_enforce_summary">强制使用选择的快捷方式\n在选定的快捷方式可用前，将不显示任何内容</string>
+    <string name="lockscreen_shortcut_enforce_summary">仅显示左侧快捷方式\n已选的快捷方式可用前，将不显示任何内容</string>
 
 </resources>
