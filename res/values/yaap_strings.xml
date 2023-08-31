@@ -40,6 +40,7 @@
     <string name="save">Save</string>
     <string name="default_string">Default</string>
     <string name="disabled">Disabled</string>
+    <string name="failure">Failure</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
@@ -302,5 +303,8 @@
     <string name="lockscreen_shortcut_none">None</string>
     <string name="lockscreen_shortcut_enforce_title">Single shortcut</string>
     <string name="lockscreen_shortcut_enforce_summary">Enforce chosen shortcut to be the only existing priority\nWill show nothing until the specific chosen shortcut is available</string>
+
+    <!-- Backup Transport selector -->
+    <string name="transport_selector_title">Backup Transport</string>
 
 </resources>

@@ -41,6 +41,12 @@
         android:summary="@string/monet_settings_summary"
         android:fragment="com.yasp.settings.fragments.MonetSettings" />
 
+    <!-- Backup Transport selector -->
+    <ListPreference
+        android:key="transport_selector"
+        android:title="@string/transport_selector_title"
+        android:defaultValue="0" />
+
     <!-- SystemUI tuner -->
     <Preference
         android:key="ui_tuner"
