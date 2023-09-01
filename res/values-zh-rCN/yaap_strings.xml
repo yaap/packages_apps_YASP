@@ -39,7 +39,8 @@
     <string name="cancel">取消</string>
     <string name="save">保存</string>
     <string name="default_string">默认</string>
-    <string name="disabled">禁用</string>
+    <string name="disabled">已禁用</string>
+    <string name="failure">失败</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">颜色选择器</string>
@@ -186,7 +187,7 @@
     <string name="ambient_notification_light_duration_summary">通知光效完成所需时间</string>
     <string name="ambient_notification_light_repeats_title">重复次数</string>
     <string name="ambient_notification_light_repeats_summary">动画显示次数（0 为无数次）</string>
-    <string name="set_to_zero">将重复次数设置为 0 以启用</string>
+    <string name="set_to_zero">将次数设为 0 以启用</string>
     <string name="ambient_notification_color_mode_title">色彩模式</string>
     <string name="ambient_notification_color_mode_accent">强调色</string>
     <string name="ambient_notification_color_mode_wall">壁纸主题色</string>
@@ -273,5 +274,8 @@
     <string name="lockscreen_shortcut_none">无</string>
     <string name="lockscreen_shortcut_enforce_title">单快捷方式</string>
     <string name="lockscreen_shortcut_enforce_summary">仅显示左侧快捷方式\n已选的快捷方式可用前，将不显示任何内容</string>
+
+    <!-- Backup Transport selector -->
+    <string name="transport_selector_title">备份方式</string>
 
 </resources>
