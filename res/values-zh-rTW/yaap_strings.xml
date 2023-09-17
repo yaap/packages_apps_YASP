@@ -253,7 +253,7 @@
     <string name="color_source_both">兩者 (預設)</string>
     <string name="color_source_home">主畫面桌布</string>
     <string name="color_source_lock">鎖定畫面桌布</string>
-    <string name="color_source_preset">預設色彩</string>
+    <string name="color_source_preset">自訂色彩</string>
     <string name="accent_color_title">主色調</string>
     <string name="accent_color_summary">取代原先的主色調</string>
     <string name="accent_background_title">背景主色調</string>
