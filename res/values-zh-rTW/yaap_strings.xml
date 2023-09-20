@@ -30,6 +30,8 @@
     <string name="recents_title">總覽</string>
     <string name="statusbar_title">狀態列</string>
     <string name="volume_title">音量設定</string>
+    <string name="on_call_flashlight_category">來電時閃爍閃光燈</string>
+    <string name="notification_flashlight_category">有通知時閃爍閃光燈</string>
 
     <!-- General strings -->
     <string name="ok">確定</string>
@@ -38,6 +40,7 @@
     <string name="save">儲存</string>
     <string name="default_string">預設</string>
     <string name="disabled">已停用</string>
+    <string name="failure">失敗</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">顏色挑選器</string>
@@ -98,8 +101,6 @@
     <string name="notification_headers_title">通知標題</string>
     <string name="notification_headers_summary">在通知面板上針對不同類型的通知顯示標題</string>
 
-    <!-- Screen off FOD -->
-
     <!-- Incall vibrate options -->
     <string name="incall_vibration_category">通話震動設定</string>
     <string name="incall_vibrate_connect_title">撥通時震動</string>
@@ -117,6 +118,12 @@
     <string name="flashlight_on_call_ignore_dnd_summary">零打擾模式開啟時仍會閃爍</string>
     <string name="flashlight_on_call_rate_title">閃爍頻率</string>
     <string name="flashlight_on_call_rate_summary">來電時閃光燈閃爍的頻率</string>
+
+    <!-- Blink flashlight for notifications -->
+    <string name="notification_torch_title">有通知時閃爍閃光燈</string>
+    <string name="notification_torch_summary">預設狀態下可針對個別通知設定</string>
+    <string name="notification_torch_slider1">閃爍次數</string>
+    <string name="notification_torch_slider2">閃爍頻率</string>
 
     <!-- Brightness slider -->
     <string name="qs_show_brightness_title">亮度控制條</string>
@@ -155,6 +162,8 @@
     <string name="battery_percent_summary">總是在圖示旁顯示電量百分比</string>
     <string name="battery_percent_inside_title">圖示內百分比</string>
     <string name="battery_percent_inside_summary">總是在圖示內顯示電量百分比</string>
+    <string name="show_battery_percent_charging_title">充電時百分比</string>
+    <string name="show_battery_percent_charging_summary">充電時在電量圖示旁顯示百分比</string>
 
     <!-- Battery light -->
     <string name="battery_light_settings">電量指示燈</string>
@@ -227,6 +236,56 @@
     <string name="camera_mic_indicator_title">相機及麥克風存取圖示</string>
     <string name="camera_mic_indicator_summary">在狀態列右側另外顯示</string>
 
-    <!-- Separate signal icons -->
+    <!-- Monet settings -->
+    <string name="monet_settings_title">Monet 設定</string>
+    <string name="monet_settings_summary">針對 Monet 引擎調整的各項設定</string>
+    <string name="theme_style_title">調色風格</string>
+    <string name="theme_style_tonal_spot">Tonal Spot (預設)</string>
+    <string name="theme_style_vibrant">Vibrant</string>
+    <string name="theme_style_expressive">Expressive</string>
+    <string name="theme_style_spritz">Spritz</string>
+    <string name="theme_style_rainbow">Rainbow</string>
+    <string name="theme_style_fruit_salad">Fruit Salad</string>
+    <string name="theme_style_muted">Muted</string>
+    <string name="theme_style_content">Content</string>
+    <string name="theme_style_monochromatic">Monochromatic</string>
+    <string name="color_source_title">取色來源</string>
+    <string name="color_source_both">兩者 (預設)</string>
+    <string name="color_source_home">主畫面桌布</string>
+    <string name="color_source_lock">鎖定畫面桌布</string>
+    <string name="color_source_preset">自訂色彩</string>
+    <string name="accent_color_title">主色調</string>
+    <string name="accent_color_summary">取代原先的主色調</string>
+    <string name="accent_background_title">背景主色調</string>
+    <string name="accent_background_summary">對背景套用不同的主色調</string>
+    <string name="bg_color_title">背景色彩</string>
+    <string name="bg_color_summary">取代原先的背景色</string>
+    <string name="luminance_factor_title">亮度</string>
+    <string name="luminance_factor_summary">數值越高色彩越明亮</string>
+    <string name="chroma_factor_title">彩度</string>
+    <string name="chroma_factor_summary">數值越高色彩越鮮豔</string>
+    <string name="tint_background_title">背景著色</string>
+    <string name="tint_background_summary">對背景色也套用亮度與彩度</string>
+
+    <!-- Notification count -->
+    <string name="status_bar_notif_count_title">通知計數</string>
+    <string name="status_bar_notif_count_summary">在狀態列上顯示通知數量</string>
+
+    <!-- Lockscreen bottom shortcuts -->
+    <string name="lockscreen_shortcut_category">鎖定畫面捷徑</string>
+    <string name="lockscreen_shortcut_start_title">左側捷徑</string>
+    <string name="lockscreen_shortcut_end_title">右側捷徑</string>
+    <string name="lockscreen_shortcut_wallet">錢包</string>
+    <string name="lockscreen_shortcut_home">裝置管理</string>
+    <string name="lockscreen_shortcut_flashlight">手電筒</string>
+    <string name="lockscreen_shortcut_qr">QR Code 掃瞄器</string>
+    <string name="lockscreen_shortcut_camera">相機</string>
+    <string name="lockscreen_shortcut_dnd">零打擾</string>
+    <string name="lockscreen_shortcut_none">無</string>
+    <string name="lockscreen_shortcut_enforce_title">單一捷徑</string>
+    <string name="lockscreen_shortcut_enforce_summary">當選用的捷徑無法使用時不會以其他捷徑替代/n選用的捷徑能夠使用時會再次顯示</string>
+
+    <!-- Backup Transport selector -->
+    <string name="transport_selector_title">備份方式</string>
 
 </resources>
