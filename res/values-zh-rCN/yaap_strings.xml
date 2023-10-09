@@ -236,7 +236,7 @@
 
     <!-- Monet settings -->
     <string name="monet_settings_title">主题设置</string>
-    <string name="monet_settings_summary">自定义 Monet 引擎</string>
+    <string name="monet_settings_summary">自定义 Monet 主题</string>
     <string name="theme_style_title">主题风格</string>
     <string name="theme_style_tonal_spot">Tonal Spot (默认)</string>
     <string name="color_source_title">颜色来源</string>
