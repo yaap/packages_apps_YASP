@@ -64,7 +64,6 @@ public class NotificationsSettings extends DashboardFragment implements
     private SwitchPreference mFlashOnNotify;
     private CustomSeekBarPreference mFlashOnNotifyTimes;
     private CustomSeekBarPreference mFlashOnNotifyRate;
-    private SystemSettingMasterSwitchPreference mBatteryLight;
     private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
@@ -127,19 +126,6 @@ public class NotificationsSettings extends DashboardFragment implements
             mFlashOnNotifyRate.setOnPreferenceChangeListener(this);
         }
 
-        mBatteryLight = (SystemSettingMasterSwitchPreference)
-                findPreference(KEY_BATT_LIGHT);
-        boolean hasLed = getResources().getBoolean(
-                com.android.internal.R.bool.config_hasNotificationLed);
-        if (hasLed) {
-            boolean enabled = Settings.System.getInt(resolver,
-                    KEY_BATT_LIGHT, 1) == 1;
-            mBatteryLight.setChecked(enabled);
-            mBatteryLight.setOnPreferenceChangeListener(this);
-        } else {
-            mBatteryLight.setVisible(false);
-        }
-
         mEdgeLightning = (SystemSettingMasterSwitchPreference)
                 findPreference(KEY_EDGE_LIGHTNING);
         boolean enabled = Settings.System.getIntForUser(resolver,
@@ -163,10 +149,6 @@ public class NotificationsSettings extends DashboardFragment implements
             int value = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.FLASHLIGHT_ON_CALL_RATE, value);
-            return true;
-        } else if (preference == mBatteryLight) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver, KEY_BATT_LIGHT, value ? 1 : 0);
             return true;
         } else if (preference == mEdgeLightning) {
             boolean value = (Boolean) newValue;

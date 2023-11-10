@@ -114,10 +114,4 @@
 
     </PreferenceCategory>
 
-    <com.yasp.settings.preferences.SystemSettingMasterSwitchPreference
-        android:key="battery_light_enabled"
-        android:title="@string/battery_light_settings"
-        android:fragment="com.yasp.settings.fragments.BatteryLightSettings"
-        android:defaultValue="true" />
-
 </PreferenceScreen>
