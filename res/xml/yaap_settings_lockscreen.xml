@@ -40,32 +40,4 @@
         android:title="@string/keygaurd_media_art_title"
         android:summary="@string/keygaurd_media_art_summary"
         android:defaultValue="false" />
-
-    <!-- Lockscreen bottom shortcuts -->
-    <PreferenceCategory
-        android:title="@string/lockscreen_shortcut_category">
-
-        <com.yasp.settings.preferences.SystemSettingListPreference
-            android:key="lockscreen_shortcut_start"
-            android:title="@string/lockscreen_shortcut_start_title"
-            android:summary="%s"
-            android:entries="@array/lockscreen_shortcut_entries"
-            android:entryValues="@array/lockscreen_shortcut_values"
-            android:defaultValue="1" />
-
-        <com.yasp.settings.preferences.SystemSettingListPreference
-            android:key="lockscreen_shortcut_end"
-            android:title="@string/lockscreen_shortcut_end_title"
-            android:summary="%s"
-            android:entries="@array/lockscreen_shortcut_entries"
-            android:entryValues="@array/lockscreen_shortcut_values"
-            android:defaultValue="0" />
-
-        <SwitchPreference
-            android:key="lockscreen_shortcut_enforce"
-            android:title="@string/lockscreen_shortcut_enforce_title"
-            android:summary="@string/lockscreen_shortcut_enforce_summary"
-            android:defaultValue="false" />
-
-    </PreferenceCategory>
 </PreferenceScreen>
