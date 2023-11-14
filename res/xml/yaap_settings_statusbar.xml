@@ -39,13 +39,6 @@
         android:summary="@string/status_bar_notif_count_summary"
         android:defaultValue="false" />
 
-    <!-- WiFi standard icon -->
-    <com.yasp.settings.preferences.SecureSettingSwitchPreference
-        android:key="show_wifi_standard_icon"
-        android:title="@string/show_wifi_standard_icon_title"
-        android:summary="@string/show_wifi_standard_icon_summary"
-        android:defaultValue="false" />
-
     <!-- Location privacy indicator -->
     <SwitchPreference
         android:key="location_indicators_enabled"
