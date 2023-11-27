@@ -48,22 +48,15 @@ public class NotificationsSettings extends DashboardFragment implements
     private static final String TAG = "NotificationsSettings";
     private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
     private static final String FLASH_ON_CALL_OPTIONS = "on_call_flashlight_category";
-    private static final String FLASH_ON_NOTIFICATION_OPTIONS = "notification_flashlight_category";
     private static final String PREF_FLASH_ON_CALL = "flashlight_on_call";
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
-    private static final String PREF_FLASH_ON_NOTIFY = "default_notification_torch";
-    private static final String PREF_FLASH_ON_NOTIFY_TIMES = "default_notification_torch1";
-    private static final String PREF_FLASH_ON_NOTIFY_RATE = "default_notification_torch2";
     private static final String KEY_BATT_LIGHT = "battery_light_enabled";
     private static final String KEY_EDGE_LIGHTNING = "pulse_ambient_light";
 
     private SystemSettingListPreference mFlashOnCall;
     private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
-    private SwitchPreference mFlashOnNotify;
-    private CustomSeekBarPreference mFlashOnNotifyTimes;
-    private CustomSeekBarPreference mFlashOnNotifyRate;
     private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
@@ -86,10 +79,7 @@ public class NotificationsSettings extends DashboardFragment implements
         if (!YaapUtils.deviceHasFlashlight(getActivity())) {
             PreferenceCategory flashOnCallCategory = (PreferenceCategory)
                     findPreference(FLASH_ON_CALL_OPTIONS);
-            PreferenceCategory flashOnNotifCategory = (PreferenceCategory)
-                    findPreference(FLASH_ON_NOTIFICATION_OPTIONS);
             prefScreen.removePreference(flashOnCallCategory);
-            prefScreen.removePreference(flashOnNotifCategory);
         } else {
             mFlashOnCallRate = (CustomSeekBarPreference)
                     findPreference(PREF_FLASH_ON_CALL_RATE);
@@ -109,21 +99,6 @@ public class NotificationsSettings extends DashboardFragment implements
                     findPreference(PREF_FLASH_ON_CALL);
             mFlashOnCall.setSummary(mFlashOnCall.getEntries()[value]);
             mFlashOnCall.setOnPreferenceChangeListener(this);
-
-            mFlashOnNotifyTimes = (CustomSeekBarPreference)
-                    findPreference(PREF_FLASH_ON_NOTIFY_TIMES);
-            mFlashOnNotifyRate = (CustomSeekBarPreference)
-                    findPreference(PREF_FLASH_ON_NOTIFY_RATE);
-            mFlashOnNotify = (SwitchPreference)
-                    findPreference(PREF_FLASH_ON_NOTIFY);
-            String strVal = Settings.System.getStringForUser(resolver,
-                    PREF_FLASH_ON_NOTIFY, UserHandle.USER_CURRENT);
-            final boolean enabled = strVal != null && !strVal.isEmpty();
-            mFlashOnNotify.setChecked(enabled);
-            updateFlashOnNotifyValues(enabled, strVal);
-            mFlashOnNotify.setOnPreferenceChangeListener(this);
-            mFlashOnNotifyTimes.setOnPreferenceChangeListener(this);
-            mFlashOnNotifyRate.setOnPreferenceChangeListener(this);
         }
 
         mEdgeLightning = (SystemSettingMasterSwitchPreference)
@@ -155,52 +130,8 @@ public class NotificationsSettings extends DashboardFragment implements
             Settings.System.putIntForUser(resolver, KEY_EDGE_LIGHTNING,
                     value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
-        } else if (preference == mFlashOnNotify) {
-            boolean value = (Boolean) newValue;
-            if (!value) setFlashOnNotifyValues(0, 0);
-            else setFlashOnNotifyValues(2, 2);
-            return true;
-        } else if (preference == mFlashOnNotifyTimes) {
-            int value = (Integer) newValue;
-            setFlashOnNotifyValues(value, mFlashOnNotifyRate.getValue());
-            return true;
-        } else if (preference == mFlashOnNotifyRate) {
-            int value = (Integer) newValue;
-            setFlashOnNotifyValues(mFlashOnNotifyTimes.getValue(), value);
-            return true;
         }
         return false;
-    }
-
-    private void updateFlashOnNotifyValues(boolean enabled) {
-        final String val = Settings.System.getStringForUser(
-                getActivity().getContentResolver(),
-                PREF_FLASH_ON_NOTIFY, UserHandle.USER_CURRENT);
-        updateFlashOnNotifyValues(enabled, val);
-    }
-
-    private void updateFlashOnNotifyValues(boolean enabled, String val) {
-        if (enabled) {
-            if (val.equals("1")) {
-                mFlashOnNotifyTimes.setValue(2);
-                mFlashOnNotifyRate.setValue(2);
-            } else {
-                String[] vals = val.split(",");
-                mFlashOnNotifyTimes.setValue(Integer.valueOf(vals[0]));
-                mFlashOnNotifyRate.setValue(Integer.valueOf(vals[1]));
-            }
-        }
-        mFlashOnNotifyTimes.setVisible(enabled);
-        mFlashOnNotifyRate.setVisible(enabled);
-    }
-
-    private void setFlashOnNotifyValues(int times, int rate) {
-        final boolean enabled = times != 0 && rate != 0;
-        String val = String.valueOf(times) + "," + String.valueOf(rate);
-        if (times == 2 && rate == 2) val = "1";
-        Settings.System.putStringForUser(getActivity().getContentResolver(),
-                PREF_FLASH_ON_NOTIFY, enabled ? val : null, UserHandle.USER_CURRENT);
-        updateFlashOnNotifyValues(enabled, val);
     }
 
     @Override

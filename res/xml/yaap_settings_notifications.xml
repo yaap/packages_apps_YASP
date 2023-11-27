@@ -60,39 +60,6 @@
 
     </PreferenceCategory>
 
-    <!-- Flashlight blinking for notifications -->
-    <PreferenceCategory
-        android:key="notification_flashlight_category"
-        android:title="@string/notification_flashlight_category">
-
-        <SwitchPreference
-            android:key="default_notification_torch"
-            android:title="@string/notification_torch_title"
-            android:summary="@string/notification_torch_summary"
-            android:defaultValue="false" />
-
-        <!-- Flashlight blinking times -->
-        <com.yasp.settings.preferences.CustomSeekBarPreference
-            android:key="default_notification_torch1"
-            android:title="@string/notification_torch_slider1"
-            android:max="10"
-            settings:min="1"
-            settings:interval="1"
-            settings:defaultValue="2"
-            settings:units="@string/unit_times" />
-
-        <!-- Flashlight blinking rate -->
-        <com.yasp.settings.preferences.CustomSeekBarPreference
-            android:key="default_notification_torch2"
-            android:title="@string/notification_torch_slider2"
-            android:max="10"
-            settings:min="1"
-            settings:interval="1"
-            settings:defaultValue="2"
-            settings:units="@string/unit_hz" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory
         android:key="incall_vib_options"
         android:title="@string/incall_vibration_category" >
