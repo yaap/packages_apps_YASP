@@ -210,9 +210,6 @@
 
     <!-- Combined signal icons in status bar -->
 
-    <!-- Lockscreen media art -->
-    <string name="keygaurd_media_art_title">תמונת מדיה</string>
-    <string name="keygaurd_media_art_summary">הצג תמונת מדיה כרקע מסך הנעילה</string>
 
     <!-- QS media player -->
     <string name="qs_media_controls_title">נגן מדיה</string>

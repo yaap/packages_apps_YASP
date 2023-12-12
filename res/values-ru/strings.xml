@@ -200,9 +200,6 @@
     <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
     <string name="ambient_notification_light_color_title">Пользовательский цвет</string>
 
-    <!-- Lockscreen media art -->
-    <string name="keygaurd_media_art_title">Обложка</string>
-    <string name="keygaurd_media_art_summary">Обложка текущего трека в качестве фона экрана блокировки</string>
 
     <!-- QS media player -->
     <string name="qs_media_controls_title">Плеер</string>
