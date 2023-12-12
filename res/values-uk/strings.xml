@@ -272,10 +272,6 @@
     <string name="tint_background_title">Відтінок фону</string>
     <string name="tint_background_summary">Застосувати налаштування Яскравості та Кольоровості так само і для фонового кольору</string>
 
-     <!-- Notification count -->
-    <string name="status_bar_notif_count_title">Лічильник повідомлень</string>
-    <string name="status_bar_notif_count_summary">Відображати лічильник очікуваних повідомлень у правому нижньому кутку іконки повідомлення</string>
-
     <!-- Lockscreen bottom shortcuts -->
     <string name="lockscreen_shortcut_category">Ярлики внизу екрана блокування</string>
     <string name="lockscreen_shortcut_start_title">Ярлик зліва</string>

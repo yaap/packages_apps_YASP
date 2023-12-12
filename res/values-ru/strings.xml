@@ -270,10 +270,6 @@
     <string name="tint_background_title">Оттенок фона</string>
     <string name="tint_background_summary">Применить настройки Яркости и Цветности так же и для фонового цвета</string>
 
-     <!-- Notification count -->
-    <string name="status_bar_notif_count_title">Счётчик уведомлений</string>
-    <string name="status_bar_notif_count_summary">Отображать счётчик ожидающих уведомлений в правом нижнем углу иконки уведомления</string>
-
     <!-- Lockscreen bottom shortcuts -->
     <string name="lockscreen_shortcut_category">Ярлыки внизу экрана блокировки</string>
     <string name="lockscreen_shortcut_start_title">Ярлык слева</string>

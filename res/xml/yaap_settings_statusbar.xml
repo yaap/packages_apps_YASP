@@ -32,13 +32,6 @@
         android:summary="@string/double_tap_sleep_gesture_summary"
         android:defaultValue="false" />
 
-    <!-- Notification Counter -->
-    <com.yasp.settings.preferences.SystemSettingSwitchPreference
-        android:key="status_bar_notif_count"
-        android:title="@string/status_bar_notif_count_title"
-        android:summary="@string/status_bar_notif_count_summary"
-        android:defaultValue="false" />
-
     <!-- Location privacy indicator -->
     <SwitchPreference
         android:key="location_indicators_enabled"

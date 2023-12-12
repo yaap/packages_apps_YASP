@@ -257,10 +257,6 @@
     <string name="tint_background_title">背景色调</string>
     <string name="tint_background_summary">使亮度和色度选择也会影响背景颜色</string>
 
-    <!-- Notification count -->
-    <string name="status_bar_notif_count_title">通知计数</string>
-    <string name="status_bar_notif_count_summary">显示待处理的通知数量</string>
-
     <!-- Lockscreen bottom shortcuts -->
     <string name="lockscreen_shortcut_category">底部快捷方式</string>
     <string name="lockscreen_shortcut_start_title">左侧</string>

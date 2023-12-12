@@ -267,10 +267,6 @@
     <string name="tint_background_title">背景著色</string>
     <string name="tint_background_summary">對背景色也套用亮度與彩度</string>
 
-    <!-- Notification count -->
-    <string name="status_bar_notif_count_title">通知計數</string>
-    <string name="status_bar_notif_count_summary">在狀態列上顯示通知數量</string>
-
     <!-- Lockscreen bottom shortcuts -->
     <string name="lockscreen_shortcut_category">鎖定畫面捷徑</string>
     <string name="lockscreen_shortcut_start_title">左側捷徑</string>
