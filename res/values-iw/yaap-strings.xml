@@ -189,24 +189,6 @@
     <string name="battery_light_reallyfull_color">סוללה מלאה (100)</string>
 
     <!-- Pulse notifications lightning -->
-    <string name="pulse_ambient_light_title">תאורת צד</string>
-    <string name="pulse_ambient_light_summary">הצג תאורת צד עבור התראות</string>
-    <string name="ambient_notification_light_enabled_title">הצג על מסך דולך תמיד</string>
-    <string name="aod_disabled">מסך דולק תמיד אינו מופעל כעת</string>
-    <string name="ambient_notification_light_enabled_summary">המשך להציג על מסך דולק תמיד</string>
-    <string name="ambient_notification_light_hide_aod_title">הסתר את תוכן מסך דולק תמיד</string>
-    <string name="ambient_notification_light_hide_aod_summary">הסתר את תוכן מסך דולק תמיד כאשר קיימת תאורת צד</string>
-    <string name="ambient_notification_light_duration_title">משך</string>
-    <string name="ambient_notification_light_duration_summary">זמן משך לכל הנפשה</string>
-    <string name="ambient_notification_light_repeats_title">חזרות</string>
-    <string name="ambient_notification_light_repeats_summary">כמות הפעמים שההנפשה תתבצע\n0 לאין-סוף</string>
-    <string name="set_to_zero">קבע חזרות ל0 על מנת להפעיל</string>
-    <string name="ambient_notification_color_mode_title">מצב צבע</string>
-    <string name="ambient_notification_color_mode_accent">צבע עיקרי</string>
-    <string name="ambient_notification_color_mode_wall">צבע עיקרי מהטפט</string>
-    <string name="ambient_notification_color_mode_notification">צבע סמליל ההתראה</string>
-    <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
-    <string name="ambient_notification_light_color_title">צבע ידני</string>
 
     <!-- Combined signal icons in status bar -->
 

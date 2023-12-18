@@ -177,24 +177,6 @@
     <string name="battery_light_reallyfull_color">完全充滿（100%）</string>
 
     <!-- Pulse notifications lightning -->
-    <string name="pulse_ambient_light_title">側邊閃爍</string>
-    <string name="pulse_ambient_light_summary">有通知時，在螢幕兩側閃爍</string>
-    <string name="ambient_notification_light_enabled_title">在隨顯螢幕上顯示</string>
-    <string name="aod_disabled">隨顯螢幕已停用</string>
-    <string name="ambient_notification_light_enabled_summary">在隨顯螢幕上持續閃爍</string>
-    <string name="ambient_notification_light_hide_aod_title">隱藏內容</string>
-    <string name="ambient_notification_light_hide_aod_summary">側光閃爍時隱藏隨顯螢幕上的內容</string>
-    <string name="ambient_notification_light_duration_title">閃爍時長</string>
-    <string name="ambient_notification_light_duration_summary">每次閃爍的完整時長</string>
-    <string name="ambient_notification_light_repeats_title">重複次數</string>
-    <string name="ambient_notification_light_repeats_summary">重複閃爍的次數\n設為 0 時則無限閃爍</string>
-    <string name="set_to_zero">將重複次數設為 0 來啟用</string>
-    <string name="ambient_notification_color_mode_title">色彩</string>
-    <string name="ambient_notification_color_mode_accent">系統主色調</string>
-    <string name="ambient_notification_color_mode_wall">桌布主色調</string>
-    <string name="ambient_notification_color_mode_notification">通知圖示顏色</string>
-    <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
-    <string name="ambient_notification_light_color_title">自訂</string>
 
 
     <!-- QS media player -->
@@ -223,8 +205,6 @@
     <string name="volume_key_cursor_control_right">上鍵 - 向右，下鍵 - 向左</string>
 
     <!-- Wi-Fi Standard icon -->
-    <string name="show_wifi_standard_icon_title">顯示 Wi-Fi 類型</string>
-    <string name="show_wifi_standard_icon_summary">在圖示上顯示目前連線的 Wi-Fi 類型</string>
 
     <!-- Privacy indicators -->
     <string name="location_privacy_indicator_title">位置存取圖示</string>
@@ -265,18 +245,6 @@
     <string name="tint_background_summary">對背景色也套用亮度與彩度</string>
 
     <!-- Lockscreen bottom shortcuts -->
-    <string name="lockscreen_shortcut_category">鎖定畫面捷徑</string>
-    <string name="lockscreen_shortcut_start_title">左側捷徑</string>
-    <string name="lockscreen_shortcut_end_title">右側捷徑</string>
-    <string name="lockscreen_shortcut_wallet">錢包</string>
-    <string name="lockscreen_shortcut_home">裝置管理</string>
-    <string name="lockscreen_shortcut_flashlight">手電筒</string>
-    <string name="lockscreen_shortcut_qr">QR Code 掃瞄器</string>
-    <string name="lockscreen_shortcut_camera">相機</string>
-    <string name="lockscreen_shortcut_dnd">零打擾</string>
-    <string name="lockscreen_shortcut_none">無</string>
-    <string name="lockscreen_shortcut_enforce_title">單一捷徑</string>
-    <string name="lockscreen_shortcut_enforce_summary">當選用的捷徑無法使用時不會以其他捷徑替代/n選用的捷徑能夠使用時會再次顯示</string>
 
     <!-- Backup Transport selector -->
     <string name="transport_selector_title">備份方式</string>

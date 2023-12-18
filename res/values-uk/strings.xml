@@ -183,24 +183,6 @@
     <string name="battery_light_reallyfull_color">Повний заряд (100%)</string>
 
     <!-- Pulse notifications lightning -->
-    <string name="pulse_ambient_light_title">Підсвічування країв</string>
-    <string name="pulse_ambient_light_summary">Пульсування по краях вимкненого екрану</string>
-    <string name="ambient_notification_light_enabled_title">Показувати на AOD</string>
-    <string name="aod_disabled">AOD вимкнений</string>
-    <string name="ambient_notification_light_enabled_summary">Показувати разом з AOD</string>
-    <string name="ambient_notification_light_hide_aod_title">Приховувати AOD</string>
-    <string name="ambient_notification_light_hide_aod_summary">Вимкнути AOD під час підсвічування країв</string>
-    <string name="ambient_notification_light_duration_title">Тривалість</string>
-    <string name="ambient_notification_light_duration_summary">Час програвання анімації після отримання повідомлення</string>
-    <string name="ambient_notification_light_repeats_title">Повторення</string>
-    <string name="ambient_notification_light_repeats_summary">Кількість повторень (оберіть 0 для постійного повторення)</string>
-    <string name="set_to_zero">Для активації оберіть 0 у пункті - Повторення</string>
-    <string name="ambient_notification_color_mode_title">Тип кольору</string>
-    <string name="ambient_notification_color_mode_accent">Колір акценту</string>
-    <string name="ambient_notification_color_mode_wall">Домінуючий колір шпалер</string>
-    <string name="ambient_notification_color_mode_notification">Колір піктограм сповіщень</string>
-    <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
-    <string name="ambient_notification_light_color_title">Колір користувача</string>
 
 
     <!-- QS media player -->
@@ -229,8 +211,6 @@
     <string name="volume_key_cursor_control_right">вгору - право, вниз - ліво</string>
 
     <!-- Wi-Fi Standard icon -->
-    <string name="show_wifi_standard_icon_title">Відображати стандарт Wi-Fi</string>
-    <string name="show_wifi_standard_icon_summary">Відображає стандарт підключення у іконці Wi-Fi</string>
 
     <!-- Privacy indicators -->
     <string name="location_privacy_indicator_title">Індикатор доступу до місцеположення</string>
@@ -270,16 +250,5 @@
     <string name="tint_background_summary">Застосувати налаштування Яскравості та Кольоровості так само і для фонового кольору</string>
 
     <!-- Lockscreen bottom shortcuts -->
-    <string name="lockscreen_shortcut_category">Ярлики внизу екрана блокування</string>
-    <string name="lockscreen_shortcut_start_title">Ярлик зліва</string>
-    <string name="lockscreen_shortcut_end_title">Ярлик справа</string>
-    <string name="lockscreen_shortcut_wallet">Гаманець</string>
-    <string name="lockscreen_shortcut_home">Додому</string>
-    <string name="lockscreen_shortcut_flashlight">Ліхтарик</string>
-    <string name="lockscreen_shortcut_qr">QR-код</string>
-    <string name="lockscreen_shortcut_camera">Камера</string>
-    <string name="lockscreen_shortcut_none">Без ярликів</string>
-    <string name="lockscreen_shortcut_enforce_title">Єдиний ярлик</string>
-    <string name="lockscreen_shortcut_enforce_summary">Зробити обраний ярлик єдиним існуючим пріоритетом\nНічого не буде відображатися, поки конкретний вибраний ярлик не стане доступним</string>
 
 </resources>
