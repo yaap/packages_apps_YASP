@@ -227,8 +227,6 @@
     <string name="theme_style_spritz">Брызги</string>
     <string name="theme_style_rainbow">Радуга</string>
     <string name="theme_style_fruit_salad">Фруктовый салат</string>
-    <string name="theme_style_muted">Приглушенный</string>
-    <string name="theme_style_content">Умиротворенный</string>
     <string name="color_source_title">Источник цвета</string>
     <string name="color_source_both">Обои на главном экране и экране блокировки (По умолчанию)</string>
     <string name="color_source_home">Обои на главном экране</string>
