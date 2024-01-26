@@ -163,6 +163,8 @@
     <string name="battery_percent_inside_summary">在电池图标内显示电池百分比</string>
     <string name="show_battery_percent_charging_title">充电时显示百分比</string>
     <string name="show_battery_percent_charging_summary">充电时强制在图标旁显示百分比</string>
+    <string name="color_battery_charging_title">电量颜色</string>
+    <string name="color_battery_charging_summary">在充电时根据当前电量为图标和文字着色</string>
 
     <!-- Battery light -->
     <string name="battery_light_settings">充电指示灯</string>
@@ -170,10 +172,10 @@
     <string name="battery_light_allow_on_dnd_title">勿扰模式下的充电指示灯</string>
     <string name="battery_light_low_blinking_title">电量不足时指示灯闪烁</string>
     <string name="battery_light_cat">充电时指示灯颜色</string>
-    <string name="battery_light_low_color">低电量时</string>
-    <string name="battery_light_medium_color">中电量时</string>
-    <string name="battery_light_full_color">电池快满时</string>
-    <string name="battery_light_reallyfull_color">电池充满时</string>
+    <string name="battery_light_low_color">电量低时</string>
+    <string name="battery_light_medium_color">电量中时</string>
+    <string name="battery_light_full_color">电量快满时</string>
+    <string name="battery_light_reallyfull_color">电量已满时</string>
 
     <!-- Pulse notifications lightning -->
 
