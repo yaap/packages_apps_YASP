@@ -86,5 +86,11 @@
             android:summary="@string/show_battery_percent_charging_summary"
             android:defaultValue="false" />
 
+        <com.yasp.settings.preferences.SystemSettingSwitchPreference
+            android:key="color_battery_charging"
+            android:title="@string/color_battery_charging_title"
+            android:summary="@string/color_battery_charging_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 </PreferenceScreen>

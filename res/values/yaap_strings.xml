@@ -183,6 +183,8 @@
     <string name="battery_percent_inside_summary">Show percent inside the icon</string>
     <string name="show_battery_percent_charging_title">Show percent when charging</string>
     <string name="show_battery_percent_charging_summary">Enforce showing the percent next to the icon when charging</string>
+    <string name="color_battery_charging_title">Color on charge</string>
+    <string name="color_battery_charging_summary">Color the icon and text according to current level when charging</string>
 
     <!-- Battery light -->
     <string name="battery_light_settings">Battery charging light</string>
@@ -194,7 +196,6 @@
     <string name="battery_light_medium_color">Medium battery</string>
     <string name="battery_light_full_color">Almost full battery</string>
     <string name="battery_light_reallyfull_color">Full (100) battery</string>
-
 
     <!-- QS media player -->
     <string name="qs_media_controls_title">Media player</string>
