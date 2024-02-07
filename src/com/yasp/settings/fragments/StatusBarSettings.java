@@ -210,13 +210,14 @@ public class StatusBarSettings extends DashboardFragment implements
         if (mNetTrafficState == null) return;
         String summary = getActivity().getString(R.string.switch_off_text);
         if (enabled) {
-            final boolean onStatus = Settings.System.getInt(
+            final int status = Settings.System.getInt(
                     getActivity().getContentResolver(),
-                    Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0) == 0;
-            summary = getActivity().getString(R.string.network_traffic_state_summary);
-            summary += " " + (onStatus
-                    ? getActivity().getString(R.string.traffic_statusbar)
-                    : getActivity().getString(R.string.traffic_expanded_statusbar));
+                    Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, 0);
+            int resid = R.string.traffic_statusbar;
+            if (status == 1) resid = R.string.traffic_expanded_statusbar;
+            else if (status == 2) resid = R.string.show_network_traffic_all;
+            summary = getActivity().getString(R.string.network_traffic_state_summary)
+                    + " " + getActivity().getString(resid);
         }
         mNetTrafficState.setSummary(summary);
     }

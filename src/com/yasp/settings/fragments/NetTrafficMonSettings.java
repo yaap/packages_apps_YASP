@@ -109,7 +109,7 @@ public class NetTrafficMonSettings extends DashboardFragment implements
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mNetTrafficLocation) {
             int location = Integer.valueOf((String) objValue);
-            // 0=sb; 1=expanded sb
+            // 0=sb; 1=expanded sb; 2 = both
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.NETWORK_TRAFFIC_VIEW_LOCATION, location, UserHandle.USER_CURRENT);
             int index = mNetTrafficLocation.findIndexOfValue((String) objValue);
