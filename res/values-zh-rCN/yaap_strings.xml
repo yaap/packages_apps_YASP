@@ -82,7 +82,7 @@
     <string name="network_traffic_state_summary">显示在</string>
     <string name="network_traffic_location_title">网速位置</string>
     <string name="traffic_statusbar">状态栏</string>
-    <string name="traffic_expanded_statusbar">磁贴面板顶部</string>
+    <string name="traffic_expanded_statusbar">扩展磁贴面板</string>
     <string name="network_traffic_autohide_threshold_title">自动隐藏阈值</string>
     <string name="network_traffic_arrow_title">显示箭头</string>
     <string name="network_traffic_arrow_summary">显示网速箭头</string>
@@ -92,7 +92,7 @@
     <string name="show_network_traffic_up">上传</string>
     <string name="show_network_traffic_down">下载</string>
     <string name="show_network_traffic_all">同时显示</string>
-    <string name="network_traffic_font_size_title">单向显示时的字体大小</string>
+    <string name="network_traffic_font_size_title">单向显示时字体的大小</string>
 
     <!-- Notification headers -->
     <string name="notification_headers_title">通知标题</string>
@@ -175,9 +175,6 @@
     <string name="battery_light_full_color">电池快满时</string>
     <string name="battery_light_reallyfull_color">电池充满时</string>
 
-    <!-- Pulse notifications lightning -->
-
-
     <!-- QS media player -->
     <string name="qs_media_controls_title">媒体播放器</string>
     <string name="qs_media_controls_summary_on">在磁贴面板中显示媒体播放器\n需要重启系统界面</string>
@@ -234,8 +231,6 @@
     <string name="chroma_factor_summary">越高的值会使颜色饱和度更高</string>
     <string name="tint_background_title">背景色调</string>
     <string name="tint_background_summary">使亮度和色度选择也会影响背景颜色</string>
-
-    <!-- Lockscreen bottom shortcuts -->
 
     <!-- Backup Transport selector -->
     <string name="transport_selector_title">备份方式</string>
