@@ -37,6 +37,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         View.OnClickListener, View.OnLongClickListener {
     protected final String TAG = getClass().getName();
     private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
+    private static final String SETTINGS_NS_ALT = "http://schemas.android.com/apk/res-auto";
     protected static final String ANDROIDNS = "http://schemas.android.com/apk/res/android";
 
     protected int mInterval = 1;
@@ -77,12 +78,20 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
         try {
             String newInterval = attrs.getAttributeValue(SETTINGS_NS, "interval");
-            if (newInterval != null)
+            if (newInterval != null) {
                 mInterval = Integer.parseInt(newInterval);
+            } else {
+                newInterval = attrs.getAttributeValue(SETTINGS_NS_ALT, "interval");
+                if (newInterval != null) mInterval = Integer.parseInt(newInterval);
+            }
         } catch (Exception e) {
             Log.e(TAG, "Invalid interval value", e);
         }
         mMinValue = attrs.getAttributeIntValue(SETTINGS_NS, "min", mMinValue);
+        if (mMinValue == 0) {
+            int min = attrs.getAttributeIntValue(SETTINGS_NS_ALT, "min", mMinValue);
+            if (min != 0) mMinValue = min;
+        }
         mMaxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", mMaxValue);
         if (mMaxValue < mMinValue)
             mMaxValue = mMinValue;
