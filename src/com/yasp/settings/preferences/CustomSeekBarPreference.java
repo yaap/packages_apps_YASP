@@ -97,6 +97,14 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             mMaxValue = mMinValue;
         String defaultValue = attrs.getAttributeValue(ANDROIDNS, "defaultValue");
         mDefaultValueExists = defaultValue != null && !defaultValue.isEmpty();
+        if (!mDefaultValueExists) {
+            defaultValue = attrs.getAttributeValue(SETTINGS_NS, "defaultValue");
+            mDefaultValueExists = defaultValue != null && !defaultValue.isEmpty();
+        }
+        if (!mDefaultValueExists) {
+            defaultValue = attrs.getAttributeValue(SETTINGS_NS_ALT, "defaultValue");
+            mDefaultValueExists = defaultValue != null && !defaultValue.isEmpty();
+        }
         if (mDefaultValueExists) {
             mDefaultValue = getLimitedValue(Integer.parseInt(defaultValue));
             mValue = mDefaultValue;
