@@ -17,24 +17,29 @@
 package com.yasp.settings.preferences;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import androidx.preference.*;
 import androidx.core.content.res.TypedArrayUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.settings.R;
+import com.android.settingslib.widget.SettingsThemeHelper;
 
-public class CustomSeekBarPreference extends Preference implements SeekBar.OnSeekBarChangeListener,
-        View.OnClickListener, View.OnLongClickListener {
+import com.google.android.material.slider.LabelFormatter;
+import com.google.android.material.slider.Slider;
+
+public class CustomSeekBarPreference extends Preference implements Slider.OnChangeListener,
+        Slider.OnSliderTouchListener, View.OnClickListener, View.OnLongClickListener {
     protected final String TAG = getClass().getName();
     private static final String SETTINGS_NS = "http://schemas.android.com/apk/res/com.android.settings";
     private static final String SETTINGS_NS_ALT = "http://schemas.android.com/apk/res-auto";
@@ -56,7 +61,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     protected ImageView mResetImageView;
     protected ImageView mMinusImageView;
     protected ImageView mPlusImageView;
-    protected SeekBar mSeekBar;
+    protected Slider mSlider;
 
     protected boolean mTrackingTouch = false;
     protected int mTrackingValue;
@@ -112,7 +117,10 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             mValue = mMinValue;
         }
 
-        mSeekBar = new SeekBar(context, attrs);
+        Context materialContext = new ContextThemeWrapper(context,
+                com.google.android.material.R.style.Theme_MaterialComponents_DayNight);
+        mSlider = new Slider(materialContext, attrs);
+
         setLayoutResource(R.layout.preference_custom_seekbar);
     }
 
@@ -136,25 +144,89 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
         try
         {
             // move our seekbar to the new view we've been given
-            ViewParent oldContainer = mSeekBar.getParent();
+            ViewParent oldContainer = mSlider.getParent();
             ViewGroup newContainer = (ViewGroup) holder.findViewById(R.id.seekbar);
             if (oldContainer != newContainer) {
                 // remove the seekbar from the old view
                 if (oldContainer != null) {
-                    ((ViewGroup) oldContainer).removeView(mSeekBar);
+                    ((ViewGroup) oldContainer).removeView(mSlider);
                 }
                 // remove the existing seekbar (there may not be one) and add ours
                 newContainer.removeAllViews();
-                newContainer.addView(mSeekBar, ViewGroup.LayoutParams.FILL_PARENT,
+                newContainer.addView(mSlider, ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         } catch (Exception ex) {
-            Log.e(TAG, "Error binding view: " + ex.toString());
+            Log.e(TAG, "Error binding view", ex);
         }
 
-        mSeekBar.setMax(getSeekValue(mMaxValue));
-        mSeekBar.setProgress(getSeekValue(mValue));
-        mSeekBar.setEnabled(isEnabled());
+        mSlider.setValueTo(mMaxValue);
+        mSlider.setValueFrom(mMinValue);
+        mSlider.setValue(mValue);
+        mSlider.setEnabled(isEnabled());
+        mSlider.setLabelBehavior(LabelFormatter.LABEL_GONE);
+        mSlider.setTickVisible(false);
+        if (mInterval > 0) {
+            mSlider.setStepSize(mInterval);
+        } else {
+            Log.w(TAG, "Step size is zero or invalid: " + mInterval);
+        }
+
+        // Set up slider color
+        mSlider.setTrackActiveTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_track_active));
+        mSlider.setTrackInactiveTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_track_inactive));
+        mSlider.setThumbTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_thumb));
+        mSlider.setHaloTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_halo));
+        mSlider.setTickActiveTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_track_active));
+        mSlider.setTickInactiveTintList(getContext().getColorStateList(
+                com.android.settingslib.widget.preference.slider.R.color
+                .settingslib_expressive_color_slider_track_inactive));
+
+        // Set up slider size
+        if (SettingsThemeHelper.isExpressiveTheme(getContext())) {
+            Resources res = getContext().getResources();
+            mSlider.setTrackHeight(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_track_height));
+            // need to drop 1.12.0 to Android
+            mSlider.setTrackInsideCornerSize(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_track_inside_corner_size));
+            mSlider.setTrackStopIndicatorSize(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_track_stop_indicator_size));
+            mSlider.setThumbWidth(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_thumb_width));
+            mSlider.setThumbHeight(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_thumb_height));
+            mSlider.setThumbElevation(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_thumb_elevation));
+            mSlider.setThumbStrokeWidth(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_thumb_stroke_width));
+            mSlider.setThumbTrackGapSize(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_thumb_track_gap_size));
+            mSlider.setTickActiveRadius(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R.dimen
+                    .settingslib_expressive_slider_tick_radius));
+            mSlider.setTickInactiveRadius(res.getDimensionPixelSize(
+                    com.android.settingslib.widget.preference.slider.R
+                    .dimen.settingslib_expressive_slider_tick_radius));
+        }
 
         mValueTextView = (TextView) holder.findViewById(R.id.value);
         mResetImageView = (ImageView) holder.findViewById(R.id.reset);
@@ -163,7 +235,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
         updateValueViews();
 
-        mSeekBar.setOnSeekBarChangeListener(this);
+        mSlider.addOnChangeListener(this);
         mResetImageView.setOnClickListener(this);
         mMinusImageView.setOnClickListener(this);
         mPlusImageView.setOnClickListener(this);
@@ -174,10 +246,6 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     protected int getLimitedValue(int v) {
         return v < mMinValue ? mMinValue : (v > mMaxValue ? mMaxValue : v);
-    }
-
-    protected int getSeekValue(int v) {
-        return 0 - Math.floorDiv(mMinValue - v, mInterval);
     }
 
     protected String getTextValue(int v) {
@@ -234,15 +302,14 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int newValue = getLimitedValue(mMinValue + (progress * mInterval));
+    public void onValueChange(Slider slider, float value, boolean fromUser) {
+        int newValue = getLimitedValue(Math.round(value));
         if (mTrackingTouch && !mContinuousUpdates) {
             mTrackingValue = newValue;
-            updateValueViews();
         } else if (mValue != newValue) {
             // change rejected, revert to the previous value
             if (!callChangeListener(newValue)) {
-                mSeekBar.setProgress(getSeekValue(mValue));
+                mSlider.setValue(mValue);
                 return;
             }
             // change accepted, store it
@@ -250,21 +317,21 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
             persistInt(newValue);
 
             mValue = newValue;
-            updateValueViews();
         }
+        updateValueViews();
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
+    public void onStartTrackingTouch(Slider slider) {
         mTrackingValue = mValue;
         mTrackingTouch = true;
     }
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
+    public void onStopTrackingTouch(Slider slider) {
         mTrackingTouch = false;
         if (!mContinuousUpdates)
-            onProgressChanged(mSeekBar, getSeekValue(mTrackingValue), false);
+            onValueChange(mSlider, mTrackingValue, false);
         notifyChanged();
     }
 
@@ -315,9 +382,9 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
     @Override
     public void setDefaultValue(Object defaultValue) {
         if (defaultValue instanceof Integer)
-            setDefaultValue((Integer) defaultValue, mSeekBar != null);
+            setDefaultValue((Integer) defaultValue, mSlider != null);
         else
-            setDefaultValue(defaultValue == null ? (String) null : defaultValue.toString(), mSeekBar != null);
+            setDefaultValue(defaultValue == null ? (String) null : defaultValue.toString(), mSlider != null);
     }
 
     public void setDefaultValue(int newValue, boolean update) {
@@ -342,7 +409,7 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     public void setMax(int max) {
         mMaxValue = max;
-        mSeekBar.setMax(mMaxValue - mMinValue);
+        if (mSlider != null) mSlider.setValueTo(mMaxValue);
     }
 
     public int getMax() {
@@ -351,21 +418,31 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     public void setMin(int min) {
         mMinValue = min;
-        mSeekBar.setMax(mMaxValue - mMinValue);
+        if (mSlider != null) mSlider.setValueFrom(mMinValue);
     }
 
     public void setValue(int newValue) {
         mValue = getLimitedValue(newValue);
-        if (mSeekBar != null) mSeekBar.setProgress(getSeekValue(mValue));
+        if (mSlider != null) mSlider.setValue(mValue);
+        onValueChange(mSlider, mValue, false);
+        notifyChanged();
     }
 
     public void setValue(int newValue, boolean update) {
         newValue = getLimitedValue(newValue);
         if (mValue != newValue) {
-            if (update)
-                mSeekBar.setProgress(getSeekValue(newValue));
-            else
-                mValue = newValue;
+            if (!callChangeListener(newValue)) {
+                return;
+            }
+
+            mValue = newValue;
+            persistInt(newValue);
+            changeValue(newValue);  // if needed
+            if (update && mSlider != null)
+                mSlider.setValue(newValue);
+
+            updateValueViews();
+            notifyChanged();
         }
     }
 
@@ -388,6 +465,6 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     public void refresh(int newValue) {
         // this will ...
-        setValue(newValue, mSeekBar != null);
+        setValue(newValue, mSlider != null);
     }
 }
