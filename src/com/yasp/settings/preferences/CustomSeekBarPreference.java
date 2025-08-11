@@ -81,25 +81,41 @@ public class CustomSeekBarPreference extends Preference implements Slider.OnChan
             a.recycle();
         }
 
-        try {
-            String newInterval = attrs.getAttributeValue(SETTINGS_NS, "interval");
-            if (newInterval != null) {
-                mInterval = Integer.parseInt(newInterval);
-            } else {
-                newInterval = attrs.getAttributeValue(SETTINGS_NS_ALT, "interval");
-                if (newInterval != null) mInterval = Integer.parseInt(newInterval);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Invalid interval value", e);
+        String newInterval = attrs.getAttributeValue(SETTINGS_NS, "interval");
+        if (newInterval != null) {
+            mInterval = Integer.parseInt(newInterval);
         }
+        if (newInterval == null) {
+            newInterval = attrs.getAttributeValue(SETTINGS_NS_ALT, "interval");
+            if (newInterval != null) mInterval = Integer.parseInt(newInterval);
+        }
+        if (newInterval == null) {
+            newInterval = attrs.getAttributeValue(ANDROIDNS, "interval");
+            if (newInterval != null) mInterval = Integer.parseInt(newInterval);
+        }
+
         mMinValue = attrs.getAttributeIntValue(SETTINGS_NS, "min", mMinValue);
         if (mMinValue == 0) {
             int min = attrs.getAttributeIntValue(SETTINGS_NS_ALT, "min", mMinValue);
             if (min != 0) mMinValue = min;
         }
+        if (mMinValue == 0) {
+            int min = attrs.getAttributeIntValue(ANDROIDNS, "min", mMinValue);
+            if (min != 0) mMinValue = min;
+        }
+
         mMaxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", mMaxValue);
+        if (mMaxValue == 100) {
+            int max = attrs.getAttributeIntValue(SETTINGS_NS, "max", mMaxValue);
+            if (max != 100) mMaxValue = max;
+        }
+        if (mMaxValue == 100) {
+            int max = attrs.getAttributeIntValue(SETTINGS_NS_ALT, "max", mMaxValue);
+            if (max != 100) mMaxValue = max;
+        }
         if (mMaxValue < mMinValue)
             mMaxValue = mMinValue;
+
         String defaultValue = attrs.getAttributeValue(ANDROIDNS, "defaultValue");
         mDefaultValueExists = defaultValue != null && !defaultValue.isEmpty();
         if (!mDefaultValueExists) {
