@@ -16,9 +16,6 @@
 
 package com.yasp.settings.preferences;
 
-import static android.os.UserHandle.CURRENT;
-import static android.os.UserHandle.USER_CURRENT;
-
 import android.content.Context;
 import android.content.om.OverlayManager;
 import android.content.om.OverlayManagerTransaction;
@@ -44,24 +41,17 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
 
     private final String mDisableKey;
     private final boolean mDKeyNightOnly;
+    private final int mUserId;
+    private final UserHandle mUserHandle;
     private final OverlayManager mOverlayManager;
-
-    public OverlaySwitchPreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        mDisableKey = attrs.getAttributeValue(SETTINGSNS, DKEY);
-        mDKeyNightOnly = attrs.getAttributeBooleanValue(SETTINGSNS, DKEY_NIGHT_ONLY, false);
-        mOverlayManager = context.getSystemService(OverlayManager.class);
-    }
 
     public OverlaySwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         mDisableKey = attrs.getAttributeValue(SETTINGSNS, DKEY);
         mDKeyNightOnly = attrs.getAttributeBooleanValue(SETTINGSNS, DKEY_NIGHT_ONLY, false);
+        mUserId = UserHandle.myUserId();
+        mUserHandle = UserHandle.of(UserHandle.myUserId());
         mOverlayManager = context.getSystemService(OverlayManager.class);
-    }
-
-    public OverlaySwitchPreference(Context context) {
-        this(context, null);
     }
 
     @Override
@@ -69,7 +59,7 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
         super.onAttached();
         if (mOverlayManager == null) return;
         OverlayInfo info = null;
-        info = mOverlayManager.getOverlayInfo(getOverlayID(getKey()), CURRENT);
+        info = mOverlayManager.getOverlayInfo(getOverlayID(getKey()), mUserHandle);
         if (info != null) setChecked(info.isEnabled());
     }
 
@@ -77,17 +67,17 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
     public void setChecked(boolean checked) {
         if (mOverlayManager == null) return;
         OverlayManagerTransaction.Builder transaction = new OverlayManagerTransaction.Builder();
-        transaction.setEnabled(getOverlayID(getKey()), checked, USER_CURRENT);
+        transaction.setEnabled(getOverlayID(getKey()), checked, mUserId);
         if (mDisableKey != null && !mDisableKey.isEmpty()) {
             if (mDKeyNightOnly) {
                 final boolean isNight = (getContext().getResources().getConfiguration().uiMode
                     & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
                 if (isNight)
-                    transaction.setEnabled(getOverlayID(mDisableKey), !checked, USER_CURRENT);
+                    transaction.setEnabled(getOverlayID(mDisableKey), !checked, mUserId);
                 else // always enabled in day
-                    transaction.setEnabled(getOverlayID(mDisableKey), true, USER_CURRENT);
+                    transaction.setEnabled(getOverlayID(mDisableKey), true, mUserId);
             } else {
-                transaction.setEnabled(getOverlayID(mDisableKey), !checked, USER_CURRENT);
+                transaction.setEnabled(getOverlayID(mDisableKey), !checked, mUserId);
             }
         }
         try {
@@ -108,7 +98,7 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
             final String pkgName = value[0];
             final String overlayName = value[1];
             final List<OverlayInfo> infos =
-                    mOverlayManager.getOverlayInfosForTarget(pkgName, CURRENT);
+                    mOverlayManager.getOverlayInfosForTarget(pkgName, mUserHandle);
             for (OverlayInfo info : infos) {
                 if (overlayName.equals(info.getOverlayName()))
                     return info.getOverlayIdentifier();
@@ -116,6 +106,6 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
             throw new IllegalStateException("No overlay found for " + name);
         }
         // package with only one overlay
-        return mOverlayManager.getOverlayInfo(name, CURRENT).getOverlayIdentifier();
+        return mOverlayManager.getOverlayInfo(name, mUserHandle).getOverlayIdentifier();
     }
 }
