@@ -57,27 +57,53 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
     @Override
     public void onAttached() {
         super.onAttached();
-        if (mOverlayManager == null) return;
-        OverlayInfo info = null;
-        info = mOverlayManager.getOverlayInfo(getOverlayID(getKey()), mUserHandle);
-        if (info != null) setChecked(info.isEnabled());
+        if (mOverlayManager == null) {
+            setEnabled(false);
+            return;
+        }
+        try {
+            final OverlayIdentifier overlayID = getOverlayID(getKey());
+            final OverlayInfo info = overlayID == null
+                    ? null : mOverlayManager.getOverlayInfo(overlayID, mUserHandle);
+            if (info == null) {
+                Log.w(TAG, "Overlay " + getKey() + " not found, disabling preference");
+                setEnabled(false);
+                return;
+            }
+            setChecked(info.isEnabled());
+        } catch (SecurityException | IllegalStateException e) {
+            Log.e(TAG, "Failed reading overlay " + getKey() + ", disabling preference", e);
+            setEnabled(false);
+        }
     }
 
     @Override
     public void setChecked(boolean checked) {
-        if (mOverlayManager == null) return;
+        if (mOverlayManager == null) {
+            setEnabled(false);
+            return;
+        }
+        final OverlayIdentifier overlayID = getOverlayID(getKey());
+        if (overlayID == null) {
+            Log.w(TAG, "Overlay " + getKey() + " not found, disabling preference");
+            setEnabled(false);
+            return;
+        }
         OverlayManagerTransaction.Builder transaction = new OverlayManagerTransaction.Builder();
-        transaction.setEnabled(getOverlayID(getKey()), checked, mUserId);
+        transaction.setEnabled(overlayID, checked, mUserId);
         if (mDisableKey != null && !mDisableKey.isEmpty()) {
-            if (mDKeyNightOnly) {
+            final OverlayIdentifier disableID = getOverlayID(mDisableKey);
+            if (disableID == null) {
+                Log.w(TAG, "Overlay " + mDisableKey + " not found, not toggling it");
+            } else if (mDKeyNightOnly) {
                 final boolean isNight = (getContext().getResources().getConfiguration().uiMode
                     & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
                 if (isNight)
-                    transaction.setEnabled(getOverlayID(mDisableKey), !checked, mUserId);
+                    transaction.setEnabled(disableID, !checked, mUserId);
                 else // always enabled in day
-                    transaction.setEnabled(getOverlayID(mDisableKey), true, mUserId);
+                    transaction.setEnabled(disableID, true, mUserId);
             } else {
-                transaction.setEnabled(getOverlayID(mDisableKey), !checked, mUserId);
+                transaction.setEnabled(disableID, !checked, mUserId);
             }
         }
         try {
@@ -90,11 +116,17 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
         super.setChecked(checked);
     }
 
-    private OverlayIdentifier getOverlayID(String name) throws IllegalStateException {
-        if (mOverlayManager == null) return null;
+    /**
+     * Resolves an overlay key to its identifier.
+     *
+     * @return the matching identifier, or {@code null} if the overlay does not exist
+     */
+    private OverlayIdentifier getOverlayID(String name) {
+        if (mOverlayManager == null || name == null || name.isEmpty()) return null;
         if (name.contains(":")) {
             // specific overlay name in a package
             final String[] value = name.split(":");
+            if (value.length < 2) return null;
             final String pkgName = value[0];
             final String overlayName = value[1];
             final List<OverlayInfo> infos =
@@ -103,9 +135,10 @@ public class OverlaySwitchPreference extends SwitchPreferenceCompat {
                 if (overlayName.equals(info.getOverlayName()))
                     return info.getOverlayIdentifier();
             }
-            throw new IllegalStateException("No overlay found for " + name);
+            return null;
         }
         // package with only one overlay
-        return mOverlayManager.getOverlayInfo(name, mUserHandle).getOverlayIdentifier();
+        final OverlayInfo info = mOverlayManager.getOverlayInfo(name, mUserHandle);
+        return info != null ? info.getOverlayIdentifier() : null;
     }
 }
